@@ -7,11 +7,15 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-//using ImageService.Infrastructure;
-//using System.Drawing.Imaging;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Modal
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public class ImageServiceModal : IImageServiceModal
     {
         #region Members
@@ -19,6 +23,7 @@ namespace ImageService.Modal
         public string OutputFolder { get; set; }            // The Output Folder
         public int ThumbnailSize { get; set; }	  
         #endregion
+
 		/// <summary>
 		///  
 		/// </summary>

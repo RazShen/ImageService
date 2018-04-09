@@ -16,6 +16,9 @@ using ImageService.Logging;
 using ImageService.Infrastructure;
 using ImageService.Logging.Modal;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService
 {
 
@@ -41,7 +44,10 @@ namespace ImageService
         public int dwWaitHint;
     };
 
-
+	/// <summary>
+	/// 
+	/// 
+	/// </summary>
     public partial class ImageService : ServiceBase
     {
         private System.ComponentModel.IContainer components;
@@ -52,7 +58,10 @@ namespace ImageService
         private IImageController controller;
         private ILoggingService logging;
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="args"></param>
         public ImageService(string[] args)
         {
             InitializeComponent();
@@ -78,6 +87,10 @@ namespace ImageService
             this.imageServer = new ImageServer(this.controller, this.logging, directories, directories.Length);
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="args"></param>
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
@@ -98,6 +111,9 @@ namespace ImageService
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
         protected override void OnStop()
         {
             eventLog1.WriteEntry("In onStop.");
@@ -105,27 +121,48 @@ namespace ImageService
             this.imageServer.CloseServer();
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="args"></param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
             // TODO: Insert monitoring activities here.  
             eventLog1.WriteEntry("Monitoring the System", EventLogEntryType.Information, eventId++);
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
         protected override void OnContinue()
         {
             eventLog1.WriteEntry("In OnContinue.");
         }
 
+		/// <summary>
+		/// 
+		/// </summary>
         protected override void OnPause()
         {
             eventLog1.WriteEntry("In OnPause.");
         }
         
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         public void WriteMessage(Object sender, MessageRecievedEventArgs e)
         {
             eventLog1.WriteEntry(e.message, GetType(e.status));
         }
         
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="status"></param>
+		/// <returns></returns>
         private EventLogEntryType GetType(MessageTypeEnum status)
         {
             switch (status)

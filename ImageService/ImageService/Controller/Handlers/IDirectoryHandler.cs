@@ -5,8 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Controller.Handlers
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public interface IDirectoryHandler
     {
         event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed

@@ -4,19 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Modal
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public class DirectoryCloseEventArgs : EventArgs
     {
         public string DirectoryPath { get; set; }
-
         public string Message { get; set; }             // The Message That goes to the logger
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="dirPath"></param>
+		/// <param name="message"></param>
         public DirectoryCloseEventArgs(string dirPath, string message)
         {
             DirectoryPath = dirPath;                    // Setting the Directory Name
             Message = message;                          // Storing the String
         }
-
     }
 }

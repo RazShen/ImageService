@@ -4,8 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Modal
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public interface IImageServiceModal
     {
         /// <summary>

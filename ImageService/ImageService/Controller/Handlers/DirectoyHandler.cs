@@ -5,8 +5,14 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Controller.Handlers
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public class DirectoyHandler : IDirectoryHandler
     {
         #region Members
@@ -17,8 +23,12 @@ namespace ImageService.Controller.Handlers
         public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
         #endregion
 
-        
-        // The Event that will be activated upon new Command
+        /// <summary>
+		/// 
+		/// </summary>
+		/// <param name="controller"></param>
+		/// <param name="logger"></param>
+		/// <param name="inputPath"></param>
         public DirectoyHandler(IImageController controller, ILoggingService logger, String inputPath)
         {
             this.m_controller = controller;
@@ -26,6 +36,11 @@ namespace ImageService.Controller.Handlers
             this.m_path = inputPath;
         }
 
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="dirPath"></param>
         public void StartHandleDirectory(string dirPath)
         {
             this.m_logging.Log("starting to handling the directory in path: " + dirPath, MessageTypeEnum.INFO);
@@ -58,10 +73,12 @@ namespace ImageService.Controller.Handlers
                 this.m_logging.Log("Created filehandler num" + i, MessageTypeEnum.INFO);
             }    
         }
-        // The Function Recieves the directory to Handle
 
-
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         public void OnCommandRecieved(object sender, CommandRecievedEventArgs e) {
             switch (e.CommandID)
             {
@@ -78,7 +95,11 @@ namespace ImageService.Controller.Handlers
             }
         }
 
-    
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="filename"></param>
+		/// <returns></returns>
         private static DateTime GetExplorerFileDate(string filename)
         {
             DateTime now = DateTime.Now;

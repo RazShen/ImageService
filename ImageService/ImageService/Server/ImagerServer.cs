@@ -3,12 +3,17 @@ using ImageService.Controller.Handlers;
 using ImageService.Logging;
 using ImageService.Modal;
 using System;
-using System.Collections;
 using ImageService.Logging.Modal;
 using ImageService.Infrastructure.Enums;
 
+/// <summary>
+/// 
+/// </summary>
 namespace ImageService.Server
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public class ImageServer
     {
 
@@ -16,12 +21,19 @@ namespace ImageService.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
-        private ArrayList<DirectoyHandler> directoryHandlers;
+        private DirectoyHandler[] directoryHandlers;
         #endregion
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="controller"></param>
+		/// <param name="logger"></param>
+		/// <param name="paths"></param>
+		/// <param name="numOfPaths"></param>
         public ImageServer(IImageController controller, ILoggingService logger, string[] paths, int numOfPaths)
         {
-            this.directoryHandlers = new ArrayList<DirectoyHandler>();
+            this.directoryHandlers = new DirectoyHandler[numOfPaths];
             this.m_controller = controller;
             this.m_logging = logger;
             for (int i = 0; i < numOfPaths; i++)
@@ -34,6 +46,9 @@ namespace ImageService.Server
             }
         }
 		
+		/// <summary>
+		/// 
+		/// </summary>
         public void CloseServer()
         {
             this.m_logging.Log("Begin closing server", MessageTypeEnum.INFO);
@@ -42,7 +57,11 @@ namespace ImageService.Server
 		}
 
         
-        
+        /// <summary>
+		/// 
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="messageArgs"></param>
         private void RemoveDirectoryHandler(object sender, DirectoryCloseEventArgs messageArgs)
         {
             IDirectoryHandler sendingDirectoryHandler = sender as IDirectoryHandler;
