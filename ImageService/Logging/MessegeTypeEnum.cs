@@ -4,13 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService.Logging.Modal
 {
 	/// <summary>
-	/// 
+	/// Enum declaration.
 	/// </summary>
     public enum MessageTypeEnum : int
     {

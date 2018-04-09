@@ -16,9 +16,7 @@ using ImageService.Logging;
 using ImageService.Infrastructure;
 using ImageService.Logging.Modal;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService
 {
 

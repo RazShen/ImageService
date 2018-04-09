@@ -5,21 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService.Commands
 {
 	/// <summary>
-	/// 
+	/// ICommand interface.
 	/// </summary>
-    public interface ICommand
+	public interface ICommand
     {
 		/// <summary>
-		/// 
+		/// Execute this command by arguments and result to update.
 		/// </summary>
-		/// <param name="args"></param>
-		/// <param name="result"></param>
+		/// <param name="args"> arguments for command </param>
+		/// <param name="result"> result of the run </param>
 		/// <returns></returns>
         string Execute(string[] args, out bool result);          // The Function That will Execute The 
     }

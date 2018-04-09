@@ -5,31 +5,30 @@ using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService.Controller.Handlers
 {
 	/// <summary>
-	/// 
+	/// DirectoyHandler for handling a single directory.
 	/// </summary>
-    public class DirectoyHandler : IDirectoryHandler
+	public class DirectoyHandler : IDirectoryHandler
     {
         #region Members
         private IImageController m_controller;              // The Image Processing Controller
         private ILoggingService m_logging;
-        private FileSystemWatcher[] m_dirWatchers;             // The Watcher of the Dir
+        private FileSystemWatcher[] m_dirWatchers;             // The Watchers of the Dir
         private string m_path;                              // The Path of directory
-        public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;              // The Event That Notifies that the Directory is being closed
-        #endregion
+		// The Event That Notifies that the Directory is being closed
+		public event EventHandler<DirectoryCloseEventArgs> DirectoryClose;
+		#endregion
 
-        /// <summary>
-		/// 
+		/// <summary>
+		/// DirectoyHandler constructor.
 		/// </summary>
-		/// <param name="controller"></param>
-		/// <param name="logger"></param>
-		/// <param name="inputPath"></param>
-        public DirectoyHandler(IImageController controller, ILoggingService logger, String inputPath)
+		/// <param name="controller"> transfer the new file command </param>
+		/// <param name="logger"> writing to the log </param>
+		/// <param name="inputPath"> of the folder to handle </param>
+		public DirectoyHandler(IImageController controller, ILoggingService logger, String inputPath)
         {
             this.m_controller = controller;
             this.m_logging = logger;
@@ -38,10 +37,10 @@ namespace ImageService.Controller.Handlers
 
 
 		/// <summary>
-		/// 
+		/// StartHandleDirectory method that constructs the filewatchers.
 		/// </summary>
-		/// <param name="dirPath"></param>
-        public void StartHandleDirectory(string dirPath)
+		/// <param name="dirPath"> of the path to handle </param>
+		public void StartHandleDirectory(string dirPath)
         {
             this.m_logging.Log("starting to handling the directory in path: " + dirPath, MessageTypeEnum.INFO);
             this.m_path = dirPath;
@@ -52,7 +51,7 @@ namespace ImageService.Controller.Handlers
                 this.m_dirWatchers[i] = new FileSystemWatcher(this.m_path, extension[i])
                 {
                     IncludeSubdirectories = true,
-                    NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite //notifies for creation of new file
+                    NotifyFilter = NotifyFilters.FileName | NotifyFilters.LastWrite 
                 };
                 this.m_dirWatchers[i].EnableRaisingEvents = true;
                 this.m_dirWatchers[i].Created += new FileSystemEventHandler(delegate (object sender, FileSystemEventArgs e)
@@ -75,14 +74,14 @@ namespace ImageService.Controller.Handlers
         }
 
 		/// <summary>
-		/// 
+		/// OnCommandRecieved of this handler actually tells the server that this handler is being closed
+		/// and when the last handler is closed the server can finally stop.
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-        public void OnCommandRecieved(object sender, CommandRecievedEventArgs e) {
+		/// <param name="sender"> sender </param>
+		/// <param name="e"> CommandRecievedEventArgs </param>
+		public void OnCommandRecieved(object sender, CommandRecievedEventArgs e) {
             switch (e.CommandID)
-            {
-                //close command
+            {                
                 case (int) CommandEnum.CloseCommand:
                     this.m_logging.Log("closing Directory Handler of directory in path: " + this.m_path, MessageTypeEnum.INFO);
                     DirectoryClose?.Invoke(this, new DirectoryCloseEventArgs(this.m_path, "closing"));
@@ -96,10 +95,10 @@ namespace ImageService.Controller.Handlers
         }
 
 		/// <summary>
-		/// 
+		/// Get time when the picture was taken.
 		/// </summary>
-		/// <param name="filename"></param>
-		/// <returns></returns>
+		/// <param name="filename"> path to the picture </param>
+		/// <returns> full DateTime </returns>
         private static DateTime GetExplorerFileDate(string filename)
         {
             DateTime now = DateTime.Now;
