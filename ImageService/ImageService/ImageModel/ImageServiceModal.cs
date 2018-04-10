@@ -25,7 +25,7 @@ namespace ImageService.Modal
         #endregion
 
 		/// <summary>
-		///  
+		///  z
 		/// </summary>
 		/// <param name="args"></param>
 		/// <param name="result"></param>

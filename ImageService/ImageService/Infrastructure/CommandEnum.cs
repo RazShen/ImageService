@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ImageService.Infrastructure.Enums
 {
 	/// <summary>
-	/// 
+	/// enum represents the type of the command
 	/// </summary>
     public enum CommandEnum : int
     {

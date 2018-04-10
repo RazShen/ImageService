@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace ImageService.Controller
 {
 	/// <summary>
-	/// 
+	/// interface that 
 	/// </summary>
     public interface IImageController
     {
