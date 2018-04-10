@@ -12,22 +12,22 @@ using System.Threading.Tasks;
 namespace ImageService.Modal
 {
 	/// <summary>
-	/// 
+	///  image service modal class
 	/// </summary>
     public class ImageServiceModal : IImageServiceModal
     {
         #region Members
 		public int x;
         public string OutputFolder { get; set; }            // The Output Folder
-        public int ThumbnailSize { get; set; }	  
+        public int ThumbnailSize { get; set; }
         #endregion
 
-		/// <summary>
-		///  z
-		/// </summary>
-		/// <param name="args"></param>
-		/// <param name="result"></param>
-		/// <returns></returns>
+        /// <summary>
+        ///  this function adds a file to the direcctory 
+        /// </summary>
+        /// <param name="args">The Path of the Image from the file</param>
+        /// <param name="result"> out variable that will set to true if the file added succesfully and false otherwise</param>
+        /// <returns> a string represent the result of the action</returns>
         public string AddFile(string[] args, out bool result)
         {
             string path = args[0] + "\\" + args[1];

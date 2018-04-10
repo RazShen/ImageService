@@ -10,7 +10,7 @@ using ImageService.Infrastructure.Enums;
 namespace ImageService.Server
 {
 	/// <summary>
-	/// 
+	/// image server class
 	/// </summary>
     public class ImageServer
     {
@@ -23,12 +23,12 @@ namespace ImageService.Server
         #endregion
 
 		/// <summary>
-		/// 
+		/// image server constractor.
 		/// </summary>
-		/// <param name="controller"></param>
-		/// <param name="logger"></param>
-		/// <param name="paths"></param>
-		/// <param name="numOfPaths"></param>
+		/// <param name="controller"> given controller</param>
+		/// <param name="logger"> given logger</param>
+		/// <param name="paths">given paths</param>
+		/// <param name="numOfPaths">number of path for the server</param>
         public ImageServer(IImageController controller, ILoggingService logger, string[] paths, int numOfPaths)
         {
             this.directoryHandlers = new DirectoyHandler[numOfPaths];
@@ -45,7 +45,7 @@ namespace ImageService.Server
         }
 		
 		/// <summary>
-		/// 
+		/// this method closes the server
 		/// </summary>
         public void CloseServer()
         {
@@ -56,10 +56,10 @@ namespace ImageService.Server
 
         
         /// <summary>
-		/// 
+		/// this method removes directory handler from the server
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="messageArgs"></param>
+		/// <param name="sender">the given sender </param>
+		/// <param name="messageArgs">given arguments for the massage</param>
         private void RemoveDirectoryHandler(object sender, DirectoryCloseEventArgs messageArgs)
         {
             IDirectoryHandler sendingDirectoryHandler = sender as IDirectoryHandler;

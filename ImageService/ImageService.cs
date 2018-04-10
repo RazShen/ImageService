@@ -57,9 +57,9 @@ namespace ImageService
         private ILoggingService logging;
 
 		/// <summary>
-		/// 
+		/// constactor for Image service
 		/// </summary>
-		/// <param name="args"></param>
+		/// <param name="args">the given arguments for image service</param>
         public ImageService(string[] args)
         {
             InitializeComponent();
@@ -86,9 +86,9 @@ namespace ImageService
         }
 
 		/// <summary>
-		/// 
+		/// the function starts the server
 		/// </summary>
-		/// <param name="args"></param>
+		/// <param name="args">given argumnets</param>
         protected override void OnStart(string[] args)
         {
             // Update the service state to Start Pending.  
@@ -110,7 +110,7 @@ namespace ImageService
         }
 
 		/// <summary>
-		/// 
+		/// the function stops the server
 		/// </summary>
         protected override void OnStop()
         {
@@ -120,10 +120,10 @@ namespace ImageService
         }
 
 		/// <summary>
-		/// 
+		/// the function operates every certain time and log it to the event log
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="args"></param>
+		/// <param name="sender">the sender</param>
+		/// <param name="args"> arguments for the timer </param>
         public void OnTimer(object sender, System.Timers.ElapsedEventArgs args)
         {
             // TODO: Insert monitoring activities here.  
@@ -131,7 +131,7 @@ namespace ImageService
         }
 
 		/// <summary>
-		/// 
+		/// the function write in on continue to the event log
 		/// </summary>
         protected override void OnContinue()
         {
@@ -139,7 +139,7 @@ namespace ImageService
         }
 
 		/// <summary>
-		/// 
+		/// the function write to the envent log the is in on pause
 		/// </summary>
         protected override void OnPause()
         {
@@ -147,20 +147,20 @@ namespace ImageService
         }
         
 		/// <summary>
-		/// 
+		/// the function write massage to the event log
 		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
+		/// <param name="sender"> the given sendere to the event log</param>
+		/// <param name="e">the given arguments of the massage (name and status)</param>
         public void WriteMessage(Object sender, MessageRecievedEventArgs e)
         {
             eventLog1.WriteEntry(e.message, GetType(e.status));
         }
         
 		/// <summary>
-		/// 
+		/// this method gets the status of the massage and returns the type of the event log massage
 		/// </summary>
-		/// <param name="status"></param>
-		/// <returns></returns>
+		/// <param name="status"> the given statud of the massage</param>
+		/// <returns> the type of the event log massage</returns>
         private EventLogEntryType GetType(MessageTypeEnum status)
         {
             switch (status)

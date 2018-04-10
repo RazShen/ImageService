@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ImageService.Modal
 {
 	/// <summary>
-	/// 
+	/// arguments for a command object
 	/// </summary>
     public class CommandRecievedEventArgs : EventArgs
     {
@@ -16,12 +16,12 @@ namespace ImageService.Modal
         public string[] Args { get; set; }
         public string RequestDirPath { get; set; }  // The Request Directory
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="id"></param>
-		/// <param name="args"></param>
-		/// <param name="path"></param>
+        /// <summary>
+        /// CommandRecievedEventArgs constractor
+        /// </summary>
+        /// <param name="id"> command ID</param>
+        /// <param name="args">arguments for the command</param>
+        /// <param name="path">path of the file the relevent to the command</param>
         public CommandRecievedEventArgs(int id, string[] args, string path)
         {
             CommandID = id;
