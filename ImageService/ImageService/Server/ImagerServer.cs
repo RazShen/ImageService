@@ -6,9 +6,7 @@ using System;
 using ImageService.Logging.Modal;
 using ImageService.Infrastructure.Enums;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService.Server
 {
 	/// <summary>

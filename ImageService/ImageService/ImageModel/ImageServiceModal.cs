@@ -8,9 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-/// <summary>
-/// 
-/// </summary>
+
 namespace ImageService.Modal
 {
 	/// <summary>
@@ -46,10 +44,11 @@ namespace ImageService.Modal
 					Directory.CreateDirectory(OutputFolder + "\\" + "Thumbnails" + "\\" + year + "\\" + month);
 					string finalOutputPath = OutputFolder + "\\" + year + "\\" + month + "\\";
 					string finalOutputTPath = OutputFolder + "\\" + "Thumbnails" + "\\" + year + "\\" + month + "\\";
-                
+					int counter = 0;
 					String fileName = Path.GetFileName(path);                         
 					while (File.Exists(finalOutputTPath + fileName)) {
-						fileName = "0" + fileName;
+						counter++;
+						fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
 					}
 					Image thumbnail;
 					using (thumbnail = Image.FromFile(path))
@@ -57,11 +56,12 @@ namespace ImageService.Modal
 						thumbnail = (Image)(new Bitmap(thumbnail, new Size(this.ThumbnailSize, this.ThumbnailSize)));
 						thumbnail.Save(finalOutputTPath + fileName);
 					}
-
+					counter = 0;
 					fileName = Path.GetFileName(path); 
 					while (File.Exists(finalOutputPath + fileName))
 					{
-						fileName = "0" + fileName;
+						counter++;
+						fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
 					}
 					File.Move(path, finalOutputPath + fileName);    
 
