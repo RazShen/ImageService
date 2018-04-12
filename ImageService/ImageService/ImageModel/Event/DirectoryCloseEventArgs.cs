@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ImageService.Modal
 {
-	/// <summary>
-	/// 
-	/// </summary>
+    /// <summary>
+    /// Argments for the DirectoryCloseEvent 
+    /// </summary>
     public class DirectoryCloseEventArgs : EventArgs
     {
         public string DirectoryPath { get; set; }
