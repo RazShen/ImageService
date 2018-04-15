@@ -1,0 +1,242 @@
+commit 6d6710159dc81c3231957198567071b8880e0455
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Thu Apr 12 10:32:50 2018 +0300
+
+    comments
+
+commit 3ef8ad46794b353d62f91f4b102adf53dca61052
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Tue Apr 10 14:49:08 2018 +0300
+
+    tomer finish and adding comments
+
+commit 4d31db8e3daea6ac0f648e0c9f73d845e3442f92
+Merge: 902f30a 182bef1
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Tue Apr 10 09:55:50 2018 +0300
+
+    resolved
+
+commit 902f30abcea70858015a473a7c1b444fd2fabd1f
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Tue Apr 10 09:29:45 2018 +0300
+
+    //
+
+commit 182bef1c8f637282aa1e46b59353bff97c5b3f86
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Tue Apr 10 00:57:16 2018 +0300
+
+    Final after raz commenting
+
+commit 92dc7de14976cf442203ac29ef01a4c6e7883600
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 9 10:51:54 2018 +0300
+
+    PreCommenting
+
+commit 9e4ccb012b4b12f358f49b6e5c26184c309f9ea5
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 9 10:32:59 2018 +0300
+
+    New Check
+
+commit 4340467a5f526036f8541d88e945aa9721c54084
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 9 10:21:30 2018 +0300
+
+    Add project files.
+
+commit 513a68ded62abd60986b6dbdb7c59e456546eaf3
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 9 10:07:01 2018 +0300
+
+    final before comments
+
+commit 4482f39767bcb08b5630451c79f37caa55dcf826
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 9 00:15:26 2018 +0300
+
+    check finish
+
+commit 0f362a9e263d41845501a78e72bb7027fd297a9d
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Sat Apr 7 23:16:19 2018 +0300
+
+    chck finish
+
+commit 27a5f615ceb12bb070cd91ccd220cb38bf64d05c
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Sat Apr 7 18:30:57 2018 +0300
+
+    Check finish
+
+commit 9d33e9b2fbb559045b06cd538b633edfdb75d2ce
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Sat Apr 7 18:07:39 2018 +0300
+
+    Check finish
+
+commit ef9a37e6721e6688d8969d0660cc2ee11acf662c
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Sat Apr 7 14:09:58 2018 +0300
+
+    image service
+
+commit fef70d253fe98acf770b450cab1ffa26aebb4de3
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Sat Apr 7 16:11:19 2018 +0300
+
+    logging
+
+commit 1d4cd7903d17393532e98f78ae4655275e1c9fca
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Mon Apr 2 17:08:01 2018 +0300
+
+    commit new
+
+commit 7cc44634ffbd0c935e12447559ecaaf5cfe8af82
+Merge: b279481 ae1792b
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Mon Apr 2 17:06:58 2018 +0300
+
+    push  neewww
+
+commit ae1792b67cabfacb60970633219f3660d9edb380
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 2 19:54:07 2018 +0300
+
+    part e
+
+commit 8cb4c81a3baf996e6bd67e2e8875a13f4a5d9744
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 2 19:51:13 2018 +0300
+
+    part d
+
+commit 9f644af653f39e6c3519480d60f0dddb7d25caea
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 2 19:34:59 2018 +0300
+
+    part d
+
+commit a83faeb9592373a14474244b5e12c744e6ac2142
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 2 18:09:43 2018 +0300
+
+    part d
+
+commit e3c2d630b0f514f00b0cc65a9492067a5a7a73ef
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Mon Apr 2 17:59:00 2018 +0300
+
+    part d
+
+commit b279481f1cecf530398168c34ba9fb46bfaae8ba
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Mon Apr 2 16:39:19 2018 +0300
+
+    change
+
+commit 43886983d6350f29e87d27fd9af5bf60f3eb34b6
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Mon Apr 2 14:36:37 2018 +0300
+
+    inf
+
+commit dda97b7474b63c5bcb1977f26310e82c2b750afc
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Fri Mar 30 14:04:42 2018 +0300
+
+    part d
+
+commit 677f9458120dd32825c6e78cff62253cbe6f5e47
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 30 09:34:42 2018 +0300
+
+    push
+
+commit ae02cf16951555ba61b56f074bdc3395bb285162
+Merge: bea1260 86d559f
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Thu Mar 29 21:17:39 2018 +0300
+
+    part C
+
+commit bea1260cf0c1358fa1125c8b45ae1f1f2dba08a5
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Thu Mar 29 21:15:47 2018 +0300
+
+    Part C
+
+commit 86d559f2ded0267109609c96d668bc0cdba680f2
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Thu Mar 29 17:46:22 2018 +0300
+
+    create files
+
+commit ac403263e0405f2173b74b1c6b5b6fd56c3b810b
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Thu Mar 29 16:41:51 2018 +0300
+
+    image modal
+
+commit c3daf414c53c1a0c2c8817072a007ccd613b21de
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Thu Mar 29 19:08:07 2018 +0300
+
+    logging
+
+commit bca5c5a218a57fd3ec7d6e1e1fb24e228dd4a903
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Thu Mar 29 15:54:24 2018 +0300
+
+    change
+
+commit 2710a499aa9c3ccb05775fc8cd4cdb3d76ff78ae
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Thu Mar 29 18:39:16 2018 +0300
+
+    Name Change
+
+commit dbe711698409d303a57ed830a609db1c971722c3
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Fri Mar 23 15:09:55 2018 +0300
+
+    Finished A and B
+
+commit 70450a1e94daaccdbf3a0ce64b87d7261a6e0f8d
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 23 11:33:34 2018 +0300
+
+    stage1
+
+commit af4e6de1d52f4edc7b62547266d83e5b28128494
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 23 10:50:01 2018 +0300
+
+    //
+
+commit f177d860aef7d40cb233ae7349f95e10e4537877
+Author: raz Shenkman <shenkmanraz@gmail.com>
+Date:   Fri Mar 23 11:55:35 2018 +0300
+
+    start
+
+commit 9f126b89b373164fdf5fb98944897e6cf14eaa91
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 23 09:52:26 2018 +0300
+
+    /
+
+commit a29e0890b5fed8f7d2d55917003ee21e8fe19225
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 23 09:39:33 2018 +0300
+
+    Add project files.
+
+commit 5fefc398dce4f2d1f7217960732681250b0e4e79
+Author: Tomer Grady <tomergrady@gmail.com>
+Date:   Fri Mar 23 09:39:32 2018 +0300
+
+    Add .gitignore and .gitattributes.

@@ -36,7 +36,9 @@ namespace ImageService.Modal
                 if(File.Exists(path)) {
 					String year = args[2];
 					String month = args[3];
-					Directory.CreateDirectory(OutputFolder);
+                    //create output directory and make it hidden.
+					DirectoryInfo outputDir = Directory.CreateDirectory(OutputFolder);
+                    outputDir.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
 					Directory.CreateDirectory(OutputFolder + "\\" + year);
 					Directory.CreateDirectory(OutputFolder + "\\" + year + "\\" + month);
 					Directory.CreateDirectory(OutputFolder + "\\" + "Thumbnails");
