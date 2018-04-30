@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageService\Client\ClientHandler.cs" />
+    <Compile Include="ImageService\Client\IClientHandler.cs" />
     <Compile Include="ImageService\Controller\IImageController.cs" />
     <Compile Include="ImageService\ImageModel\Event\CommandRecievedEventArgs.cs" />
     <Compile Include="ImageService\ImageModel\Event\DirectoryCloseEventArgs.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="ImageService\Controller\ImageController.cs" />
     <Compile Include="ImageService\Infrastructure\CommandEnum.cs" />
     <Compile Include="ImageService\Server\ImagerServer.cs" />
+    <Compile Include="ImageService\Server\Server.cs" />
     <Compile Include="Logging\ILoogingService.cs" />
     <Compile Include="ImageService.cs">
       <SubType>Component</SubType>
