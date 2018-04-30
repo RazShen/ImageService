@@ -68,8 +68,6 @@ namespace ImageService.Controller.Handlers
                     string s = this.m_controller.ExecuteCommand((int) CommandEnum.NewFileCommand, args, out result); 
                     this.m_logging.Log(s, MessageTypeEnum.INFO);
                 });
-                
-                this.m_logging.Log("Created filehandler num" + i, MessageTypeEnum.INFO);
             }    
         }
 
