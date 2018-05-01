@@ -20,26 +20,19 @@ namespace ImageServiceGUI
 	/// </summary>
 	public partial class MainWindow : Window
 		{
-		public bool SomeConditionalProperty
+		private Boolean checkConnectionFirstTime;
+		public bool CheckConnectionFirstTime
 			{
-			get { return SomeConditionalProperty; }
+			 
+			get { return checkConnectionFirstTime; }
 			set
 				{
-				//...
 
-				//OnPropertyChanged("SomeConditionalProperty");
-				////Because Background is dependent on this property.
-				//OnPropertyChanged("Background");
+				//OnPropertyChanged("TextboxEnabled"); // 
+				//Because Background is dependent on this property.
 				}
 			}
 
-		public Brush Background
-			{
-			get
-				{
-				return SomeConditionalProperty ? Brushes.Pink : Brushes.LightGreen;
-				}
-			}
 
 		public MainWindow()
 			{
