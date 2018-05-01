@@ -15,15 +15,41 @@ using System.Windows.Shapes;
 
 namespace ImageServiceGUI
 	{
-	/// <sum
-	/// mary>
+	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
 		{
+		public bool SomeConditionalProperty
+			{
+			get { return SomeConditionalProperty; }
+			set
+				{
+				//...
+
+				//OnPropertyChanged("SomeConditionalProperty");
+				////Because Background is dependent on this property.
+				//OnPropertyChanged("Background");
+				}
+			}
+
+		public Brush Background
+			{
+			get
+				{
+				return SomeConditionalProperty ? Brushes.Pink : Brushes.LightGreen;
+				}
+			}
+
 		public MainWindow()
 			{
 			InitializeComponent();
+
+			}
+
+		private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+			{
+
 			}
 		}
 	}
