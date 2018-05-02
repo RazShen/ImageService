@@ -26,16 +26,16 @@
             </Button.Style>
         </Button>
 
-        <TabControl HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="800" SelectionChanged="TabControl_SelectionChanged"  Grid.RowSpan="4">
+        <TabControl HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="800" Grid.RowSpan="4">
             <TabItem Header="Settings">
                 <UserControl>
-                    <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800" Loaded="SettingsView_Loaded"/>
+                    <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800"/>
                     
                 </UserControl>
             </TabItem>
             <TabItem Header="Logs">
                 <UserControl>
-                    <ViewModel:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800" Loaded="LogView_Loaded"/>
+                    <ViewModel:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800"/>
                 </UserControl>
             </TabItem>
         </TabControl>
