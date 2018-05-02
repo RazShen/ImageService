@@ -35,7 +35,7 @@
             </TabItem>
             <TabItem Header="Logs">
                 <UserControl>
-                    <ViewModel:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800"/>
+                    <View:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800"/>
                 </UserControl>
             </TabItem>
         </TabControl>
