@@ -8,28 +8,34 @@
         mc:Ignorable="d"
         Title="ImageServiceGUI" Height="450" Width="800">
 
-    
+
     <Grid>
-        <Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="382*"/>
+            <RowDefinition Height="21*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
                     <!-- Set the default value here (if any) 
                  if you set it directly on the button that will override the trigger -->
                     <Setter Property="Background" Value="White" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding CheckConnectionFirstTime, Mode=OneTime}"
-                             Value="True">
+                        <DataTrigger Binding="{Binding Path = HasConnection}"
+                             Value="False">
                             <Setter Property="Background" Value="Gray" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </Button.Style>
         </Button>
-        
-        <TabControl HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792" SelectionChanged="TabControl_SelectionChanged">
+
+        <TabControl HorizontalAlignment="Left" Height="450" VerticalAlignment="Top" Width="800" SelectionChanged="TabControl_SelectionChanged"  Grid.RowSpan="4">
             <TabItem Header="Settings">
                 <UserControl>
-                    <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800"/>
+                    <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800" Loaded="SettingsView_Loaded"/>
                     
                 </UserControl>
             </TabItem>
@@ -41,5 +47,5 @@
         </TabControl>
 
     </Grid>
-    
+
 </Window>

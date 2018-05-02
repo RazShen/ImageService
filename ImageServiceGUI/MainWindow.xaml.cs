@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,29 +20,48 @@ namespace ImageServiceGUI
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
+	public partial class MainWindow : INotifyPropertyChanged
 		{
-		private Boolean checkConnectionFirstTime;
-		public bool CheckConnectionFirstTime
+		public event PropertyChangedEventHandler PropertyChanged;
+		public void OnPropertyChanged([CallerMemberName] string propName = null)
 			{
-			 
-			get { return checkConnectionFirstTime; }
+			this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HasConnection"));
+			}
+
+		private string _hasConnection;
+		public string HasConnection
+			{
+			get
+				{
+				return _hasConnection;
+				}
 			set
 				{
-
-				//OnPropertyChanged("TextboxEnabled"); // 
-				//Because Background is dependent on this property.
+				if (_hasConnection != value)
+					{
+					_hasConnection = value;
+					OnPropertyChanged();
+					}
 				}
 			}
 
-
 		public MainWindow()
 			{
+			DataContext = this;
 			InitializeComponent();
-
+			Random rnd = new Random();
+			if (rnd.Next(1,3) == 2)
+				{
+				HasConnection = "False";
+				}
 			}
 
 		private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+			{
+
+			}
+
+		private void SettingsView_Loaded(object sender, RoutedEventArgs e)
 			{
 
 			}
