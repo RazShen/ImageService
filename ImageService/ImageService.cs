@@ -165,7 +165,7 @@ namespace ImageService
         {
             switch (status)
             {
-                case MessageTypeEnum.FAIL:
+                case MessageTypeEnum.ERROR:
                     return EventLogEntryType.Error;
                 case MessageTypeEnum.WARNING:
                     return EventLogEntryType.Warning;
