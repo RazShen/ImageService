@@ -5,9 +5,36 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ImageServiceGUI.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Ellipse Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="206" Margin="251,76,0,0" Stroke="Black" VerticalAlignment="Top" Width="378"/>
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <Grid TextBlock.FontSize="14" Margin="0,-10,0,10" RenderTransformOrigin="0.427,0.489">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15.556"/>
+            <RowDefinition Height="92.444"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="35"/>
+            <ColumnDefinition Width="764"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock HorizontalAlignment="Center" Height="68" Margin="139.333,14.667,482.667,0" TextWrapping="Wrap" Text="SETTINGS" VerticalAlignment="Top" Width="142" FontSize="30" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.333,0,0,289" TextWrapping="Wrap" Text="Output Directpry:" VerticalAlignment="Bottom" Width="120" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.333,0,0,236" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="162" FontSize="15" Grid.Row="6" Grid.Column="1"><Run Text="Source Name:"/><LineBreak/><Run Text=""/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.667,111,0,0" TextWrapping="Wrap" Text="Log Name:" VerticalAlignment="Top" Width="115" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.667,159,0,0" TextWrapping="Wrap" Text="Thumbail Size:" VerticalAlignment="Top" Width="115" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+
+        
+        
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,0,0,284" TextWrapping="Wrap" Text="Output line" VerticalAlignment="Bottom" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,0,0,231" TextWrapping="Wrap" Text="Output souce line" VerticalAlignment="Bottom" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,111,0,0" TextWrapping="Wrap" Text="Log Name:" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,159,0,0" TextWrapping="Wrap" Text="Thumbail Size:" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
 
     </Grid>
 </UserControl>
