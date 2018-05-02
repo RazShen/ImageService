@@ -16,7 +16,8 @@ namespace ImageServiceGUI.ViewModel
 		public LogViewModel()
 			{
 			_logMessages = new ObservableCollection<LogTuple>();
-			_logMessages.Add(new LogTuple { EnumType = "INFO", Data =  "Check"});
+			_logMessages.Add(new LogTuple { EnumType = "INFO", Data = "CheckCheckChec\n\nkCheckCheckCheckCheck" +
+				"CheckCheckCheckCheckCheckCheckCheckCheckChecknkCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheck" });
 			_logMessages.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
 			_logMessages.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
 			_logMessages.Add(new LogTuple { EnumType = "INFO", Data = "Check" });

@@ -6,26 +6,27 @@
              xmlns:conv="clr-namespace:ImageServiceGUI.Convertors"
              xmlns:local="clr-namespace:ImageServiceGUI.ViewModel" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="422" d:DesignWidth="800" Background="White">
     <UserControl.Resources>
         <conv:LogEnumToColor x:Key="EnumConverter"/>
     </UserControl.Resources>
-    <StackPanel>
-        <Label Content="Logs" FontSize="30" HorizontalAlignment="Center" Foreground = "DodgerBlue" FontWeight="Bold" RenderTransformOrigin="2.634,0.921" FontFamily="Candara"/>
-        <DataGrid ItemsSource="{Binding LogMessages}" AutoGenerateColumns="False" CanUserAddRows="False" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Type"  Width="80" IsReadOnly="True" Binding="{Binding Path=EnumType}" >
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Background" Value="{Binding Path=EnumType, Converter={StaticResource EnumConverter}}">
-                            </Setter>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn Header="Message" Width="710" IsReadOnly="True" Binding="{Binding Data}" />
-            </DataGrid.Columns>
 
+    <DockPanel ScrollViewer.VerticalScrollBarVisibility="Auto" Width="790" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="-1,0,11,10" >
+
+        <Label Content="Logs" FontSize="30" HorizontalAlignment="Center" Foreground = "DodgerBlue" FontWeight="Bold" RenderTransformOrigin="2.634,0.921" FontFamily="Candara" DockPanel.Dock="Top"/>
+         <DataGrid ItemsSource="{Binding LogMessages}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="0,0,0,26">
+              <DataGrid.Columns>
+                    <DataGridTextColumn Header="Type"  Width="80" IsReadOnly="True" Binding="{Binding Path=EnumType}" >
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Background" Value="{Binding Path=EnumType, Converter={StaticResource EnumConverter}}">
+                                </Setter>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Message" Width="690" IsReadOnly="True" Binding="{Binding Data}" />
+              </DataGrid.Columns>
         </DataGrid>
-    </StackPanel>
+    </DockPanel>
 
 </UserControl>

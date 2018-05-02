@@ -30,12 +30,12 @@
             <TabItem Header="Settings">
                 <UserControl>
                     <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800"/>
-                    
+
                 </UserControl>
             </TabItem>
             <TabItem Header="Logs">
                 <UserControl>
-                    <View:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800"/>
+                    <View:LogView HorizontalAlignment="Center" Height="422"  VerticalAlignment="Top" Width="800" Margin="-3,0"/>
                 </UserControl>
             </TabItem>
         </TabControl>
