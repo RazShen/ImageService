@@ -8,6 +8,5 @@ namespace ImageServiceGUI.ViewModel
 	{
 	class SettingsViewModel
 		{
-		///
 		}
 	}
