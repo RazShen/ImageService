@@ -22,19 +22,27 @@
             <ColumnDefinition Width="764"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <TextBlock Padding="3" FontWeight="Bold" Margin="3">Output Directory:</TextBlock>
 
         <TextBlock HorizontalAlignment="Center" Height="68" Margin="139.333,14.667,482.667,0" TextWrapping="Wrap" Text="SETTINGS" VerticalAlignment="Top" Width="142" FontSize="30" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.333,0,0,289" TextWrapping="Wrap" Text="Output Directpry:" VerticalAlignment="Bottom" Width="120" FontSize="15" Grid.Row="6" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.333,0,0,236" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="162" FontSize="15" Grid.Row="6" Grid.Column="1"><Run Text="Source Name:"/><LineBreak/><Run Text=""/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.667,111,0,0" TextWrapping="Wrap" Text="Log Name:" VerticalAlignment="Top" Width="115" FontSize="15" Grid.Row="6" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="9.667,159,0,0" TextWrapping="Wrap" Text="Thumbail Size:" VerticalAlignment="Top" Width="115" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock Height="40" Margin="0.333,0,643.667,297" TextWrapping="Wrap" Text="Output Directpry:" VerticalAlignment="Bottom" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="0.333,0,0,252" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120" FontSize="15" Grid.Row="6" Grid.Column="1"><Run Text="Source Name:"/><LineBreak/><Run Text=""/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="0.333,90,0,0" TextWrapping="Wrap" Text="Log Name:" VerticalAlignment="Top" Width="120" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="0.333,134,0,0" TextWrapping="Wrap" Text="Thumbail Size:" VerticalAlignment="Top" Width="120" FontSize="15" Grid.Row="6" Grid.Column="1"/>
 
-        
-        
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,0,0,284" TextWrapping="Wrap" Text="Output line" VerticalAlignment="Bottom" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,0,0,231" TextWrapping="Wrap" Text="Output souce line" VerticalAlignment="Bottom" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,111,0,0" TextWrapping="Wrap" Text="Log Name:" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="176.333,159,0,0" TextWrapping="Wrap" Text="Thumbail Size:" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+
+
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="147.333,0,0,79" TextWrapping="Wrap" Text="{Binding VM_OutputDirectory}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="147.333,0,0,35" TextWrapping="Wrap" Text="{Binding VM_SourceName}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="147.333,307,0,-5" TextWrapping="Wrap" Text="{Binding VM_LogName}" VerticalAlignment="Top" Width="459" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="139.333,135,0,0" TextWrapping="Wrap" Text="{Binding VM_TumbnailSize}" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
+
+        <Button x:Name="btnRemove" Grid.Row="6"  HorizontalContentAlignment="Center"  Command="{Binding RemoveCommand}"  AutomationProperties.AutomationId="btnRemove" Grid.ColumnSpan="2" Margin="-10,174,9.667,132">Remove</Button>
+        <ListBox x:Name="lsbHandlers" Grid.Row="6" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding VM_Handlers}" Margin="10,215,0,119"/>
+
+
+
+
 
     </Grid>
 </UserControl>
