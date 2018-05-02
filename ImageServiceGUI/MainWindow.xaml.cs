@@ -61,9 +61,8 @@ namespace ImageServiceGUI
 
 			}
 
-		private void SettingsView_Loaded(object sender, RoutedEventArgs e)
-			{
 
-			}
+
+
 		}
 	}

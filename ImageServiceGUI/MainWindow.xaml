@@ -10,17 +10,11 @@
 
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="382*"/>
-            <RowDefinition Height="21*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
+
         <Button Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
-                    <!-- Set the default value here (if any) 
-                 if you set it directly on the button that will override the trigger -->
+
                     <Setter Property="Background" Value="White" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path = HasConnection}"
@@ -41,7 +35,7 @@
             </TabItem>
             <TabItem Header="Logs">
                 <UserControl>
-                    <ViewModel:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800"/>
+                    <ViewModel:LogView HorizontalAlignment="Center" Height="450"  VerticalAlignment="Center" Width="800" Loaded="LogView_Loaded"/>
                 </UserControl>
             </TabItem>
         </TabControl>
