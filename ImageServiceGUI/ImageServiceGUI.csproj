@@ -50,6 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertors\LogEnumToColor.cs" />
+    <Compile Include="Model\IsettingsModel.cs" />
+    <Compile Include="Model\SettingsModel.cs" />
     <Compile Include="ViewModel\LogTuple.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
