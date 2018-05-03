@@ -93,7 +93,6 @@
     </Compile>
     <Compile Include="Logging\LoggingService.cs" />
     <Compile Include="Logging\MessageRecievedEventArgs.cs" />
-    <Compile Include="Logging\MessegeTypeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -128,7 +127,12 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
+      <Project>{9701169c-b261-44cd-af3d-6642582b2e0e}</Project>
+      <Name>BaseDLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

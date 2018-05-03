@@ -1,13 +1,12 @@
-﻿using ImageService.Logging.Modal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageServiceGUI.ViewModel
+namespace BaseDLL
 	{
-	class LogTuple
+	public class LogTuple
 		{
 		
 		private MessageTypeEnum _enumType;

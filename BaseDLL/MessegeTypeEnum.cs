@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Logging.Modal
+namespace BaseDLL
 {
 	/// <summary>
 	/// Enum declaration.

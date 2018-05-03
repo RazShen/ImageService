@@ -5,7 +5,7 @@ using ImageService.Modal;
 using System;
 using ImageService.Logging.Modal;
 using ImageService.Infrastructure.Enums;
-
+using BaseDLL;
 
 namespace ImageService.Server
 {
@@ -65,8 +65,8 @@ namespace ImageService.Server
             IDirectoryHandler sendingDirectoryHandler = sender as IDirectoryHandler;
             if (sendingDirectoryHandler == null)
             {
-                //an object that isn't supposed to activate the event did it
-                this.m_logging.Log("Unfamiliar source tried to abort handling foler: " + messageArgs.DirectoryPath, MessageTypeEnum.WARNING);
+				//an object that isn't supposed to activate the event did it
+				m_logging.Log("Unfamiliar source tried to abort handling foler: " + messageArgs.DirectoryPath, MessageTypeEnum.WARNING);
                 return;
             }
             this.m_logging.Log("Directory Handler of Directory in: " + messageArgs.DirectoryPath + @" with message: " + messageArgs.Message, MessageTypeEnum.INFO);

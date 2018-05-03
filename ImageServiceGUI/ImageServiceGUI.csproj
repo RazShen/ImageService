@@ -71,9 +71,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertors\LogEnumToColor.cs" />
+    <Compile Include="Model\ILogModel.cs" />
     <Compile Include="Model\IsettingsModel.cs" />
+    <Compile Include="Model\LogModel.cs" />
     <Compile Include="Model\SettingsModel.cs" />
-    <Compile Include="ViewModel\LogTuple.cs" />
     <Compile Include="ViewModel\LogViewModel.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="View\LogView.xaml.cs">
@@ -127,7 +128,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -142,6 +145,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
+      <Project>{9701169c-b261-44cd-af3d-6642582b2e0e}</Project>
+      <Name>BaseDLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageService\ImageService.csproj">
       <Project>{47694520-5b22-42d3-b027-730302e49d3a}</Project>
       <Name>ImageService</Name>
