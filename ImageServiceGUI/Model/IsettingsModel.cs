@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Model
 {
-    class IsettingsModel
+    interface IsettingsModel : INotifyPropertyChanged
     {
         string OutputDirectory { get; set; }
         string SourceName { get; set; }

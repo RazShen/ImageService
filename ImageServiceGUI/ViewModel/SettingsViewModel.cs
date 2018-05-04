@@ -29,13 +29,13 @@ namespace ImageServiceGUI.ViewModel
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
-
         }
 
 
         private void NotifyPropertyChanged(string propName)
         {
-           
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
         public string VM_OutputDirectory
