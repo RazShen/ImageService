@@ -26,5 +26,10 @@ namespace ImageServiceGUI.View
 			InitializeComponent();
             this.DataContext = new SettingsViewModel();
 			}
+
+        private void lsbHandlers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -17,11 +17,15 @@ namespace ImageServiceGUI.Model
         //   public ObservableCollection<string> Handlers { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-
         protected void NotifyPropertyChanged(string name)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
+        }
+
+        public SettingsModel()
+        {
+            this.Initialize();
         }
 
         private string m_outputDirectory;
@@ -69,7 +73,20 @@ namespace ImageServiceGUI.Model
         /// </summary>
         public ObservableCollection<string> Handlers { get; set; }
 
-
+        private void Initialize()
+        {
+            this.OutputDirectory = "OutputDir";
+            this.SourceName = "SourceName";
+            this.LogName = "log";
+            this.TumbnailSize = "sss";
+            Handlers = new ObservableCollection<string>();
+            //string[] handlers = string.Split(';');
+            string[] handlers = { "a", "b", "c"};
+            foreach (string handler in handlers)
+            {
+                this.Handlers.Add(handler);
+            }
+        }
 
 
 

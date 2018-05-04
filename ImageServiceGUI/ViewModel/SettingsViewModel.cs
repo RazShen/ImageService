@@ -13,9 +13,8 @@ namespace ImageServiceGUI.ViewModel
 	class SettingsViewModel : INotifyPropertyChanged
 		{
 
-        ObservableCollection<string> VM_Handlers { get; }
-        private SettingsModel model;
-
+        public ObservableCollection<string> VM_Handlers { get; }
+        private IsettingsModel model;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand RemoveCommand { get; set; }
@@ -29,6 +28,7 @@ namespace ImageServiceGUI.ViewModel
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
+
         }
 
 

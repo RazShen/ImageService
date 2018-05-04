@@ -37,8 +37,8 @@
         <TextBlock HorizontalAlignment="Left" Height="40" Margin="139.333,85,0,0" TextWrapping="Wrap" Text="{Binding VM_LogName}" VerticalAlignment="Top" Width="459" FontSize="15" Grid.Row="6" Grid.Column="1"/>
         <TextBlock HorizontalAlignment="Left" Height="40" Margin="139.333,125,0,0" TextWrapping="Wrap" Text="{Binding VM_TumbnailSize}" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="6" Grid.Column="1"/>
 
-        <Button x:Name="btnRemove" Grid.Row="6"  HorizontalContentAlignment="Center"  Command="{Binding RemoveCommand}"  AutomationProperties.AutomationId="btnRemove" Grid.ColumnSpan="2" Margin="-10,174,9.667,132">Remove</Button>
-        <ListBox x:Name="lsbHandlers" Grid.Row="6" Grid.ColumnSpan="3" HorizontalContentAlignment="Stretch" ItemsSource="{Binding VM_Handlers}" Margin="10,215,0,34"/>
+        <Button x:Name="btnRemove" Grid.Row="6"  HorizontalContentAlignment="Center"  Command="{Binding RemoveCommand}"  AutomationProperties.AutomationId="btnRemove" Grid.ColumnSpan="2" Margin="-10,174,10,137">Remove</Button>
+        <ListBox x:Name="listbHandlers" Grid.Row="6" Grid.ColumnSpan="2" HorizontalContentAlignment="Stretch" ItemsSource="{Binding VM_Handlers}" Margin="0,205,0,33" SelectionChanged="lsbHandlers_SelectionChanged" Grid.Column="1"/>
 
 
 
