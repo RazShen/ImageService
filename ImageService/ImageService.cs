@@ -48,8 +48,8 @@ namespace ImageService
 	/// </summary>
     public partial class ImageService : ServiceBase
     {
-        private System.ComponentModel.IContainer components;
-        private System.Diagnostics.EventLog eventLog1;
+        private IContainer components;
+        private EventLog eventLog1;
         private int eventId = 1;
         private ImageServer imageServer;          // The Image Server
         private IImageServiceModal modal;
@@ -65,10 +65,10 @@ namespace ImageService
             InitializeComponent();
             string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
             string logName = ConfigurationManager.AppSettings.Get("LogName");
-            eventLog1 = new System.Diagnostics.EventLog();
-            if (!System.Diagnostics.EventLog.SourceExists(eventSourceName))
+            eventLog1 = new EventLog();
+            if (!EventLog.SourceExists(eventSourceName))
             {
-                System.Diagnostics.EventLog.CreateEventSource(eventSourceName, logName);
+               EventLog.CreateEventSource(eventSourceName, logName);
             }
             eventLog1.Source = eventSourceName;
             eventLog1.Log = logName;
@@ -79,7 +79,7 @@ namespace ImageService
                     ThumbnailSize = Int32.Parse(ConfigurationManager.AppSettings.Get("ThumbnailSize"))
             };
             this.controller = new ImageController(this.modal);
-            this.logging = new LoggingService();
+            this.logging = new LoggingService(this.eventLog1);
             this.logging.MessageRecieved += this.WriteMessage;
             string[] directories = (ConfigurationManager.AppSettings.Get("Handler").Split(';'));
             this.imageServer = new ImageServer(this.controller, this.logging, directories, directories.Length);
@@ -96,7 +96,6 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-
             eventLog1.WriteEntry("In OnStart");
             // Set up a timer to trigger every minute.  
             System.Timers.Timer timer = new System.Timers.Timer();
@@ -154,6 +153,7 @@ namespace ImageService
         public void WriteMessage(Object sender, MessageRecievedEventArgs e)
         {
             eventLog1.WriteEntry(e.message, GetType(e.status));
+
         }
         
 		/// <summary>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using ImageService.Modal;
 using System.Collections.ObjectModel;
 using SharedFiles;
-
+using System.Diagnostics;
 
 namespace ImageService.Logging
 {
@@ -17,16 +17,37 @@ namespace ImageService.Logging
 	public class LoggingService : ILoggingService
     {
         public event EventHandler<MessageRecievedEventArgs> MessageRecieved;
-		public ObservableCollection<LogTuple> Logs { get; set; }
-
+		private ObservableCollection<LogTuple> _logs { get; set; }
+		public LoggingService(EventLog baseEventLog)
+			{
+			this._logs = new ObservableCollection<LogTuple>();
+			this.GetPreviousLogs(baseEventLog);
+			}
 		/// <summary>
 		/// Invoke the eventHandler with all it's delegates (in this case- mostly write into logger)
 		/// </summary>
 		/// <param name="message"> specific message for the logger </param>
 		/// <param name="type"> type of the message </param>
 		public void Log(string message, MessageTypeEnum type)
-        {
+			{
             MessageRecieved?.Invoke(this, new MessageRecievedEventArgs(type, message));
-        }
-    }
+			_logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), type), Data = message });
+			}
+
+		public ObservableCollection<LogTuple> Logs
+			{
+			get { return this._logs; }
+			set => throw new NotImplementedException();
+			}
+
+		private void GetPreviousLogs(EventLog baseEventLog)
+			{
+			EventLogEntry[] logs = new EventLogEntry[baseEventLog.Entries.Count];
+			baseEventLog.Entries.CopyTo(logs, 0);
+			foreach (EventLogEntry unClassifiedLog in logs)
+				{
+				this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), unClassifiedLog.EntryType), Data = unClassifiedLog.Message });
+				}
+			}
+	}
 }
