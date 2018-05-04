@@ -27,14 +27,5 @@ namespace ImageServiceGUI.View
             this.DataContext = new SettingsViewModel();
 			}
 
-        private void lsbHandlers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }
