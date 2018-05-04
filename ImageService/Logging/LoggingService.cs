@@ -44,11 +44,38 @@ namespace ImageService.Logging
 
 		private void GetPreviousLogs(EventLog baseEventLog)
 			{
-			EventLogEntry[] logs = new EventLogEntry[baseEventLog.Entries.Count];
-			baseEventLog.Entries.CopyTo(logs, 0);
-			foreach (EventLogEntry unClassifiedLog in logs)
+			List<EventLogEntry> tempLogs = new List<EventLogEntry>();
+			int numOfLogs = baseEventLog.Entries.Count;
+			int j;
+			for (j = numOfLogs - 1; j >= 0; j--)
 				{
-				this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), unClassifiedLog.EntryType), Data = unClassifiedLog.Message });
+					if (baseEventLog.Entries[j].Message.Contains("OnStart"))
+					{
+					break;
+					}
+				}
+			for (int i = j; i < numOfLogs; i++)
+				{
+				tempLogs.Add(baseEventLog.Entries[i]);
+				}
+			foreach (EventLogEntry unClassifiedLog in tempLogs)
+				{
+				this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), getTypeFromLogEntry(unClassifiedLog.EntryType)), Data = unClassifiedLog.Message });
+				}
+			}
+
+		public static MessageTypeEnum getTypeFromLogEntry(EventLogEntryType eventLogEntryType)
+			{
+			switch (eventLogEntryType)
+				{
+				case EventLogEntryType.Information:
+					return MessageTypeEnum.INFO;
+				case EventLogEntryType.Warning:
+					return MessageTypeEnum.WARNING;
+				case EventLogEntryType.Error:
+					return MessageTypeEnum.ERROR;
+				default:
+					return MessageTypeEnum.INFO;
 				}
 			}
 	}

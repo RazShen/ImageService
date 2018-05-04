@@ -47,10 +47,10 @@ namespace ImageServiceGUI
 
 		public MainWindow()
 			{
-			DataContext = this;
+			this.DataContext = this;
 			InitializeComponent();
 			Random rnd = new Random();
-			if (rnd.Next(1,3) == 2)
+			if (2 == 2)
 				{
 				HasConnection = "False";
 				}
