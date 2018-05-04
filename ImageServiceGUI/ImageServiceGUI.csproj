@@ -145,13 +145,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BaseDLL\BaseDLL.csproj">
-      <Project>{9701169c-b261-44cd-af3d-6642582b2e0e}</Project>
-      <Name>BaseDLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ImageService\ImageService.csproj">
-      <Project>{47694520-5b22-42d3-b027-730302e49d3a}</Project>
-      <Name>ImageService</Name>
+    <ProjectReference Include="..\SharedFiles\SharedFiles.csproj">
+      <Project>{cc45d99b-5f7d-40eb-91d4-9702201189fc}</Project>
+      <Name>SharedFiles</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

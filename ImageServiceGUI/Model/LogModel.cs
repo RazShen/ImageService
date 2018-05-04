@@ -6,7 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageServiceGUI.ViewModel;
-using BaseDLL;
+using SharedFiles;
+
 namespace ImageServiceGUI.Model
 	{
 	class LogModel : ILogModel

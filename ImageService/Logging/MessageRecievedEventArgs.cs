@@ -1,5 +1,5 @@
 ﻿using System;
-using BaseDLL;
+using SharedFiles;
 
 namespace ImageService.Logging.Modal
 {

@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BasicDLL
-{
-    public class Class1
-    {
-    }
-}
+namespace SharedFiles
+	{
+	class Program
+		{
+		static void Main(string[] args)
+			{
+			}
+		}
+	}

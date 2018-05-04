@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ImageService.Modal;
 using System.Collections.ObjectModel;
-using BaseDLL;
+using SharedFiles;
 
 
 namespace ImageService.Logging

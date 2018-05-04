@@ -15,7 +15,7 @@ using ImageService.Controller;
 using ImageService.Logging;
 using ImageService.Infrastructure;
 using ImageService.Logging.Modal;
-using BaseDLL;
+using SharedFiles;
 
 namespace ImageService
 {

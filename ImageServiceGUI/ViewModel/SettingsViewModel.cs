@@ -1,4 +1,4 @@
-﻿using ImageService.Commands;
+﻿using SharedFiles;
 using ImageServiceGUI.Model;
 using System;
 using System.Collections.Generic;

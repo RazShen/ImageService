@@ -4,7 +4,7 @@ using System.IO;
 using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
-using BaseDLL;
+using SharedFiles;
 
 namespace ImageService.Controller.Handlers
 {
