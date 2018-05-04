@@ -14,7 +14,7 @@
     <DockPanel ScrollViewer.VerticalScrollBarVisibility="Auto" Width="790" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="-1,0,11,10" >
 
         <Label Content="Logs" FontSize="30" HorizontalAlignment="Center" Foreground = "DodgerBlue" FontWeight="Bold" RenderTransformOrigin="2.634,0.921" FontFamily="Candara" DockPanel.Dock="Top"/>
-         <DataGrid ItemsSource="{Binding LogMessages}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="0,0,0,26">
+         <DataGrid ItemsSource="{Binding Logs}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="0,0,0,26">
               <DataGrid.Columns>
                     <DataGridTextColumn Header="Type"  Width="80" IsReadOnly="True" Binding="{Binding Path=EnumType}" >
                         <DataGridTextColumn.ElementStyle>
@@ -24,7 +24,7 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Message" Width="690" IsReadOnly="True" Binding="{Binding Data}" />
+                    <DataGridTextColumn Header="Message" Width="685" IsReadOnly="True" Binding="{Binding Data}" />
               </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

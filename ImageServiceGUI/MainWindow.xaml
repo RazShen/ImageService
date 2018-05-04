@@ -10,11 +10,9 @@
 
 
     <Grid>
-
         <Button Grid.RowSpan="4">
             <Button.Style>
                 <Style TargetType="Button">
-
                     <Setter Property="Background" Value="White" />
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path = HasConnection}"
@@ -30,7 +28,6 @@
             <TabItem Header="Settings">
                 <UserControl>
                     <View:SettingsView HorizontalAlignment="Center" Height="450" VerticalAlignment="Center" Width="800"/>
-
                 </UserControl>
             </TabItem>
             <TabItem Header="Logs">
