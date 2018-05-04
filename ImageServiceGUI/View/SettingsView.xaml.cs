@@ -31,5 +31,10 @@ namespace ImageServiceGUI.View
         {
 
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

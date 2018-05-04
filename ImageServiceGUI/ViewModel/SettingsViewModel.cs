@@ -13,7 +13,12 @@ namespace ImageServiceGUI.ViewModel
 	class SettingsViewModel : INotifyPropertyChanged
 		{
 
-        public ObservableCollection<string> VM_Handlers { get; }
+        public ObservableCollection<string> VM_Handlers
+        {
+            get { return model.Handlers; }
+            set => throw new NotImplementedException();
+        }
+
         private IsettingsModel model;
         public event PropertyChangedEventHandler PropertyChanged;
 
