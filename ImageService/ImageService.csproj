@@ -71,10 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CloseCommand.cs" />
-    <Compile Include="Commands\GetConfigCommand.cs" />
-    <Compile Include="Commands\LogCommand.cs" />
-    <Compile Include="Commands\NewFileCommand.cs" />
     <Compile Include="ImageService\Client\ClientHandler.cs" />
     <Compile Include="ImageService\Client\IClientHandler.cs" />
     <Compile Include="ImageService\Commands\CloseCommand.cs" />
@@ -89,7 +85,6 @@
     <Compile Include="ImageService\Controller\Handlers\DirectoyHandler.cs" />
     <Compile Include="ImageService\Controller\Handlers\IDirectoryHandler.cs" />
     <Compile Include="ImageService\Controller\ImageController.cs" />
-    <Compile Include="ImageService\Infrastructure\CommandEnum.cs" />
     <Compile Include="ImageService\Server\ImagerServer.cs" />
     <Compile Include="ImageService\Server\Server.cs" />
     <Compile Include="Logging\ILoogingService.cs" />
