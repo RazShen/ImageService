@@ -71,8 +71,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageService\Client\ClientHandler.cs" />
-    <Compile Include="ImageService\Client\IClientHandler.cs" />
+    <Compile Include="ServiceCommunication\ClientHandler.cs" />
+    <Compile Include="ServiceCommunication\IClientHandler.cs" />
     <Compile Include="ImageService\Commands\CloseCommand.cs" />
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
     <Compile Include="ImageService\Commands\LogCommand.cs" />
@@ -86,7 +86,6 @@
     <Compile Include="ImageService\Controller\Handlers\IDirectoryHandler.cs" />
     <Compile Include="ImageService\Controller\ImageController.cs" />
     <Compile Include="ImageService\Server\ImagerServer.cs" />
-    <Compile Include="ImageService\Server\Server.cs" />
     <Compile Include="Logging\ILoogingService.cs" />
     <Compile Include="ImageService.cs">
       <SubType>Component</SubType>
@@ -95,7 +94,6 @@
       <DependentUpon>ImageService.cs</DependentUpon>
     </Compile>
     <Compile Include="Logging\LoggingService.cs" />
-    <Compile Include="Logging\MessageRecievedEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
@@ -104,6 +102,8 @@
       <DependentUpon>ProjectInstaller.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCommunication\IServerIS.cs" />
+    <Compile Include="ServiceCommunication\ServerIS.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

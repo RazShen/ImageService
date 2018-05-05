@@ -45,6 +45,7 @@
     <Compile Include="CommandEnum.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="LogTuple.cs" />
+    <Compile Include="MessageRecievedEventArgs.cs" />
     <Compile Include="MessegeTypeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

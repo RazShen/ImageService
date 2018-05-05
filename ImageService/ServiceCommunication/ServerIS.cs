@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageServiceGUI.Client
+namespace ImageService.ServiceCommunication
 	{
-	interface IClientGUI
+	class ServerIS
 		{
 		}
 	}
