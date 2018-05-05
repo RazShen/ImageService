@@ -1,6 +1,7 @@
 ﻿using ImageService.Controller;
 using ImageService.Modal;
 using Newtonsoft.Json;
+using SharedFiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,7 +15,7 @@ namespace ImageService.ServiceCommunication
     class ClientHandler : IClientHandler
     {
         IImageController controller;
-        public ClientHandler (IImageController imageController)
+        public ClientHandler(IImageController imageController)
         {
             this.controller = imageController;
         }
