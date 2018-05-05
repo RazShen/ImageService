@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ImageServiceGUI.Client;
 using ImageServiceGUI.ViewModel;
+using Newtonsoft.Json;
 using SharedFiles;
 
 namespace ImageServiceGUI.Model
@@ -13,66 +15,43 @@ namespace ImageServiceGUI.Model
 	class LogModel : ILogModel
 		{
 		private ObservableCollection<LogTuple> _logs { get; set; }
+		private IClientGUI _logClient;
+
+
 		public ObservableCollection<LogTuple> Logs
 			{
 			get { return this._logs; }
 			set => throw new NotImplementedException();
 			}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public LogModel()
 			{
 			_logs = new ObservableCollection<LogTuple>();
-			_logs.Add(new LogTuple
+			this._logClient = new ClientGUI();
+			this._logClient.Start();
+				if (this._logClient.Running())
 				{
-				EnumType = "INFO",
-				Data = "CheckCheckChec\n\nkCheckCheckCheckCheck" +
-				"CheckCheckCheckCheckCheckCheckCheckCheckChecknkCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheckCheck"
-				});
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
-			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
-			int x;
-			Random rand = new Random();
-
-			for (int i = 0; i < 1; i++)
-				{
-				x = rand.Next(1, 4);
-				if (x==1)
-					{
-					_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check " + i });
-	
-
-					} else if (x==2)
-					{
-					_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" + i });
-
-						}
+				//this.GetPreviousLogs();
+				}
 				else
-					{
-					_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" + i });
+				{
+				Console.WriteLine("Log Client isn't connected");
+				}
+			}
 
-					}
+		private void GetPreviousLogs()
+			{
+			CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, "");
+			CommandRecievedEventArgs result = this._logClient.WriteCommandToServer(commandRecievedEventArgs);
+			try
+				{
+				this._logs = JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(result.Args[0]);
+				}
+			catch (Exception e)
+				{
+				Console.WriteLine("Couldn't get previous logs");
 				}
 			}
 		}

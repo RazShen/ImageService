@@ -13,7 +13,6 @@ using ImageService.Server;
 using ImageService.Modal;
 using ImageService.Controller;
 using ImageService.Logging;
-using ImageService.Infrastructure;
 using ImageService.Logging.Modal;
 using SharedFiles;
 

@@ -1,7 +1,6 @@
 ﻿using ImageService.Modal;
 using System;
 using System.IO;
-using ImageService.Infrastructure.Enums;
 using ImageService.Logging;
 using ImageService.Logging.Modal;
 using SharedFiles;

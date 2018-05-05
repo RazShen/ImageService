@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Infrastructure.Enums
+namespace SharedFiles
 {
 	/// <summary>
 	/// enum represents the type of the command
