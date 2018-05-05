@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageService.Modal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,8 @@ namespace ImageService.ServiceCommunication
 	{
 	interface IServerIS
 		{
+        void Start();
+        void Stop();
+        void NotifyClients(CommandRecievedEventArgs commandRecievedEventArgs);
 		}
 	}
