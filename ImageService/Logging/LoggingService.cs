@@ -1,10 +1,6 @@
 ﻿using ImageService.Logging.Modal;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ImageService.Modal;
 using System.Collections.ObjectModel;
 using SharedFiles;
 using System.Diagnostics;
@@ -60,11 +56,12 @@ namespace ImageService.Logging
 				}
 			foreach (EventLogEntry unClassifiedLog in tempLogs)
 				{
-				this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), getTypeFromLogEntry(unClassifiedLog.EntryType)), Data = unClassifiedLog.Message });
+				this.Log(unClassifiedLog.Message, GetTypeFromLogEntry(unClassifiedLog.EntryType));
+				//this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), getTypeFromLogEntry(unClassifiedLog.EntryType)), Data = unClassifiedLog.Message });
 				}
 			}
 
-		public static MessageTypeEnum getTypeFromLogEntry(EventLogEntryType eventLogEntryType)
+		public static MessageTypeEnum GetTypeFromLogEntry(EventLogEntryType eventLogEntryType)
 			{
 			switch (eventLogEntryType)
 				{

@@ -85,6 +85,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Client\ClientGUI.cs" />
+    <Compile Include="Client\IClientGUI.cs" />
     <Compile Include="Convertors\LogEnumToColor.cs" />
     <Compile Include="Model\ILogModel.cs" />
     <Compile Include="Model\IsettingsModel.cs" />
@@ -166,5 +168,6 @@
       <Name>SharedFiles</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
