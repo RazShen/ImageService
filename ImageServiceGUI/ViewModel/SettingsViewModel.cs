@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Prism.Commands;
-using ImageService.Modal;
-using ImageService.Infrastructure.Enums;
+using ImageService;
+
+
 
 namespace ImageServiceGUI.ViewModel
 {
     class SettingsViewModel : INotifyPropertyChanged
     {
-
         public ObservableCollection<string> VM_Handlers
         {
             get { return model.Handlers; }
@@ -71,7 +71,7 @@ namespace ImageServiceGUI.ViewModel
         private void Remove(object obj)
         {
             string[] arrToSent = { this.selectedHandler };
-            CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
+          //  CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
             //sent tcp command
             this.model.Handlers.Remove(this.selectedHandler);
         }
