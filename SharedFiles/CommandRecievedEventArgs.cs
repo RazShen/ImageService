@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Modal
+namespace SharedFiles
 {
 	/// <summary>
 	/// arguments for a command object
