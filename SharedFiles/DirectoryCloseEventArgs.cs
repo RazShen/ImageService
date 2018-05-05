@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Modal
-{
+namespace SharedFiles
+	{
     /// <summary>
     /// Argments for the DirectoryCloseEvent 
     /// </summary>

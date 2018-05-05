@@ -8,5 +8,7 @@ namespace ImageServiceGUI.Client
 	{
 	interface IClientGUI
 		{
+		void Start();
+		//CommandReceivedEventArgs 
 		}
 	}

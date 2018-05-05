@@ -77,8 +77,6 @@
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
     <Compile Include="ImageService\Commands\LogCommand.cs" />
     <Compile Include="ImageService\Controller\IImageController.cs" />
-    <Compile Include="ImageService\ImageModel\Event\CommandRecievedEventArgs.cs" />
-    <Compile Include="ImageService\ImageModel\Event\DirectoryCloseEventArgs.cs" />
     <Compile Include="ImageService\ImageModel\IImageServiceModal.cs" />
     <Compile Include="ImageService\ImageModel\ImageServiceModal.cs" />
     <Compile Include="ImageService\Commands\NewFileCommand.cs" />
