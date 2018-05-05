@@ -52,6 +52,28 @@ namespace ImageServiceGUI.Model
 			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
 			_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" });
 			_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check" });
+			int x;
+			Random rand = new Random();
+
+			for (int i = 0; i < 100; i++)
+				{
+				x = rand.Next(1, 4);
+				if (x==1)
+					{
+					_logs.Add(new LogTuple { EnumType = "ERROR", Data = "Check " + i });
+	
+
+					} else if (x==2)
+					{
+					_logs.Add(new LogTuple { EnumType = "INFO", Data = "Check" + i });
+
+						}
+				else
+					{
+					_logs.Add(new LogTuple { EnumType = "WARNING", Data = "Check" + i });
+
+					}
+				}
 			}
 		}
 	}
