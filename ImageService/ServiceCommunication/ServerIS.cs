@@ -1,6 +1,7 @@
 ﻿using ImageService.Logging;
 using ImageService.Modal;
 using Newtonsoft.Json;
+using SharedFiles;
 using System;
 using System.Collections.Generic;
 using System.IO;

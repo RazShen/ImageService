@@ -1,5 +1,4 @@
 ﻿
-using ImageService.Infrastructure.Enums;
 using ImageService.Modal;
 using Newtonsoft.Json;
 using SharedFiles;

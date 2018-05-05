@@ -1,6 +1,7 @@
 ﻿using ImageService.Controller;
 using ImageService.Modal;
 using Newtonsoft.Json;
+using SharedFiles;
 using System;
 using System.Collections.Generic;
 using System.IO;
