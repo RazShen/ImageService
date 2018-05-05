@@ -60,7 +60,6 @@ namespace ImageServiceGUI.Client
 					using (BinaryWriter writer = new BinaryWriter(stream))
 						{
 						string response = reader.ReadString();
-						Console.WriteLine($"Recieve {response} from Server");
 						CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(response);
 						// Deal with the update
 						// need sleep?

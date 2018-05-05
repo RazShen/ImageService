@@ -59,7 +59,7 @@ namespace ImageService.ServiceCommunication
             try
             {
                 IPEndPoint ep = new
-                IPEndPoint(IPAddress.Parse("127.0.0.1"), port);
+                IPEndPoint(IPAddress.Parse(ConnectingData.ip), port);
                 listener = new TcpListener(ep);
 
                 listener.Start();
