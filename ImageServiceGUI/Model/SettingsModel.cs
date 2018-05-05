@@ -79,20 +79,7 @@ namespace ImageServiceGUI.Model
 
 		private void Initialize()
 			{
-			//CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
-			this.OutputDirectory = "OutputDir";
-			this.SourceName = "SourceName";
-			this.LogName = "log";
-			this.TumbnailSize = "sss";
 			Handlers = new ObservableCollection<string>();
-			//string[] handlers = string.Split(';');
-			string[] handlers = { "a", "b", "c", "d" };
-			foreach (string handler in handlers)
-				{
-				this.Handlers.Add(handler);
-				}
-
-
 			this._settingsClient = new ClientGUI();
 			this._settingsClient.Start();
 			if (this._settingsClient.Running())

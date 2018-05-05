@@ -13,9 +13,9 @@ using ImageService.Server;
 using ImageService.Modal;
 using ImageService.Controller;
 using ImageService.Logging;
-using ImageService.Infrastructure;
 using ImageService.Logging.Modal;
 using SharedFiles;
+using ImageService.ServiceCommunication;
 
 namespace ImageService
 {
@@ -55,7 +55,8 @@ namespace ImageService
         private IImageServiceModal modal;
         private IImageController controller;
         private ILoggingService logging;
-
+		private IServerIS serverIS;
+		private IClientHandler clientHandler;
 		/// <summary>
 		/// constactor for Image service
 		/// </summary>
@@ -83,6 +84,10 @@ namespace ImageService
             this.logging.MessageRecieved += this.WriteMessage;
             string[] directories = (ConfigurationManager.AppSettings.Get("Handler").Split(';'));
             this.imageServer = new ImageServer(this.controller, this.logging, directories, directories.Length);
+			this.clientHandler = new ClientHandler(this.controller);
+			this.serverIS = new ServerIS(ConnectingData.port, this.clientHandler, this.logging);
+			this.serverIS.Start();
+
         }
 
 		/// <summary>

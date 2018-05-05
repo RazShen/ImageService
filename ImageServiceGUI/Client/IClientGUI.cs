@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharedFiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,10 @@ namespace ImageServiceGUI.Client
 	{
 	interface IClientGUI
 		{
-		void Start();
-		//CommandReceivedEventArgs 
+		bool Running();
+		bool Start();
+		void Close();
+		CommandRecievedEventArgs WriteCommandToServer(CommandRecievedEventArgs argsForCommand);
+		void UpdateConstantly();
 		}
 	}

@@ -4,7 +4,7 @@ using ImageService.Logging;
 using ImageService.Modal;
 using System;
 using ImageService.Logging.Modal;
-using ImageService.Infrastructure.Enums;
+using SharedFiles;
 using SharedFiles;
 
 namespace ImageService.Server
