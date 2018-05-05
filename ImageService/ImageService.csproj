@@ -73,7 +73,7 @@
   <ItemGroup>
     <Compile Include="ServiceCommunication\ClientHandler.cs" />
     <Compile Include="ServiceCommunication\IClientHandler.cs" />
-    <Compile Include="ImageService\Commands\CloseCommand.cs" />
+    <Compile Include="ImageService\Commands\CloseHandlerCommand.cs" />
     <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
     <Compile Include="ImageService\Commands\LogCommand.cs" />
     <Compile Include="ImageService\Controller\IImageController.cs" />
