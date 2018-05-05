@@ -55,7 +55,7 @@ namespace ImageServiceGUI.Model
 			int x;
 			Random rand = new Random();
 
-			for (int i = 0; i < 100; i++)
+			for (int i = 0; i < 1; i++)
 				{
 				x = rand.Next(1, 4);
 				if (x==1)

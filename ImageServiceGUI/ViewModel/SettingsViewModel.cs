@@ -25,7 +25,7 @@ namespace ImageServiceGUI.ViewModel
         private IsettingsModel model;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ICommand RemoveCommand { get; set; }
+        public DelegateCommand<Object> RemoveCommand { get; set; }
 
         public SettingsViewModel()
         {
@@ -35,7 +35,7 @@ namespace ImageServiceGUI.ViewModel
                 {
                     NotifyPropertyChanged("VM_" + e.PropertyName);
                 };
-            this.RemoveCommand =  new DelegateCommand<object>(Remove, CanRemove) as ICommand;
+            this.RemoveCommand =  new DelegateCommand<object>(Remove, CanRemove);
         }
 
 
