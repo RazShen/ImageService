@@ -33,7 +33,7 @@ namespace ImageService.Logging
 		public void Log(string message, MessageTypeEnum type)
 			{
             MessageRecieved?.Invoke(this, new MessageRecievedEventArgs(type, message));
-			_logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), type), Data = message });
+			_logs.Insert(0, (new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), type), Data = message }));
 			}
 
 		public ObservableCollection<LogTuple> Logs
@@ -54,7 +54,7 @@ namespace ImageService.Logging
 					break;
 					}
 				}
-			for (int i = j; i < numOfLogs; i++)
+			for (int i = numOfLogs - 1; i >= j; i--)
 				{
 				tempLogs.Add(baseEventLog.Entries[i]);
 				}
