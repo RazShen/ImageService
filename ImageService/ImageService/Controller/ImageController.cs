@@ -27,8 +27,8 @@ namespace ImageService.Controller
             imageModal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>() {};
             commands[0] = new NewFileCommand(modal);
+			commands[1] = new GetConfigCommand();
 			
-
 			}
 
 		/// <summary>

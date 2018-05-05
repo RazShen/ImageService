@@ -18,16 +18,20 @@ namespace ImageService.Commands
 
         public string Execute(string[] args, out bool result)
         {
-            try
-            {
-                result = true;
-                if(args.Length < 1 || args == null)
-                {
-                    result = false;
-                    throw new Exception("invalid argumernts for close handler command");
-                }
-            }
-            throw new NotImplementedException();
+		//	try
+		//		{
+				result = true;
+			return "5";
+				//if (args.Length < 1 || args == null)
+					//{
+					//result = false;
+				//	throw new Exception("invalid argumernts for close handler command");
+			//		}
+		//		}
+	//		catch (Exception e)
+	//			{
+//				throw new NotImplementedException();
+//				}
         }
     }
 	}
