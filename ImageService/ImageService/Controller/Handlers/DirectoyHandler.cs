@@ -80,7 +80,7 @@ namespace ImageService.Controller.Handlers
 		public void OnCommandRecieved(object sender, CommandRecievedEventArgs e) {
             switch (e.CommandID)
             {                
-                case (int) CommandEnum.CloseCommand:
+                case (int) CommandEnum.CloseHandlerCommand:
                     this.m_logging.Log("closing Directory Handler of directory in path: " + this.m_path, MessageTypeEnum.INFO);
                     DirectoryClose?.Invoke(this, new DirectoryCloseEventArgs(this.m_path, "closing"));
                     for (int i = 0; i< 4;i ++) {

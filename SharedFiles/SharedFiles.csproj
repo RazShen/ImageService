@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\CloseCommand.cs" />
+    <Compile Include="Commands\GetConfigCommand.cs" />
+    <Compile Include="Commands\LogCommand.cs" />
+    <Compile Include="Commands\NewFileCommand.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="LogTuple.cs" />
     <Compile Include="MessegeTypeEnum.cs" />

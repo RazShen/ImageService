@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImageService.Infrastructure.Enums;
+using ImageService.Modal;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -75,13 +77,14 @@ namespace ImageServiceGUI.Model
 
         private void Initialize()
         {
+            //CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
             this.OutputDirectory = "OutputDir";
             this.SourceName = "SourceName";
             this.LogName = "log";
             this.TumbnailSize = "sss";
             Handlers = new ObservableCollection<string>();
             //string[] handlers = string.Split(';');
-            string[] handlers = { "a", "b", "c"};
+            string[] handlers = { "a", "b", "c", "d"};
             foreach (string handler in handlers)
             {
                 this.Handlers.Add(handler);

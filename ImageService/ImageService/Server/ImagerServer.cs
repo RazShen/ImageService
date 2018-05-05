@@ -50,7 +50,7 @@ namespace ImageService.Server
         public void CloseServer()
         {
             this.m_logging.Log("Begin closing server", MessageTypeEnum.INFO);
-            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseCommand, null, "");
+            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, null, "");
             this.CommandRecieved?.Invoke(this, commandRecievedEventArgs);
 		}
 

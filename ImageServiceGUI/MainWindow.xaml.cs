@@ -49,11 +49,11 @@ namespace ImageServiceGUI
 			{
 			this.DataContext = this;
 			InitializeComponent();
-			Random rnd = new Random();
-			if (2 == 2)
-				{
-				HasConnection = "False";
-				}
+			//Random rnd = new Random();
+			//if (2 == 2)
+			//	{
+			//	HasConnection = "False";
+			//	}
 			}
 
 
