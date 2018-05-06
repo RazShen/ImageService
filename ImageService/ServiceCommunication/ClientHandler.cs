@@ -14,7 +14,9 @@ namespace ImageService.ServiceCommunication
 	{
     class ClientHandler : IClientHandler
     {
-        IImageController controller;
+		private bool m_isStopped = false;
+
+		IImageController controller;
         public ClientHandler(IImageController imageController)
         {
             this.controller = imageController;
@@ -23,18 +25,23 @@ namespace ImageService.ServiceCommunication
         {
             new Task(() =>
             {
-                using (NetworkStream stream = client.GetStream())
-                using (StreamReader reader = new StreamReader(stream))
-                using (StreamWriter writer = new StreamWriter(stream))
-                {
-                    string commandLine = reader.ReadLine();
-                    bool outbool;
-                    CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandLine);
-                    string result = controller.ExecuteCommand(commandRecievedEventArgs.CommandID, commandRecievedEventArgs.Args, out outbool);
-                    writer.Write(result);
-                }
-                client.Close();
-            }).Start();
+				while (!m_isStopped)
+					{
+					NetworkStream stream = client.GetStream();
+					BinaryReader reader = new BinaryReader(stream);
+					BinaryWriter writer = new BinaryWriter(stream);
+					string commandLine = reader.ReadString();
+					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandLine);
+
+					Console.WriteLine("Got command: {0}", commandLine);
+					bool r;
+					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
+						commandRecievedEventArgs.Args, out r);
+					// string result = handleCommand(commandRecievedEventArgs);
+					writer.Write(result);
+					//client.Close();
+					}
+			}).Start();
         }
     }
 }

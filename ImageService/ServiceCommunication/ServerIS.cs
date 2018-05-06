@@ -58,9 +58,9 @@ namespace ImageService.ServiceCommunication
         {
             try
             {
-                IPEndPoint ep = new
+                IPEndPoint endPoint = new
                 IPEndPoint(IPAddress.Parse(ConnectingData.ip), port);
-                listener = new TcpListener(ep);
+                listener = new TcpListener(endPoint);
 
                 listener.Start();
                 Logging.Log("Waiting for connections...", SharedFiles.MessageTypeEnum.INFO);
