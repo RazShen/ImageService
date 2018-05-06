@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Client
 	{
+	public delegate void Updator(CommandRecievedEventArgs args);
+
 	interface IClientGUI
 		{
 		bool Running();
-		bool Start();
 		void Close();
-		CommandRecievedEventArgs WriteCommandToServer(CommandRecievedEventArgs argsForCommand);
+		void WriteCommandToServer(CommandRecievedEventArgs argsForCommand);
 		void UpdateConstantly();
+		event Updator UpdateEvent;
+
 		}
 	}

@@ -11,16 +11,37 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Client
 	{
-	class ClientGUI: IClientGUI
+	class ClientGUI : IClientGUI
 		{
 		private bool _running;
 		private TcpClient _client;
+		private static ClientGUI _instance;
+		public delegate void Updator(CommandRecievedEventArgs responseObj);
+		public event ImageServiceGUI.Client.Updator UpdateEvent;
 
-
+		private ClientGUI()
+			{
+			bool running = this.Start();
+			this._running = running;
+			}
 
 		public bool Running()
 			{
 			return this._running;
+			}
+
+
+		public static IClientGUI Instance
+			{
+			get
+				{
+				if (_instance != null)
+					{
+					return _instance;
+					}
+				_instance = new ClientGUI();
+				return _instance;
+				}
 			}
 
 		public void Close()
@@ -31,19 +52,19 @@ namespace ImageServiceGUI.Client
 
 		public bool Start()
 			{
-			try { 
+			try
+				{
 				bool result = true;
 				IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ConnectingData.ip), ConnectingData.port);
 				_client = new TcpClient();
 				_client.Connect(endPoint);
 				// connected to server now
-
 				_running = true;
 				return result;
 				}
-			catch (Exception ex)
+			catch (Exception e)
 				{
-				Console.WriteLine(ex.ToString());
+				Console.WriteLine(e.ToString());
 				return false;
 
 				}
@@ -55,33 +76,31 @@ namespace ImageServiceGUI.Client
 			{
 				while (this._running)
 					{
-					using (NetworkStream stream = _client.GetStream())
-					using (BinaryReader reader = new BinaryReader(stream))
-					using (BinaryWriter writer = new BinaryWriter(stream))
-						{
-						string response = reader.ReadString();
-						CommandRecievedEventArgs responseObj = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(response);
-						// Deal with the update
-						// need sleep?
-						}
+					NetworkStream stream = _client.GetStream();
+					BinaryReader reader = new BinaryReader(stream);
+					string serializedResponse = reader.ReadString();
+					CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
+					this.UpdateEvent?.Invoke(deserializedResponse);
 					}
 			}).Start();
 			}
 
-		public CommandRecievedEventArgs WriteCommandToServer(CommandRecievedEventArgs argsForCommand)
+		public void WriteCommandToServer(CommandRecievedEventArgs args)
 			{
-			string convertedJSON = JsonConvert.SerializeObject(argsForCommand);
-			using (NetworkStream stream = _client.GetStream())
-			using (BinaryReader reader = new BinaryReader(stream))
-			using (BinaryWriter writer = new BinaryWriter(stream))
-				{
-				// Write JSON to server
-				writer.Write(convertedJSON);
-				// Read JSON from server (response)
-				string result = reader.ReadString();
-				// Return the Deserialized respose.
-				return JsonConvert.DeserializeObject<CommandRecievedEventArgs>(result);
-				}
+			new Task(() =>
+			{
+				try
+					{
+					string jsonCommand = JsonConvert.SerializeObject(args);
+					NetworkStream stream = _client.GetStream();
+					BinaryWriter writer = new BinaryWriter(stream);
+					writer.Write(jsonCommand);
+					}
+				catch (Exception e)
+					{
+						Console.WriteLine(e.ToString());
+					}
+			}).Start();
 			}
 		}
 	}
