@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ImageService\Commands\NewLogMessage.cs" />
     <Compile Include="ServiceCommunication\ClientHandler.cs" />
     <Compile Include="ServiceCommunication\IClientHandler.cs" />
     <Compile Include="ImageService\Commands\CloseHandlerCommand.cs" />
