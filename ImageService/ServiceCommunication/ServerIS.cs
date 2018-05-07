@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageServiceTools.ServiceCommunication
@@ -17,18 +18,19 @@ namespace ImageServiceTools.ServiceCommunication
 		{
         private int port { get; set; }
         private TcpListener listener { get; set; }
-        private IClientHandler ch { get; set; }
+        private IClientHandler clientHandler { get; set; }
         ILoggingService Logging { get; set; }
         private List<TcpClient> clients;
-
+		private static Mutex _mutex;
 
 
         public ServerIS(int port, IClientHandler ch, ILoggingService loggingService)
         {
             this.port = port;
-            this.ch = ch;
+            this.clientHandler = ch;
             clients = new List<TcpClient>();
             this.Logging = loggingService;
+			ClientHandler.GlobMutex = _mutex;
         }
 
         public void NotifyClients(CommandRecievedEventArgs commandRecievedEventArgs)
@@ -39,12 +41,13 @@ namespace ImageServiceTools.ServiceCommunication
                 {
                     new Task(() =>
                     {
-					NetworkStream stream = client.GetStream();
-					StreamReader reader = new StreamReader(stream);
-					StreamWriter writer = new StreamWriter(stream); 
-                    string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
-                    new BinaryWriter(client.GetStream()).Write(result);
-                                     
+						NetworkStream stream = client.GetStream();
+						StreamReader reader = new StreamReader(stream);
+						StreamWriter writer = new StreamWriter(stream); 
+						string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
+						_mutex.WaitOne();
+						new BinaryWriter(client.GetStream()).Write(result);
+						_mutex.ReleaseMutex();              
                     }).Start();
                 }
             } catch (Exception e) {
@@ -71,20 +74,20 @@ namespace ImageServiceTools.ServiceCommunication
                         {
                             TcpClient client = listener.AcceptTcpClient();
                             clients.Add(client);
-                            Logging.Log("Got new connection", SharedFiles.MessageTypeEnum.INFO);
-                            ch.HandleClient(client);
+                            Logging.Log("Got new connection", MessageTypeEnum.INFO);
+                            clientHandler.HandleClient(client);
                         }
                         catch (SocketException)
                         {
                             break;
                         }
                     }
-                    Logging.Log("Server stopped", SharedFiles.MessageTypeEnum.INFO);
+                    Logging.Log("There was a problem running the server main thread", MessageTypeEnum.INFO);
                 });
                 task.Start();
             } catch (Exception e)
             {
-                Logging.Log(e.ToString(), SharedFiles.MessageTypeEnum.ERROR);
+                Logging.Log(e.ToString(), MessageTypeEnum.ERROR);
             }
         }
         public void Stop()

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Client
@@ -18,6 +19,7 @@ namespace ImageServiceGUI.Client
 		private static ClientGUI _instance;
 		public delegate void Updator(CommandRecievedEventArgs responseObj);
 		public event ImageServiceGUI.Client.Updator UpdateEvent;
+		private static Mutex _mutex = new Mutex();
 
 		private ClientGUI()
 			{
@@ -94,7 +96,9 @@ namespace ImageServiceGUI.Client
 					string jsonCommand = JsonConvert.SerializeObject(args);
 					NetworkStream stream = _client.GetStream();
 					BinaryWriter writer = new BinaryWriter(stream);
+					_mutex.WaitOne();
 					writer.Write(jsonCommand);
+					_mutex.ReleaseMutex();
 					}
 				catch (Exception e)
 					{

@@ -81,9 +81,13 @@ namespace ImageService
 			this.clientHandler = new ClientHandler(this.controller);
 			this.serverIS = new ServerIS(ConnectingData.port, this.clientHandler, this.logging);
 			this.serverIS.Start();
+			this.logging.LogNotificator += this.updateAllClients;
+			}
 
-        }
-
+		public void updateAllClients(CommandRecievedEventArgs args)
+			{
+			this.serverIS.NotifyClients(args);
+			}
 		/// <summary>
 		/// the function starts the server
 		/// </summary>
@@ -154,13 +158,14 @@ namespace ImageService
             eventLog1.WriteEntry(e.message, GetType(e.status));
 
         }
-        
+
+
 		/// <summary>
 		/// this method gets the status of the massage and returns the type of the event log massage
 		/// </summary>
 		/// <param name="status"> the given statud of the massage</param>
 		/// <returns> the type of the event log massage</returns>
-        private EventLogEntryType GetType(MessageTypeEnum status)
+		private EventLogEntryType GetType(MessageTypeEnum status)
         {
             switch (status)
             {

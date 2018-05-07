@@ -89,7 +89,7 @@ namespace ImageServiceGUI.Model
 			{
 			try
 				{
-				this._logs.Insert(0, new LogTuple { EnumType = args.Args[0], Data = args.Args[1] });
+				this._logs.Insert(0, new LogTuple { EnumType = args.Args[1], Data = args.Args[0] });
 				}
 			catch (Exception e)
 				{
