@@ -44,9 +44,9 @@ namespace ImageService.ServiceCommunication
                         using (StreamWriter writer = new StreamWriter(stream))
                         {
                             string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
-                            writer.Write(result);
+                            new BinaryWriter(client.GetStream()).Write(result);
                         }
-                        client.Close();
+                       // client.Close();
                     }).Start();
                 }
             } catch (Exception e) {
