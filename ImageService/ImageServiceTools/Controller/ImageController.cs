@@ -1,5 +1,5 @@
-﻿using ImageService.Commands;
-using ImageService.Modal;
+﻿using ImageServiceTools.Commands;
+using ImageServiceTools.Modal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using SharedFiles;
 
 
-namespace ImageService.Controller
+namespace ImageServiceTools.Controller
 {
 	/// <summary>
 	/// ImageController, controller that takes care of images.

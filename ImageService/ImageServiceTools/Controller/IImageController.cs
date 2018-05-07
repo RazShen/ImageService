@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Controller
+namespace ImageServiceTools.Controller
 {
 	/// <summary>
 	/// IImageController interface, controller that takes care of images.

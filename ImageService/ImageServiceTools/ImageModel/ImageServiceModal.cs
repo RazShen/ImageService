@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Modal
+namespace ImageServiceTools.Modal
 {
 	/// <summary>
 	///  image service modal class

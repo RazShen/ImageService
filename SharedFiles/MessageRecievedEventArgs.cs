@@ -1,7 +1,6 @@
 ﻿using System;
-using SharedFiles;
 
-namespace ImageService.Logging.Modal
+namespace SharedFiles
 {
 	/// <summary>
 	/// MessageRecievedEventArgs class.

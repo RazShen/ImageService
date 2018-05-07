@@ -1,11 +1,10 @@
-﻿using ImageService.Logging.Modal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SharedFiles;
 using System.Diagnostics;
 
-namespace ImageService.Logging
+namespace ImageServiceTools.Logging
 {
 	/// <summary>
 	/// LoggingService for the log of this program.

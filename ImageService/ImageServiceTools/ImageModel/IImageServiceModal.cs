@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Modal
+namespace ImageServiceTools.Modal
 {
     /// <summary>
     /// IImage Service Modal Interface

@@ -1,4 +1,4 @@
-﻿using ImageService.Server;
+﻿using ImageServiceTools.Server;
 using SharedFiles;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.Commands
+namespace ImageServiceTools.Commands
 	{
 	class CloseHandlerCommand : ICommand
 		{
@@ -39,7 +39,7 @@ namespace ImageService.Commands
             }
             catch (Exception e)
             {
-                
+				Console.WriteLine(e.ToString());
             }
             throw new NotImplementedException();
         }

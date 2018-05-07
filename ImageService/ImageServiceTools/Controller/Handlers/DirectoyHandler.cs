@@ -1,11 +1,10 @@
-﻿using ImageService.Modal;
+﻿using ImageServiceTools.Modal;
 using System;
 using System.IO;
-using ImageService.Logging;
-using ImageService.Logging.Modal;
+using ImageServiceTools.Logging;
 using SharedFiles;
 
-namespace ImageService.Controller.Handlers
+namespace ImageServiceTools.Controller.Handlers
 {
 	/// <summary>
 	/// DirectoyHandler for handling a single directory.

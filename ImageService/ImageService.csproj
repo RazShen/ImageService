@@ -71,20 +71,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageService\Commands\NewLogMessage.cs" />
+    <Compile Include="ImageServiceTools\Commands\NewLogMessage.cs" />
     <Compile Include="ServiceCommunication\ClientHandler.cs" />
     <Compile Include="ServiceCommunication\IClientHandler.cs" />
-    <Compile Include="ImageService\Commands\CloseHandlerCommand.cs" />
-    <Compile Include="ImageService\Commands\GetConfigCommand.cs" />
-    <Compile Include="ImageService\Commands\LogCommand.cs" />
-    <Compile Include="ImageService\Controller\IImageController.cs" />
-    <Compile Include="ImageService\ImageModel\IImageServiceModal.cs" />
-    <Compile Include="ImageService\ImageModel\ImageServiceModal.cs" />
-    <Compile Include="ImageService\Commands\NewFileCommand.cs" />
-    <Compile Include="ImageService\Controller\Handlers\DirectoyHandler.cs" />
-    <Compile Include="ImageService\Controller\Handlers\IDirectoryHandler.cs" />
-    <Compile Include="ImageService\Controller\ImageController.cs" />
-    <Compile Include="ImageService\Server\ImagerServer.cs" />
+    <Compile Include="ImageServiceTools\Commands\CloseHandlerCommand.cs" />
+    <Compile Include="ImageServiceTools\Commands\GetConfigCommand.cs" />
+    <Compile Include="ImageServiceTools\Commands\LogCommand.cs" />
+    <Compile Include="ImageServiceTools\Controller\IImageController.cs" />
+    <Compile Include="ImageServiceTools\ImageModel\IImageServiceModal.cs" />
+    <Compile Include="ImageServiceTools\ImageModel\ImageServiceModal.cs" />
+    <Compile Include="ImageServiceTools\Commands\NewFileCommand.cs" />
+    <Compile Include="ImageServiceTools\Controller\Handlers\DirectoyHandler.cs" />
+    <Compile Include="ImageServiceTools\Controller\Handlers\IDirectoryHandler.cs" />
+    <Compile Include="ImageServiceTools\Controller\ImageController.cs" />
+    <Compile Include="ImageServiceTools\Server\ImagerServer.cs" />
     <Compile Include="Logging\ILoogingService.cs" />
     <Compile Include="ImageService.cs">
       <SubType>Component</SubType>

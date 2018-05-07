@@ -1,5 +1,5 @@
-﻿using ImageService.Controller;
-using ImageService.Modal;
+﻿using ImageServiceTools.Controller;
+using ImageServiceTools.Modal;
 using Newtonsoft.Json;
 using SharedFiles;
 using System;
@@ -10,7 +10,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.ServiceCommunication
+namespace ImageServiceTools.ServiceCommunication
 	{
     class ClientHandler : IClientHandler
     {

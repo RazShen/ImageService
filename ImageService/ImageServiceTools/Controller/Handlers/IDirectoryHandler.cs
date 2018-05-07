@@ -1,4 +1,4 @@
-﻿using ImageService.Modal;
+﻿using ImageServiceTools.Modal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SharedFiles;
 
-namespace ImageService.Controller.Handlers
+namespace ImageServiceTools.Controller.Handlers
 {
 	/// <summary>
 	/// DirectoyHandler for handling a single directory.

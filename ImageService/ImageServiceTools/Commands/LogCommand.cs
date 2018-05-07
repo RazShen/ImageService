@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.Commands
+namespace ImageServiceTools.Commands
 	{
 	class LogCommand
 		{

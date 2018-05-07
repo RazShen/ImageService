@@ -1,5 +1,5 @@
-﻿using ImageService.Logging;
-using ImageService.Modal;
+﻿using ImageServiceTools.Logging;
+using ImageServiceTools.Modal;
 using Newtonsoft.Json;
 using SharedFiles;
 using System;
@@ -11,7 +11,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageService.ServiceCommunication
+namespace ImageServiceTools.ServiceCommunication
 	{
 	class ServerIS : IServerIS
 		{

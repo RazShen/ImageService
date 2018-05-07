@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Configuration;
-using ImageService.Server;
-using ImageService.Modal;
-using ImageService.Controller;
-using ImageService.Logging;
-using ImageService.Logging.Modal;
+using ImageServiceTools.Server;
+using ImageServiceTools.Modal;
+using ImageServiceTools.Controller;
+using ImageServiceTools.Logging;
 using SharedFiles;
-using ImageService.ServiceCommunication;
+using ImageServiceTools.ServiceCommunication;
 
 namespace ImageService
 {

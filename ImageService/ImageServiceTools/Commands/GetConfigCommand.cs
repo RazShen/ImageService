@@ -1,5 +1,5 @@
 ﻿
-using ImageService.Modal;
+using ImageServiceTools.Modal;
 using Newtonsoft.Json;
 using SharedFiles;
 using System;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ImageService.Commands
+namespace ImageServiceTools.Commands
 {
     class GetConfigCommand : ICommand
     {

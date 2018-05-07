@@ -1,4 +1,4 @@
-﻿using ImageService.Modal;
+﻿using ImageServiceTools.Modal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using SharedFiles;
 
 
-namespace ImageService.Commands
+namespace ImageServiceTools.Commands
 {
 	/// <summary>
 	/// New file command.

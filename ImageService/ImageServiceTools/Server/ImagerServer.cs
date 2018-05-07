@@ -1,13 +1,11 @@
-﻿using ImageService.Controller;
-using ImageService.Controller.Handlers;
-using ImageService.Logging;
-using ImageService.Modal;
+﻿using ImageServiceTools.Controller;
+using ImageServiceTools.Controller.Handlers;
+using ImageServiceTools.Logging;
+using ImageServiceTools.Modal;
 using System;
-using ImageService.Logging.Modal;
-using SharedFiles;
 using SharedFiles;
 
-namespace ImageService.Server
+namespace ImageServiceTools.Server
 {
 	/// <summary>
 	/// image server class
