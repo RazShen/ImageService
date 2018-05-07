@@ -60,7 +60,7 @@ namespace ImageServiceGUI.Model
 					case (int)CommandEnum.LogCommand:
 						SetupPreviousLogs(args);
 						break;
-					case (int)CommandEnum.NewLog:
+					case (int)CommandEnum.NewLogMessage:
 						InsertLog(args);
 						break;
 					default:
