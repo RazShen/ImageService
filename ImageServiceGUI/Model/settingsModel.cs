@@ -125,12 +125,12 @@ namespace ImageServiceGUI.Model
 				}
 			}
 
-		private void CloseHandler(CommandRecievedEventArgs responseObj)
+		private void CloseHandler(CommandRecievedEventArgs args)
 			{
-			if (Handlers != null && Handlers.Count > 0 && responseObj != null && responseObj.Args != null
-								 && Handlers.Contains(responseObj.Args[0]))
+			if (Handlers != null && Handlers.Count > 0 && args != null && args.Args != null
+								 && Handlers.Contains(args.Args[0]))
 				{
-				this.Handlers.Remove(responseObj.Args[0]);
+				this.Handlers.Remove(args.Args[0]);
 				}
 			}
 
