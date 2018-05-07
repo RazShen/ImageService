@@ -33,7 +33,6 @@ namespace ImageServiceTools.ServiceCommunication
 					string commandLine = reader.ReadString();
 					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandLine);
 
-					Console.WriteLine("Got command: {0}", commandLine);
 					bool r;
 					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
 						commandRecievedEventArgs.Args, out r);
