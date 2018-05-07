@@ -76,5 +76,10 @@ namespace ImageServiceTools.Server
             }
         }
 
+        public void CloseDirectoryHandler(String path)
+        {
+
+        }
+
     }
 }

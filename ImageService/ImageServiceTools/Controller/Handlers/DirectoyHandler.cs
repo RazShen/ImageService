@@ -124,7 +124,5 @@ namespace ImageServiceTools.Controller.Handlers
             }
         }
         
-
-
         }
     }
