@@ -13,6 +13,7 @@ namespace ImageServiceTools.Logging
     {
         public event EventHandler<MessageRecievedEventArgs> MessageRecieved;
 		private ObservableCollection<LogTuple> _logs { get; set; }
+		public event newLogNotification LogNotificator;
 		public LoggingService(EventLog baseEventLog)
 			{
 			this._logs = new ObservableCollection<LogTuple>();
@@ -27,7 +28,11 @@ namespace ImageServiceTools.Logging
 
 		public void Log(string message, MessageTypeEnum type)
 			{
+			String[] args = new string[2];
+			args[0] = message;
+			args[1] = type.ToString();
             MessageRecieved?.Invoke(this, new MessageRecievedEventArgs(type, message));
+			LogNotificator?.Invoke(new CommandRecievedEventArgs((int)CommandEnum.NewLogMessage, args, ""));
 			_logs.Insert(0, (new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), type), Data = message }));
 			}
 
@@ -39,7 +44,6 @@ namespace ImageServiceTools.Logging
 
 		private void GetPreviousLogs(EventLog baseEventLog)
 			{
-			List<EventLogEntry> tempLogs = new List<EventLogEntry>();
 			int numOfLogs = baseEventLog.Entries.Count;
 			int j;
 			for (j = numOfLogs - 1; j >= 0; j--)
@@ -51,9 +55,9 @@ namespace ImageServiceTools.Logging
 				}
 			for (int i = j; i <= numOfLogs - 1; i++)
 				{
-				
-				this.Log(baseEventLog.Entries[i].Message, GetTypeFromLogEntry(baseEventLog.Entries[i].EntryType));
-
+				//this.Log(baseEventLog.Entries[i].Message, GetTypeFromLogEntry(baseEventLog.Entries[i].EntryType));
+				_logs.Insert(0, (new LogTuple { EnumType = GetTypeFromLogEntry(baseEventLog.Entries[i].EntryType).ToString(),
+					Data = baseEventLog.Entries[i].Message}));
 				}
 			}
 

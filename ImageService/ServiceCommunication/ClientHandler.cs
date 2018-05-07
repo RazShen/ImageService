@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageServiceTools.ServiceCommunication
@@ -16,7 +17,9 @@ namespace ImageServiceTools.ServiceCommunication
     {
 		private bool isStopped;
 		IImageController controller;
-        public ClientHandler(IImageController imageController)
+		public static Mutex GlobMutex { get; set; }
+
+		public ClientHandler(IImageController imageController)
         {
             this.controller = imageController;
             isStopped = false;
@@ -32,10 +35,12 @@ namespace ImageServiceTools.ServiceCommunication
 					BinaryWriter writer = new BinaryWriter(stream);
 					string commandLine = reader.ReadString();
 					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandLine);
-					bool r;
+					bool resultCommand;
 					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
-						commandRecievedEventArgs.Args, out r);
+						commandRecievedEventArgs.Args, out resultCommand);
+					GlobMutex.WaitOne();
 					writer.Write(result);
+					GlobMutex.ReleaseMutex();
 					}
 			}).Start();
         }
