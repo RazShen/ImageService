@@ -14,11 +14,6 @@ namespace ImageServiceGUI.Model
 	{
 	class SettingsModel : IsettingsModel
 		{
-		//  public string OutputDirectory { get; set; }
-		//  public string SourceName { get; set; }
-		//  public string LogName { get; set; }
-		//  public string TumbnailSize { get; set; }
-		//   public ObservableCollection<string> Handlers { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
 		private IClientGUI _settingsClient;
 
@@ -45,7 +40,13 @@ namespace ImageServiceGUI.Model
 				PropertyChanged(this, new PropertyChangedEventArgs(name));
 			}
 
+        public void RemoveHandler(String Handler)
+        {
+            string[] arrToSent = { Handler };
+            CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
+            this._settingsClient.WriteCommandToServer(eventArgs);
 
+        }
 
 		private string m_outputDirectory;
 		public string OutputDirectory

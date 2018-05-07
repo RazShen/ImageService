@@ -51,7 +51,8 @@ namespace ImageServiceTools.Commands
                 // Force a reload of the changed section. This 
                 // makes the new values available for reading.
                 ConfigurationManager.RefreshSection("appSettings");
-                this.imageServer.CloseServer();
+              //  this.imageServer.CloseServer();
+              this.imageServer.
                 return "";
             }
             catch (Exception e)
