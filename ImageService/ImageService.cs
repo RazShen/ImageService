@@ -73,8 +73,8 @@ namespace ImageService
                     OutputFolder = ConfigurationManager.AppSettings.Get("OutputDir"),
                     ThumbnailSize = Int32.Parse(ConfigurationManager.AppSettings.Get("ThumbnailSize"))
             };
-            this.controller = new ImageController(this.modal);
             this.logging = new LoggingService(this.eventLog1);
+			this.controller = new ImageController(this.modal, this.logging);
             this.logging.MessageRecieved += this.WriteMessage;
             string[] directories = (ConfigurationManager.AppSettings.Get("Handler").Split(';'));
             this.imageServer = new ImageServer(this.controller, this.logging, directories, directories.Length);

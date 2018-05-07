@@ -11,7 +11,7 @@
         <conv:LogEnumToColor x:Key="EnumConverter"/>
     </UserControl.Resources>
 
-    <DockPanel ScrollViewer.VerticalScrollBarVisibility="Auto" Width="790" ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="-1,0,11,10" >
+    <DockPanel  Width="790" Margin="-1,0,11,10" >
 
         <Label Content="Logs" FontSize="30" HorizontalAlignment="Center" Foreground = "DodgerBlue" FontWeight="Bold" RenderTransformOrigin="2.634,0.921" FontFamily="Candara" DockPanel.Dock="Top"/>
          <DataGrid ItemsSource="{Binding Logs}" AutoGenerateColumns="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True" Margin="0,0,0,26">

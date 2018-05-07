@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ImageServiceGUI.ViewModel;
 
 namespace ImageServiceGUI
 	{
@@ -47,13 +48,8 @@ namespace ImageServiceGUI
 
 		public MainWindow()
 			{
-			this.DataContext = this;
+			this.DataContext = new MainWindowViewModel();
 			InitializeComponent();
-			//Random rnd = new Random();
-			//if (2 == 2)
-			//	{
-			//	HasConnection = "False";
-			//	}
 			}
 
 

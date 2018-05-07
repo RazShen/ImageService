@@ -39,14 +39,12 @@ namespace ImageServiceTools.ServiceCommunication
                 {
                     new Task(() =>
                     {
-                        using (NetworkStream stream = client.GetStream())
-                        using (StreamReader reader = new StreamReader(stream))
-                        using (StreamWriter writer = new StreamWriter(stream))
-                        {
-                            string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
-                            new BinaryWriter(client.GetStream()).Write(result);
-                        }
-                       // client.Close();
+					NetworkStream stream = client.GetStream();
+					StreamReader reader = new StreamReader(stream);
+					StreamWriter writer = new StreamWriter(stream); 
+                    string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
+                    new BinaryWriter(client.GetStream()).Write(result);
+                                     
                     }).Start();
                 }
             } catch (Exception e) {
@@ -82,7 +80,6 @@ namespace ImageServiceTools.ServiceCommunication
                         }
                     }
                     Logging.Log("Server stopped", SharedFiles.MessageTypeEnum.INFO);
-
                 });
                 task.Start();
             } catch (Exception e)

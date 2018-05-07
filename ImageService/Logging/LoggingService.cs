@@ -49,14 +49,11 @@ namespace ImageServiceTools.Logging
 					break;
 					}
 				}
-			for (int i = numOfLogs - 1; i >= j; i--)
+			for (int i = j; i <= numOfLogs - 1; i++)
 				{
-				tempLogs.Add(baseEventLog.Entries[i]);
-				}
-			foreach (EventLogEntry unClassifiedLog in tempLogs)
-				{
-				this.Log(unClassifiedLog.Message, GetTypeFromLogEntry(unClassifiedLog.EntryType));
-				//this._logs.Add(new LogTuple { EnumType = Enum.GetName(typeof(MessageTypeEnum), getTypeFromLogEntry(unClassifiedLog.EntryType)), Data = unClassifiedLog.Message });
+				
+				this.Log(baseEventLog.Entries[i].Message, GetTypeFromLogEntry(baseEventLog.Entries[i].EntryType));
+
 				}
 			}
 

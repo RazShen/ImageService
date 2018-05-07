@@ -119,7 +119,7 @@ namespace ImageServiceGUI.Model
 						GetComponents(args);
 						break;
 					case (int)CommandEnum.CloseHandlerCommand:
-						CloseHandler(args);
+						//CloseHandler(args);
 						break;
 					}
 				}
