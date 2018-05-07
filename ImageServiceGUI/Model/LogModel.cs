@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using ImageServiceGUI.Client;
 using ImageServiceGUI.ViewModel;
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ namespace ImageServiceGUI.Model
 		{
 		private ObservableCollection<LogTuple> _logs { get; set; }
 		private IClientGUI _logClient;
+		public event PropertyChangedEventHandler PropertyChanged;
 
 
 		public ObservableCollection<LogTuple> Logs
@@ -24,16 +26,15 @@ namespace ImageServiceGUI.Model
 			set => throw new NotImplementedException();
 			}
 
-		public event PropertyChangedEventHandler PropertyChanged;
 
 		public LogModel()
 			{
 			_logs = new ObservableCollection<LogTuple>();
-			this._logClient = new ClientGUI();
-			this._logClient.Start();
+			this._logClient = ClientGUI.Instance;
 				if (this._logClient.Running())
 				{
-				//this.GetPreviousLogs();
+				this._logClient.UpdateEvent += this.Updater;
+				this.GetPreviousLogs();
 				}
 				else
 				{
@@ -43,15 +44,55 @@ namespace ImageServiceGUI.Model
 
 		private void GetPreviousLogs()
 			{
+			this._logs = new ObservableCollection<LogTuple>();
+			Object thisLock = new Object();
+			BindingOperations.EnableCollectionSynchronization(_logs, thisLock);
 			CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, "");
-			CommandRecievedEventArgs result = this._logClient.WriteCommandToServer(commandRecievedEventArgs);
+			this._logClient.WriteCommandToServer(commandRecievedEventArgs);
+			}
+
+		private void Updater(CommandRecievedEventArgs args)
+			{
+			if (args != null)
+				{
+				switch (args.CommandID)
+					{
+					case (int)CommandEnum.LogCommand:
+						SetupPreviousLogs(args);
+						break;
+					case (int)CommandEnum.NewLog:
+						InsertLog(args);
+						break;
+					default:
+						break;
+					}
+				}
+			}
+
+		private void SetupPreviousLogs(CommandRecievedEventArgs args)
+			{
 			try
 				{
-				this._logs = JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(result.Args[0]);
+				foreach (LogTuple log in JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(args.Args[0]))
+					{
+					this._logs.Add(log);
+					}
 				}
 			catch (Exception e)
 				{
-				Console.WriteLine("Couldn't get previous logs");
+				Console.WriteLine(e.ToString());
+				}
+			}
+
+		private void InsertLog(CommandRecievedEventArgs args)
+			{
+			try
+				{
+				this._logs.Insert(0, new LogTuple { EnumType = args.Args[0], Data = args.Args[1] });
+				}
+			catch (Exception e)
+				{
+				Console.WriteLine(e.ToString());
 				}
 			}
 		}

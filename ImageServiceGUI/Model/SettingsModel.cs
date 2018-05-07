@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace ImageServiceGUI.Model
 	{
@@ -21,16 +22,30 @@ namespace ImageServiceGUI.Model
 		public event PropertyChangedEventHandler PropertyChanged;
 		private IClientGUI _settingsClient;
 
+
+		public SettingsModel()
+			{
+			this._settingsClient = ClientGUI.Instance;
+			if (this._settingsClient.Running())
+				{
+				this._settingsClient.UpdateConstantly();
+				this._settingsClient.UpdateEvent += Updater;
+				this.sendInitRequest();
+				}
+			else
+				{
+				Console.WriteLine("Log Client isn't connected");
+				}
+
+			//this.Initialize();
+			}
 		protected void NotifyPropertyChanged(string name)
 			{
 			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(name));
 			}
 
-		public SettingsModel()
-			{
-			this.Initialize();
-			}
+
 
 		private string m_outputDirectory;
 		public string OutputDirectory
@@ -92,40 +107,74 @@ namespace ImageServiceGUI.Model
 				this.Handlers.Add(handler);
 				}
 
+			}
 
-			this._settingsClient = new ClientGUI();
-			this._settingsClient.Start();
-			if (this._settingsClient.Running())
+		private void Updater(CommandRecievedEventArgs args)
+			{
+			if (args != null)
 				{
-				this.getComponents();
+				switch (args.CommandID)
+					{
+					case (int)CommandEnum.GetConfigCommand:
+						GetComponents(args);
+						break;
+					case (int)CommandEnum.CloseHandlerCommand:
+						CloseHandler(args);
+						break;
+					}
 				}
-			else
-				{
-				Console.WriteLine("Log Client isn't connected");
-				}
+			}
 
+		private void CloseHandler(CommandRecievedEventArgs responseObj)
+			{
+			if (Handlers != null && Handlers.Count > 0 && responseObj != null && responseObj.Args != null
+								 && Handlers.Contains(responseObj.Args[0]))
+				{
+				this.Handlers.Remove(responseObj.Args[0]);
+				}
 			}
 
 
-		private void getComponents()
+		private void sendInitRequest()
 			{
-			CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
-			CommandRecievedEventArgs result = this._settingsClient.WriteCommandToServer(commandRecievedEventArgs);
 			try
 				{
-				this.OutputDirectory = JsonConvert.DeserializeObject<String>(result.Args[0]);
-				this.SourceName = JsonConvert.DeserializeObject<String>(result.Args[1]);
-				this.LogName = JsonConvert.DeserializeObject<String>(result.Args[2]);
-				this.TumbnailSize = JsonConvert.DeserializeObject<String>(result.Args[3]);
-				this.Handlers[0] = JsonConvert.DeserializeObject<String>(result.Args[4]);
+				this.OutputDirectory = string.Empty;
+				this.SourceName = string.Empty;
+				this.LogName = string.Empty;
+				this.TumbnailSize = string.Empty;
+				Handlers = new ObservableCollection<string>();
+				Object thisLock = new Object();
+				BindingOperations.EnableCollectionSynchronization(Handlers, thisLock);
+				CommandRecievedEventArgs commandReq = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
+				this._settingsClient.WriteCommandToServer(commandReq);
 				}
 			catch (Exception e)
 				{
-				Console.WriteLine("Couldn't get settings");
+				Console.WriteLine(e.ToString());
 				}
 			}
-		}	
-    }
+			private void GetComponents(CommandRecievedEventArgs responseObj)
+			{
+			try
+				{
+				this.OutputDirectory = responseObj.Args[0];
+				this.SourceName = responseObj.Args[1];
+				this.LogName = responseObj.Args[2];
+				this.TumbnailSize = responseObj.Args[3];
+				string[] handlers = responseObj.Args[4].Split(';');
+				foreach (string handler in handlers)
+					{
+					this.Handlers.Add(handler);
+					}
+				}
+			catch (Exception e)
+				{
+				Console.WriteLine(e.ToString());
+				}
+			}
+		}
+	}
 
 
 
