@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageServiceTools.Server;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace ImageServiceTools.Controller
 		/// <param name="args"> arguments for command </param>
 		/// <param name="result"> result of the run </param>
 		/// <returns></returns>
-		string ExecuteCommand(int commandID, string[] args, out bool result);          // Executing the Command Requet
+		string ExecuteCommand(int commandID, string[] args, out bool result);          // Executing the Command Request
+		ImageServer ImageServer { get; set; }
     }
 }

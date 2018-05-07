@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SharedFiles;
 using ImageServiceTools.Logging;
+using ImageServiceTools.Server;
 
 namespace ImageServiceTools.Controller
 {
@@ -17,6 +18,7 @@ namespace ImageServiceTools.Controller
     {
         private IImageServiceModal imageModal;  // The Modal Object
         private Dictionary<int, ICommand> commands;
+		ImageServer _imageServer;
 
 		/// <summary>
 		/// ImageController constructor from IImageServiceModal (that actually handles the image).
@@ -31,6 +33,18 @@ namespace ImageServiceTools.Controller
 			commands[2] = new LogCommand(loggingService);
 		}
 
+		public ImageServer ImageServer
+			{
+			get
+				{
+				return this._imageServer;
+				}
+			set
+				{
+				this._imageServer = value;
+				commands[3] = new CloseHandlerCommand(value);
+				}
+			}
 		/// <summary>
 		/// Execute this command by arguments and result to update.
 		/// </summary>

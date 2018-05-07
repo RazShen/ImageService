@@ -30,6 +30,7 @@ namespace ImageServiceTools.ServiceCommunication
             this.clientHandler = ch;
             clients = new List<TcpClient>();
             this.Logging = loggingService;
+			_mutex = new Mutex();
 			ClientHandler.GlobMutex = _mutex;
         }
 

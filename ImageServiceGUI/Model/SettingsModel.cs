@@ -40,13 +40,12 @@ namespace ImageServiceGUI.Model
 				PropertyChanged(this, new PropertyChangedEventArgs(name));
 			}
 
-        public void RemoveHandler(String Handler)
-        {
-            string[] arrToSent = { Handler };
-            CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
-            this._settingsClient.WriteCommandToServer(eventArgs);
-
-        }
+		public void RemoveHandler(String Handler)
+			{
+			string[] arrToSend = { Handler };
+			CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSend, "");
+			this._settingsClient.WriteCommandToServer(eventArgs);
+			}
 
 		private string m_outputDirectory;
 		public string OutputDirectory
@@ -120,7 +119,7 @@ namespace ImageServiceGUI.Model
 						GetComponents(args);
 						break;
 					case (int)CommandEnum.CloseHandlerCommand:
-						//CloseHandler(args);
+						CloseHandler(args);
 						break;
 					}
 				}
