@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace ImageServiceTools.Logging
     {
         event EventHandler<MessageRecievedEventArgs> MessageRecieved;
         void Log(string message, MessageTypeEnum type);           // Logging the Message
+		ObservableCollection<LogTuple> Logs { get; set; }
     }
 }

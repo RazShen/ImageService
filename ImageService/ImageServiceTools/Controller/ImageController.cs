@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SharedFiles;
-
+using ImageServiceTools.Logging;
 
 namespace ImageServiceTools.Controller
 {
@@ -22,14 +22,14 @@ namespace ImageServiceTools.Controller
 		/// ImageController constructor from IImageServiceModal (that actually handles the image).
 		/// </summary>
 		/// <param name="modal"> IImageServiceModal the handles pictures </param>
-		public ImageController(IImageServiceModal modal)
+		public ImageController(IImageServiceModal modal, ILoggingService loggingService)
         {
             imageModal = modal;                    // Storing the Modal Of The System
             commands = new Dictionary<int, ICommand>() {};
             commands[0] = new NewFileCommand(modal);
 			commands[1] = new GetConfigCommand();
-			
-			}
+			commands[2] = new LogCommand(loggingService);
+		}
 
 		/// <summary>
 		/// Execute this command by arguments and result to update.

@@ -34,7 +34,7 @@ namespace ImageServiceGUI.Model
 				if (this._logClient.Running())
 				{
 				this._logClient.UpdateEvent += this.Updater;
-				//this.GetPreviousLogs();
+				this.GetPreviousLogs();
 				}
 				else
 				{
@@ -58,10 +58,10 @@ namespace ImageServiceGUI.Model
 				switch (args.CommandID)
 					{
 					case (int)CommandEnum.LogCommand:
-						//SetupPreviousLogs(args);
+						SetupPreviousLogs(args);
 						break;
 					case (int)CommandEnum.NewLogMessage:
-						//InsertLog(args);
+						InsertLog(args);
 						break;
 					default:
 						break;
@@ -73,7 +73,8 @@ namespace ImageServiceGUI.Model
 			{
 			try
 				{
-				foreach (LogTuple log in JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(args.Args[0]))
+				ObservableCollection<LogTuple> previousLogs = JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(args.Args[0]);
+				foreach (LogTuple log in previousLogs)
 					{
 					this._logs.Add(log);
 					}

@@ -32,12 +32,10 @@ namespace ImageServiceTools.ServiceCommunication
 					BinaryWriter writer = new BinaryWriter(stream);
 					string commandLine = reader.ReadString();
 					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(commandLine);
-
 					bool r;
 					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
 						commandRecievedEventArgs.Args, out r);
 					writer.Write(result);
-					//client.Close();
 					}
 			}).Start();
         }
