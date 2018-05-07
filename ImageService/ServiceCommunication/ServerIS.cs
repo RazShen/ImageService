@@ -64,7 +64,7 @@ namespace ImageServiceTools.ServiceCommunication
                 listener = new TcpListener(endPoint);
 
                 listener.Start();
-                Logging.Log("Waiting for connections...", SharedFiles.MessageTypeEnum.INFO);
+                Logging.Log("Waiting for connections...", MessageTypeEnum.INFO);
 
                 Task task = new Task(() =>
                 {
