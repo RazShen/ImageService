@@ -70,9 +70,10 @@ namespace ImageServiceGUI.ViewModel
         private void Remove(object obj)
         {
             string[] arrToSent = { this.selectedHandler };
-          //  CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
+            CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSent, "");
             //sent tcp command
-            this.model.Handlers.Remove(this.selectedHandler);
+            this.model.RemoveHandler(this.selectedHandler);
+            //this.model.Handlers.Remove(this.selectedHandler);
         }
         private string selectedHandler;
         public string SelectedHandler
