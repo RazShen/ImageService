@@ -21,7 +21,7 @@ namespace ImageServiceTools.Commands
         {
             try
             {
-                result = true;
+                result = false;
                 if(args.Length < 1 || args == null)
                 {
                     result = false;
@@ -32,16 +32,33 @@ namespace ImageServiceTools.Commands
                 StringBuilder newHandlersSB = new StringBuilder();
                 for(int i = 0; i < handlers.Length; i++)
                 {
-
+                    if(handlers[i] != handlerToDelete)
+                    {
+                        newHandlersSB.Append(handlers[i] + ";");
+                    }
+                    else
+                    {
+                        result = true;
+                    }
                 }
-
-
+                string newHandlersS = newHandlersSB.ToString().Trim().TrimEnd(';');
+                //open and change app config
+                Configuration conf = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                ConfigurationManager.AppSettings.Remove("Handler");
+                ConfigurationManager.AppSettings.Add("Handler", newHandlersS);
+                // Save the configuration file.
+                conf.Save(ConfigurationSaveMode.Minimal);
+                // Force a reload of the changed section. This 
+                // makes the new values available for reading.
+                ConfigurationManager.RefreshSection("appSettings");
+                //this.imageServer.
+                return "";
             }
             catch (Exception e)
             {
-				Console.WriteLine(e.ToString());
+                result = false;
+                return e.ToString();
             }
-            throw new NotImplementedException();
         }
     }
-	}
+}

@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using ImageServiceTools.Logging;
 using SharedFiles;
+using ImageServiceTools.Server;
 
 namespace ImageServiceTools.Controller.Handlers
 {
@@ -101,5 +102,29 @@ namespace ImageServiceTools.Controller.Handlers
             TimeSpan localOffset = now - now.ToUniversalTime();
             return File.GetLastWriteTimeUtc(filename) + localOffset;
         }
+
+        /// <summary>
+        /// close the handler
+        /// </summary>
+        /// <param name="sender"> sender </param>
+        /// <param name="e"> CommandRecievedEventArgs </param>
+        public void OnCloseHandler(object sender, DirectoryCloseEventArgs e)
+        {
+            try
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    this.m_dirWatchers[i].EnableRaisingEvents = false;
+                }
+                 ((ImageServer)sender).CommandRecieved -= this.OnCommandRecieved;
+                this.m_logging.Log("closed handler of path " + this.m_path, MessageTypeEnum.INFO);
+            } catch (Exception ex)
+            {
+                this.m_logging.Log("Eroor when closing handler of path " + this.m_path, MessageTypeEnum.INFO);
+            }
+        }
+        
+
+
+        }
     }
-}
