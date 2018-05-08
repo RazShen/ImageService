@@ -80,9 +80,7 @@ namespace ImageServiceGUI.Client
 					{
 					NetworkStream stream = _client.GetStream();
 					BinaryReader reader = new BinaryReader(stream);
-					_mutex.WaitOne();
 					string serializedResponse = reader.ReadString();
-					_mutex.ReleaseMutex();
 					CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
 					this.UpdateEvent?.Invoke(deserializedResponse);
 					}
