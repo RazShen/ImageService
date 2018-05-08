@@ -11,7 +11,7 @@ namespace ImageServiceTools.Commands
 	{
 	class CloseHandlerCommand : ICommand
 		{
-        private ImageServer imageServer;
+        public private ImageServer imageServer;
         CloseHandlerCommand(ImageServer server)
         {
             this.imageServer = server;
