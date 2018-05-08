@@ -9,7 +9,7 @@ using SharedFiles;
 namespace ImageServiceTools.Controller.Handlers
 {
 	/// <summary>
-	/// DirectoyHandler for handling a single directory.
+	/// DirectoryHandler for handling a single directory.
 	/// </summary>
 	public interface IDirectoryHandler
     {

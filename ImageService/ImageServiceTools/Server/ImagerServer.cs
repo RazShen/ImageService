@@ -4,6 +4,8 @@ using ImageServiceTools.Logging;
 using ImageServiceTools.Modal;
 using System;
 using SharedFiles;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ImageServiceTools.Server
 {
@@ -17,28 +19,37 @@ namespace ImageServiceTools.Server
         private IImageController m_controller;
         private ILoggingService m_logging;
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
-        private DirectoyHandler[] directoryHandlers;
+        private IDirectoryHandler[] directoryHandlers;
+        public Dictionary<string, IDirectoryHandler> Handlers { get; set; }
+
         #endregion
 
-		/// <summary>
-		/// image server constractor.
-		/// </summary>
-		/// <param name="controller"> given controller</param>
-		/// <param name="logger"> given logger</param>
-		/// <param name="paths">given paths</param>
-		/// <param name="numOfPaths">number of path for the server</param>
+        /// <summary>
+        /// image server constractor.
+        /// </summary>
+        /// <param name="controller"> given controller</param>
+        /// <param name="logger"> given logger</param>
+        /// <param name="paths">given paths</param>
+        /// <param name="numOfPaths">number of path for the server</param>
         public ImageServer(IImageController controller, ILoggingService logger, string[] paths, int numOfPaths)
         {
-            this.directoryHandlers = new DirectoyHandler[numOfPaths];
+            this.directoryHandlers = new DirectoryHandler[numOfPaths];
             this.m_controller = controller;
             this.m_logging = logger;
+            this.Handlers = new Dictionary<string, IDirectoryHandler>();
             for (int i = 0; i < numOfPaths; i++)
             {
-                // create handler for each path
-                directoryHandlers[i] = new DirectoyHandler(m_controller, m_logging, paths[i]);
-                directoryHandlers[i].StartHandleDirectory(paths[i]);
-                this.CommandRecieved += directoryHandlers[i].OnCommandRecieved;
-                directoryHandlers[i].DirectoryClose += this.RemoveDirectoryHandler;
+                // create newHandler for each path
+         //       directoryHandlers[i] = new DirectoryHandler(m_controller, m_logging, paths[i]);
+           //     directoryHandlers[i].StartHandleDirectory(paths[i]);
+           //     this.CommandRecieved += directoryHandlers[i].OnCommandRecieved;
+            //    directoryHandlers[i].DirectoryClose += this.RemoveDirectoryHandler;
+
+                IDirectoryHandler newHandler = new DirectoryHandler(m_controller, m_logging, paths[i]);
+                newHandler.StartHandleDirectory(paths[i]);
+                this.CommandRecieved += newHandler.OnCommandRecieved;
+                newHandler.DirectoryClose += this.RemoveDirectoryHandler;
+                Handlers[paths[i]] = newHandler;
             }
         }
 		
@@ -54,7 +65,7 @@ namespace ImageServiceTools.Server
 
         
         /// <summary>
-		/// this method removes directory handler from the server
+		/// this method removes directory newHandler from the server
 		/// </summary>
 		/// <param name="sender">the given sender </param>
 		/// <param name="messageArgs">given arguments for the massage</param>
@@ -68,7 +79,7 @@ namespace ImageServiceTools.Server
                 return;
             }
             this.m_logging.Log("Directory Handler of Directory in: " + messageArgs.DirectoryPath + @" with message: " + messageArgs.Message, MessageTypeEnum.INFO);
-            //unsubscribing of the DirectoryHandler from the server message feed
+            //unsubscribing of the IDirectoryHandler from the server message feed
             this.CommandRecieved -= sendingDirectoryHandler.OnCommandRecieved;
             if (this.CommandRecieved == null) {
                 //if all the Directory Handlers closed succefully the server itself can finally close
@@ -78,7 +89,13 @@ namespace ImageServiceTools.Server
 
         public void CloseDirectoryHandler(String path)
         {
+            if(Handlers.ContainsKey(path))
+            {
 
+
+                IDirectoryHandler handlerToDelete = Handlers[path];
+
+            }
         }
     }
 }

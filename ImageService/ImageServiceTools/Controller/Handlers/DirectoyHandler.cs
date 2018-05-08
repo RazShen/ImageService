@@ -8,9 +8,9 @@ using ImageServiceTools.Server;
 namespace ImageServiceTools.Controller.Handlers
 {
 	/// <summary>
-	/// DirectoyHandler for handling a single directory.
+	/// DirectoryHandler for handling a single directory.
 	/// </summary>
-	public class DirectoyHandler : IDirectoryHandler
+	public class DirectoryHandler : IDirectoryHandler
     {
         #region Members
         private IImageController m_controller;              // The Image Processing Controller
@@ -22,12 +22,12 @@ namespace ImageServiceTools.Controller.Handlers
 		#endregion
 
 		/// <summary>
-		/// DirectoyHandler constructor.
+		/// DirectoryHandler constructor.
 		/// </summary>
 		/// <param name="controller"> transfer the new file command </param>
 		/// <param name="logger"> writing to the log </param>
 		/// <param name="inputPath"> of the folder to handle </param>
-		public DirectoyHandler(IImageController controller, ILoggingService logger, String inputPath)
+		public DirectoryHandler(IImageController controller, ILoggingService logger, String inputPath)
         {
             this.m_controller = controller;
             this.m_logging = logger;
