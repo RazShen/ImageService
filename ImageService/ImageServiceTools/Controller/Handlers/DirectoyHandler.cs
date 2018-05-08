@@ -108,7 +108,7 @@ namespace ImageServiceTools.Controller.Handlers
         /// </summary>
         /// <param name="sender"> sender </param>
         /// <param name="e"> CommandRecievedEventArgs </param>
-        public void OnCloseHandler(object sender, DirectoryCloseEventArgs e)
+        public bool OnCloseHandler(object sender, DirectoryCloseEventArgs e)
         {
             try
             {
@@ -118,9 +118,12 @@ namespace ImageServiceTools.Controller.Handlers
                 }
                  ((ImageServer)sender).CommandRecieved -= this.OnCommandRecieved;
                 this.m_logging.Log("closed handler of path " + this.m_path, MessageTypeEnum.INFO);
+                return true;
             } catch (Exception ex)
             {
+
                 this.m_logging.Log("Error when closing handler of path " + this.m_path, MessageTypeEnum.INFO);
+                return false;
             }
         }
         

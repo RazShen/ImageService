@@ -83,6 +83,7 @@ namespace ImageService
 			this.serverIS = new ServerIS(ConnectingData.port, this.clientHandler, this.logging);
 			this.serverIS.Start();
 			this.logging.LogNotificator += this.updateAllClients;
+            this.imageServer.CloseHandlerAlertAll += updateAllClients;
 			}
 
 		public void updateAllClients(CommandRecievedEventArgs args)

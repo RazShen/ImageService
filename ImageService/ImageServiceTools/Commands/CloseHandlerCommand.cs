@@ -11,8 +11,8 @@ namespace ImageServiceTools.Commands
 	{
 	class CloseHandlerCommand : ICommand
 		{
-        public private ImageServer imageServer;
-        CloseHandlerCommand(ImageServer server)
+        private ImageServer imageServer;
+        public CloseHandlerCommand(ImageServer server)
         {
             this.imageServer = server;
         }
@@ -52,8 +52,11 @@ namespace ImageServiceTools.Commands
                 // makes the new values available for reading.
                 ConfigurationManager.RefreshSection("appSettings");
                 //  this.imageServer.CloseServer();
-                this.imageServer.CloseDirectoryHandler(handlerToDelete);
-                return "";
+                if (this.imageServer.CloseDirectoryHandler(handlerToDelete))
+                {
+                    return "true";
+                }
+                return "false";
             }
             catch (Exception e)
             {

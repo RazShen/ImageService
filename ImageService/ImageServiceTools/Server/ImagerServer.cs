@@ -18,10 +18,13 @@ namespace ImageServiceTools.Server
         #region Members
         private IImageController m_controller;
         private ILoggingService m_logging;
+        public delegate void handlerCloseDelegate(CommandRecievedEventArgs commandRecieved);
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
-        private IDirectoryHandler[] directoryHandlers;
-        public Dictionary<string, IDirectoryHandler> Handlers { get; set; }
+        public event handlerCloseDelegate CloseHandlerAlertAll;
 
+        //private IDirectoryHandler[] directoryHandlers;
+        public Dictionary<string, IDirectoryHandler> Handlers { get; set; }
+        private Dictionary<string, IDirectoryHandler> _handler;
         #endregion
 
         /// <summary>
@@ -33,10 +36,10 @@ namespace ImageServiceTools.Server
         /// <param name="numOfPaths">number of path for the server</param>
         public ImageServer(IImageController controller, ILoggingService logger, string[] paths, int numOfPaths)
         {
-            this.directoryHandlers = new DirectoryHandler[numOfPaths];
+            //this._handler = new DirectoryHandler[numOfPaths];
             this.m_controller = controller;
             this.m_logging = logger;
-            this.Handlers = new Dictionary<string, IDirectoryHandler>();
+            this._handler = new Dictionary<string, IDirectoryHandler>();
             for (int i = 0; i < numOfPaths; i++)
             {
                 // create newHandler for each path
@@ -49,7 +52,7 @@ namespace ImageServiceTools.Server
                 newHandler.StartHandleDirectory(paths[i]);
                 this.CommandRecieved += newHandler.OnCommandRecieved;
                 newHandler.DirectoryClose += this.RemoveDirectoryHandler;
-                Handlers[paths[i]] = newHandler;
+                _handler[paths[i]] = newHandler;
             }
         }
 		
@@ -87,19 +90,27 @@ namespace ImageServiceTools.Server
             }
         }
 
-        public void CloseDirectoryHandler(String path)
+        public bool CloseDirectoryHandler(String path)
         {
 			if (Handlers.ContainsKey(path))
 				{
-
-				Handlers[path].OnCloseHandler(this, new DirectoryCloseEventArgs("", null));
+                bool result = _handler[path].OnCloseHandler(this, new DirectoryCloseEventArgs("", null));
+                if (result)
+                {
+                    String[] args = { path };
+                    CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, args, "");
+                    this.CloseHandlerAlertAll?.Invoke(commandArgs);
+                    _handler.Remove(path);
+                }
 				if (this.CommandRecieved == null)
 					{
 					//if all the Directory Handlers closed succefully the server itself can finally close
-					this.m_logging.Log("There are no Folders being watched now.", MessageTypeEnum.INFO);
+					this.m_logging.Log("There are no Folders being watched now.", MessageTypeEnum.WARNING);
 					}
 
+                return result;
 				}
+            return false;
         }
     }
 }
