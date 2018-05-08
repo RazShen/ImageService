@@ -120,7 +120,7 @@ namespace ImageServiceTools.Controller.Handlers
                 this.m_logging.Log("closed handler of path " + this.m_path, MessageTypeEnum.INFO);
             } catch (Exception ex)
             {
-                this.m_logging.Log("Eroor when closing handler of path " + this.m_path, MessageTypeEnum.INFO);
+                this.m_logging.Log("Error when closing handler of path " + this.m_path, MessageTypeEnum.INFO);
             }
         }
         

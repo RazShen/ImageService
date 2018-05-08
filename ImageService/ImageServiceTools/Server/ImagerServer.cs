@@ -89,13 +89,17 @@ namespace ImageServiceTools.Server
 
         public void CloseDirectoryHandler(String path)
         {
-            if(Handlers.ContainsKey(path))
-            {
+			if (Handlers.ContainsKey(path))
+				{
 
+				Handlers[path].OnCloseHandler(this, new DirectoryCloseEventArgs("", null));
+				if (this.CommandRecieved == null)
+					{
+					//if all the Directory Handlers closed succefully the server itself can finally close
+					this.m_logging.Log("There are no Folders being watched now.", MessageTypeEnum.INFO);
+					}
 
-                IDirectoryHandler handlerToDelete = Handlers[path];
-
-            }
+				}
         }
     }
 }
