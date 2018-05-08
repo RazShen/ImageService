@@ -78,6 +78,7 @@ namespace ImageService
             this.logging.MessageRecieved += this.WriteMessage;
             string[] directories = (ConfigurationManager.AppSettings.Get("Handler").Split(';'));
             this.imageServer = new ImageServer(this.controller, this.logging, directories, directories.Length);
+			this.controller.ImageServer = this.imageServer;
 			this.clientHandler = new ClientHandler(this.controller);
 			this.serverIS = new ServerIS(ConnectingData.port, this.clientHandler, this.logging);
 			this.serverIS.Start();
