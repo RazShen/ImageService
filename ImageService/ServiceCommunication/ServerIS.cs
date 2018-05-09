@@ -20,7 +20,7 @@ namespace ImageServiceTools.ServiceCommunication
         private TcpListener listener { get; set; }
         private IClientHandler clientHandler { get; set; }
         ILoggingService Logging { get; set; }
-        private List<TcpClient> clients;
+        private List<TcpClient> _currClients;
 		private static Mutex _mutex;
 
 
@@ -28,7 +28,7 @@ namespace ImageServiceTools.ServiceCommunication
         {
             this.port = port;
             this.clientHandler = ch;
-            clients = new List<TcpClient>();
+            _currClients = new List<TcpClient>();
             this.Logging = loggingService;
 			_mutex = new Mutex();
 			ClientHandler.GlobMutex = _mutex;
@@ -38,7 +38,8 @@ namespace ImageServiceTools.ServiceCommunication
         {
             try
             {
-                foreach (TcpClient client in clients)
+				List<TcpClient> tempClient = new List<TcpClient>(_currClients);
+				foreach (TcpClient client in tempClient)
                 {
                     new Task(() =>
                     {
@@ -60,8 +61,7 @@ namespace ImageServiceTools.ServiceCommunication
         {
             try
             {
-                IPEndPoint endPoint = new
-                IPEndPoint(IPAddress.Parse(ConnectingData.ip), port);
+                IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ConnectingData.ip), port);
                 listener = new TcpListener(endPoint);
 
                 listener.Start();
@@ -74,7 +74,7 @@ namespace ImageServiceTools.ServiceCommunication
                         try
                         {
                             TcpClient client = listener.AcceptTcpClient();
-                            clients.Add(client);
+                            _currClients.Add(client);
                             Logging.Log("Got new connection", MessageTypeEnum.INFO);
                             clientHandler.HandleClient(client);
                         }

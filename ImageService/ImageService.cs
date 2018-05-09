@@ -57,19 +57,22 @@ namespace ImageService
 		/// <param name="args">the given arguments for image service</param>
         public ImageService(string[] args)
         {
-            InitializeComponent();
-            string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
+			InitializeComponent();
+			eventLog1 = new EventLog();
+
+			string eventSourceName = ConfigurationManager.AppSettings.Get("SourceName");
             string logName = ConfigurationManager.AppSettings.Get("LogName");
-            eventLog1 = new EventLog();
-            if (!EventLog.SourceExists(eventSourceName))
+			if (!EventLog.SourceExists(eventSourceName))
             {
                EventLog.CreateEventSource(eventSourceName, logName);
             }
             eventLog1.Source = eventSourceName;
-            eventLog1.Log = logName;
+			eventLog1.Log = logName;
+			eventLog1.WriteEntry("In OnStart");
 
-            //initialize the members
-            this.modal = new ImageServiceModal()  {
+
+			//initialize the members
+			this.modal = new ImageServiceModal()  {
                     OutputFolder = ConfigurationManager.AppSettings.Get("OutputDir"),
                     ThumbnailSize = Int32.Parse(ConfigurationManager.AppSettings.Get("ThumbnailSize"))
             };
@@ -101,7 +104,7 @@ namespace ImageService
             serviceStatus.dwCurrentState = ServiceState.SERVICE_START_PENDING;
             serviceStatus.dwWaitHint = 100000;
             SetServiceStatus(this.ServiceHandle, ref serviceStatus);
-            eventLog1.WriteEntry("In OnStart");
+            eventLog1.WriteEntry("In Start function (timer, service status)");
             // Set up a timer to trigger every minute.  
             System.Timers.Timer timer = new System.Timers.Timer();
             timer.Interval = 60000; // 60 seconds  

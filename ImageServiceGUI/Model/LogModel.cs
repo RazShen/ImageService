@@ -74,10 +74,12 @@ namespace ImageServiceGUI.Model
 			try
 				{
 				ObservableCollection<LogTuple> previousLogs = JsonConvert.DeserializeObject<ObservableCollection<LogTuple>>(args.Args[0]);
-				foreach (LogTuple log in previousLogs)
+				for (int i = 1; i < previousLogs.Count(); i++)
 					{
-					this._logs.Add(log);
+					this._logs.Add(previousLogs[i]);
 					}
+
+			
 				}
 			catch (Exception e)
 				{

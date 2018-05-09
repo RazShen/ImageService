@@ -76,14 +76,17 @@ namespace ImageServiceGUI.Client
 			{
 			new Task(() =>
 			{
-				while (this._running)
+				try
 					{
-					NetworkStream stream = _client.GetStream();
-					BinaryReader reader = new BinaryReader(stream);
-					string serializedResponse = reader.ReadString();
-					CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
-					this.UpdateEvent?.Invoke(deserializedResponse);
-					}
+					while (this._running)
+						{
+						NetworkStream stream = _client.GetStream();
+						BinaryReader reader = new BinaryReader(stream);
+						string serializedResponse = reader.ReadString();
+						CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
+						this.UpdateEvent?.Invoke(deserializedResponse);
+												}
+					} catch (Exception e) { }
 			}).Start();
 			}
 

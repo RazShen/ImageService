@@ -33,8 +33,8 @@ namespace ImageServiceTools.ServiceCommunication
 					NetworkStream stream = client.GetStream();
 					BinaryReader reader = new BinaryReader(stream);
 					BinaryWriter writer = new BinaryWriter(stream);
-					string desrializedCommands = reader.ReadString();
-					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(desrializedCommands);
+					string serializedCommands = reader.ReadString();
+					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedCommands);
 					bool resultCommand;
 					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
 						commandRecievedEventArgs.Args, out resultCommand);

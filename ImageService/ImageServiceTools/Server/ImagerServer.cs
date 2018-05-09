@@ -22,9 +22,9 @@ namespace ImageServiceTools.Server
         public event EventHandler<CommandRecievedEventArgs> CommandRecieved;
         public event handlerCloseDelegate CloseHandlerAlertAll;
 
-        //private IDirectoryHandler[] directoryHandlers;
-        public Dictionary<string, IDirectoryHandler> Handlers { get; set; }
-        private Dictionary<string, IDirectoryHandler> _handler;
+		//private IDirectoryHandler[] directoryHandlers;
+		public Dictionary<string, IDirectoryHandler> Handlers { get { return _handlers; } set { throw new NotImplementedException(); } }
+        private Dictionary<string, IDirectoryHandler> _handlers;
         #endregion
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ImageServiceTools.Server
             //this._handler = new DirectoryHandler[numOfPaths];
             this.m_controller = controller;
             this.m_logging = logger;
-            this._handler = new Dictionary<string, IDirectoryHandler>();
+            this._handlers = new Dictionary<string, IDirectoryHandler>();
             for (int i = 0; i < numOfPaths; i++)
             {
                 // create newHandler for each path
@@ -52,7 +52,7 @@ namespace ImageServiceTools.Server
                 newHandler.StartHandleDirectory(paths[i]);
                 this.CommandRecieved += newHandler.OnCommandRecieved;
                 newHandler.DirectoryClose += this.RemoveDirectoryHandler;
-                _handler[paths[i]] = newHandler;
+                _handlers[paths[i]] = newHandler;
             }
         }
 		
@@ -94,13 +94,13 @@ namespace ImageServiceTools.Server
         {
 			if (Handlers.ContainsKey(path))
 				{
-                bool result = _handler[path].OnCloseHandler(this, new DirectoryCloseEventArgs("", null));
+                bool result = _handlers[path].OnCloseHandler(this, new DirectoryCloseEventArgs("", null));
                 if (result)
                 {
                     String[] args = { path };
                     CommandRecievedEventArgs commandArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, args, "");
                     this.CloseHandlerAlertAll?.Invoke(commandArgs);
-                    _handler.Remove(path);
+                    _handlers.Remove(path);
                 }
 				if (this.CommandRecieved == null)
 					{

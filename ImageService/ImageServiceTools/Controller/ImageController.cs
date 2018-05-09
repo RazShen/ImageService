@@ -72,7 +72,7 @@ namespace ImageServiceTools.Controller
 				return finalResult.Item1;
             } else {
                 resultSuccesful = false;
-                return "Command doesn't exist, failed";
+                return "Command didn't succeed, failed";
             }
         }
     }

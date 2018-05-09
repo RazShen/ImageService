@@ -41,16 +41,16 @@ namespace ImageServiceTools.Commands
                         result = true;
                     }
                 }
-                string newHandlersS = newHandlersSB.ToString().Trim().TrimEnd(';');
+                string finishedH = newHandlersSB.ToString().Trim().TrimEnd(';');
                 //open and change app config
-                Configuration conf = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                ConfigurationManager.AppSettings.Remove("Handler");
-                ConfigurationManager.AppSettings.Add("Handler", newHandlersS);
-                // Save the configuration file.
-                conf.Save(ConfigurationSaveMode.Minimal);
-                // Force a reload of the changed section. This 
-                // makes the new values available for reading.
-                ConfigurationManager.RefreshSection("appSettings");
+                Configuration configM = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+				configM.AppSettings.Settings.Remove("Handler");
+				configM.AppSettings.Settings.Add("Handler", finishedH);
+				// Save the configuration file.
+				configM.Save(ConfigurationSaveMode.Minimal);
+				// Force a reload of the changed section. This 
+				// makes the new values available for reading.
+				ConfigurationManager.RefreshSection("appSettings");
                 //  this.imageServer.CloseServer();
                 if (this.imageServer.CloseDirectoryHandler(handlerToDelete))
                 {
