@@ -16,5 +16,6 @@ namespace ImageServiceGUI.Client
 		void WriteCommandToServer(CommandRecievedEventArgs argsForCommand);
 		void UpdateConstantly();
 		event Updator UpdateEvent;
+        String RunningToString();
 		}
 	}
