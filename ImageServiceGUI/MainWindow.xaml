@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImageServiceGUI"
-        xmlns:View="clr-namespace:ImageServiceGUI.View" xmlns:ViewModel="clr-namespace:ImageServiceGUI.ViewModel" x:Class="ImageServiceGUI.MainWindow"
+        xmlns:View="clr-namespace:ImageServiceGUI.View" xmlns:ViewModel="clr-namespace:ImageServiceGUI.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:i1="http://prismlibrary.com/" x:Class="ImageServiceGUI.MainWindow"
         mc:Ignorable="d"
-        Title="ImageServiceGUI" Height="450" Width="800">
-
+    Title="ImageServiceGUI" Height="450" Width="800">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction  Command="{Binding CloseCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Grid>
         <Button Grid.RowSpan="4">

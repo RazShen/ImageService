@@ -10,13 +10,15 @@ namespace ImageServiceGUI.Model
 	{
 	class MainWindowModel : INotifyPropertyChanged
 		{
-		private IClientGUI _logClient;
+		public IClientGUI _logClient { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
+        private String isConnected;
 
-		public MainWindowModel()
+        public MainWindowModel()
 			{
 			this._logClient = ClientGUI.Instance;
-			}
+            HasConnection = _logClient.RunningToString();
+        }
 		public String HasConnection
 			{
 			get
@@ -29,9 +31,15 @@ namespace ImageServiceGUI.Model
 				}
 			set
 				{
-				throw new NotImplementedException();
-				}
-			}
-			
-		}
+                isConnected = value;
+                OnPropertyChanged("HasConnection");
+
+            }
+        }
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+    }
 	}

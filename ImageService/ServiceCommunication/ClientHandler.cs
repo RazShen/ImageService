@@ -24,7 +24,7 @@ namespace ImageServiceTools.ServiceCommunication
             this.controller = imageController;
             isStopped = false;
         }
-        public void HandleClient(TcpClient client)
+        public void HandleClient(TcpClient client, List<TcpClient> clients)
         {
             new Task(() =>
             {
@@ -33,9 +33,16 @@ namespace ImageServiceTools.ServiceCommunication
 					NetworkStream stream = client.GetStream();
 					BinaryReader reader = new BinaryReader(stream);
 					BinaryWriter writer = new BinaryWriter(stream);
-					string serializedCommands = reader.ReadString();
-					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedCommands);
-					bool resultCommand;
+					string desrializedCommands = reader.ReadString();
+					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(desrializedCommands);
+                    if (commandRecievedEventArgs.CommandID == (int)CommandEnum.CloseClient)
+                    {
+                        clients.Remove(client);
+                        client.Close();
+                        break;
+
+                    }
+                    bool resultCommand;
 					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
 						commandRecievedEventArgs.Args, out resultCommand);
 					GlobMutex.WaitOne();

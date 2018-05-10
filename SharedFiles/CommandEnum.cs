@@ -16,6 +16,7 @@ namespace SharedFiles
         GetConfigCommand,
 		LogCommand,
 		CloseHandlerCommand,
-		NewLogMessage
+		NewLogMessage,
+        CloseClient
     }
 }

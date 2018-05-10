@@ -48,7 +48,9 @@ namespace ImageServiceGUI.Client
 
 		public void Close()
 			{
-			_client.Close();
+            CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseClient, null, "");
+            WriteCommandToServer(commandRecievedEventArgs);
+            _client.Close();
 			this._running = false;
 			}
 
@@ -93,8 +95,17 @@ namespace ImageServiceGUI.Client
 					}
 			}).Start();
 			}
+        public String RunningToString()
+        {
+            if (this.Running()) 
+            {
+                return "True";
+            }
+            return "False";
+        }
 
-		public void WriteCommandToServer(CommandRecievedEventArgs args)
+
+        public void WriteCommandToServer(CommandRecievedEventArgs args)
 			{
 			new Task(() =>
 			{
