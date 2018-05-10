@@ -76,7 +76,7 @@ namespace ImageServiceTools.ServiceCommunication
                             TcpClient client = listener.AcceptTcpClient();
                             _currClients.Add(client);
                             Logging.Log("Got new connection", MessageTypeEnum.INFO);
-                            clientHandler.HandleClient(client, clients);
+                            clientHandler.HandleClient(currClients);
                         }
                         catch (SocketException)
                         {
