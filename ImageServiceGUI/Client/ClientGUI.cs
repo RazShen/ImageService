@@ -84,6 +84,13 @@ namespace ImageServiceGUI.Client
 					BinaryReader reader = new BinaryReader(stream);
 					string serializedResponse = reader.ReadString();
 					CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
+					if (deserializedResponse.Args != null)
+						{
+						if (deserializedResponse.Args[0].Equals("True") || deserializedResponse.Args[0].Equals("False"))
+							{
+							continue;
+							}
+						}
 					this.UpdateEvent?.Invoke(deserializedResponse);
 					}
 			}).Start();
