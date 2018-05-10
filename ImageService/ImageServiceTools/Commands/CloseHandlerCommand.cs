@@ -1,4 +1,5 @@
 ﻿using ImageServiceTools.Server;
+using Newtonsoft.Json;
 using SharedFiles;
 using System;
 using System.Collections.Generic;
@@ -51,14 +52,17 @@ namespace ImageServiceTools.Commands
 				// Force a reload of the changed section. This 
 				// makes the new values available for reading.
 				ConfigurationManager.RefreshSection("appSettings");
-                //  this.imageServer.CloseServer();
-                if (this.imageServer.CloseDirectoryHandler(handlerToDelete))
+				//  this.imageServer.CloseServer();
+				String[] arr = new String[1];
+				CommandRecievedEventArgs commandSendArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arr, "");
+				if (this.imageServer.CloseDirectoryHandler(handlerToDelete))
                 {
-                    return "true";
+					arr[0] = "True";
                 }
-                return "false";
-            }
-            catch (Exception e)
+				arr[0] = "False";
+				return JsonConvert.SerializeObject(commandSendArgs);
+				}
+			catch (Exception e)
             {
                 result = false;
                 return e.ToString();
