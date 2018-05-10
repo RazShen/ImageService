@@ -28,26 +28,32 @@ namespace ImageServiceTools.ServiceCommunication
         {
             new Task(() =>
             {
-				while (!isStopped)
+				try
 					{
-					NetworkStream stream = client.GetStream();
-					BinaryReader reader = new BinaryReader(stream);
-					BinaryWriter writer = new BinaryWriter(stream);
-					string desrializedCommands = reader.ReadString();
-					CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(desrializedCommands);
-                    if (commandRecievedEventArgs.CommandID == (int)CommandEnum.CloseClient)
-                    {
-                        clients.Remove(client);
-                        client.Close();
-                        break;
-
-                    }
-                    bool resultCommand;
-					string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
-						commandRecievedEventArgs.Args, out resultCommand);
-					GlobMutex.WaitOne();
-					writer.Write(result);
-					GlobMutex.ReleaseMutex();
+					while (!isStopped)
+						{
+						NetworkStream stream = client.GetStream();
+						BinaryReader reader = new BinaryReader(stream);
+						BinaryWriter writer = new BinaryWriter(stream);
+						string desrializedCommands = reader.ReadString();
+						CommandRecievedEventArgs commandRecievedEventArgs = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(desrializedCommands);
+						if (commandRecievedEventArgs.CommandID == (int)CommandEnum.CloseClient)
+							{
+							clients.Remove(client);
+							client.Close();
+							break;
+							}
+						bool resultCommand;
+						string result = this.controller.ExecuteCommand((int)commandRecievedEventArgs.CommandID,
+							commandRecievedEventArgs.Args, out resultCommand);
+						GlobMutex.WaitOne();
+						writer.Write(result);
+						GlobMutex.ReleaseMutex();
+						}
+					} catch (Exception ex)
+					{
+						clients.Remove(client);
+						client.Close();
 					}
 			}).Start();
         }

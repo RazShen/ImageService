@@ -56,10 +56,13 @@ namespace ImageServiceTools.Commands
 				String[] arr = new String[1];
 				CommandRecievedEventArgs commandSendArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arr, "");
 				if (this.imageServer.CloseDirectoryHandler(handlerToDelete))
-                {
+					{
 					arr[0] = "True";
-                }
-				arr[0] = "False";
+					}
+				else
+					{
+					arr[0] = "False";
+					}
 				return JsonConvert.SerializeObject(commandSendArgs);
 				}
 			catch (Exception e)
