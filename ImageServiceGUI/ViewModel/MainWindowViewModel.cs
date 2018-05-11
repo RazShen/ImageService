@@ -33,7 +33,19 @@ namespace ImageServiceGUI.ViewModel
             this.PropertyChanged?.Invoke(this, propertyChangedEventArgs);
         }
         public ICommand CloseCommand { get; set; }
+		public String HasConnection
+			{
+			get
+				{
+				return mainWindow.HasConnection;
+				}
+			set
+				{
+				throw new NotImplementedException();
+				}
+			}
 
+		
         public MainWindowViewModel()
         {
             this.mainWindow = new MainWindowModel();

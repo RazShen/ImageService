@@ -43,13 +43,15 @@ namespace ImageServiceTools.ServiceCommunication
                 {
                     new Task(() =>
                     {
-						NetworkStream stream = client.GetStream();
-						StreamReader reader = new StreamReader(stream);
-						StreamWriter writer = new StreamWriter(stream); 
-						string result = JsonConvert.SerializeObject(commandRecievedEventArgs);
-						_mutex.WaitOne();
-						new BinaryWriter(client.GetStream()).Write(result);
-						_mutex.ReleaseMutex();              
+						try
+							{
+							NetworkStream stream = client.GetStream();
+							string jsonCommand = JsonConvert.SerializeObject(commandRecievedEventArgs);
+							_mutex.WaitOne();
+							new BinaryWriter(stream).Write(jsonCommand);
+							_mutex.ReleaseMutex();
+							}
+						catch (Exception e) { _currClients.Remove(client); };
                     }).Start();
                 }
             } catch (Exception e) {

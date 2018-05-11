@@ -22,7 +22,7 @@ namespace ImageServiceGUI.Convertors
 				case "WARNING":
 					return System.Windows.Media.Brushes.DarkOrange;
 				case "ERROR":
-					return System.Windows.Media.Brushes.DarkRed;
+					return System.Windows.Media.Brushes.PaleVioletRed;
 				default:
 					return System.Windows.Media.Brushes.White;
 				}

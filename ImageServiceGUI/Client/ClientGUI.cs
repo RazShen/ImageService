@@ -78,21 +78,32 @@ namespace ImageServiceGUI.Client
 			{
 			new Task(() =>
 			{
-				while (this._running)
+				try
 					{
-					NetworkStream stream = _client.GetStream();
-					BinaryReader reader = new BinaryReader(stream);
-					string serializedResponse = reader.ReadString();
-					CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
-					if (deserializedResponse.Args != null)
+					while (this._running)
 						{
-						if (deserializedResponse.Args[0].Equals("True") || deserializedResponse.Args[0].Equals("False"))
+						NetworkStream stream = _client.GetStream();
+						BinaryReader reader = new BinaryReader(stream);
+						string serializedResponse = reader.ReadString();
+						CommandRecievedEventArgs deserializedResponse = JsonConvert.DeserializeObject<CommandRecievedEventArgs>(serializedResponse);
+						if (deserializedResponse.Args != null)
 							{
-							continue;
+							if (deserializedResponse.Args[0].Equals("True") || deserializedResponse.Args[0].Equals("False"))
+								{
+								continue;
+								}
 							}
+						this.UpdateEvent?.Invoke(deserializedResponse);
 						}
-					this.UpdateEvent?.Invoke(deserializedResponse);
-					}
+					} catch (Exception e)
+					{
+					Console.WriteLine(e.ToString());
+					String[] failArgs = new string[2];
+					failArgs[1] = MessageTypeEnum.ERROR.ToString();
+					failArgs[0] = "Can't receive messages from server";
+					CommandRecievedEventArgs failureArgs = new CommandRecievedEventArgs((int)CommandEnum.NewLogMessage, failArgs, "");
+					this.UpdateEvent?.Invoke(failureArgs);
+					};
 			}).Start();
 			}
         public String RunningToString()
@@ -121,7 +132,12 @@ namespace ImageServiceGUI.Client
 				catch (Exception e)
 					{
 						Console.WriteLine(e.ToString());
-					}
+						String[] failArgs = new string[2];
+						failArgs[1] = MessageTypeEnum.ERROR.ToString();
+						failArgs[0] = "Can't write message to server";
+						CommandRecievedEventArgs failureArgs = new CommandRecievedEventArgs((int)CommandEnum.NewLogMessage, failArgs, "");
+						this.UpdateEvent?.Invoke(failureArgs);
+						}
 			}).Start();
 			}
 		}
