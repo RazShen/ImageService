@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using SharedFiles;
 namespace ImageServiceGUI.Model
 {
+    /// <summary>
+    /// ilog model interface
+    /// </summary>
     interface ILogModel :INotifyPropertyChanged
     {
 		ObservableCollection<LogTuple> Logs { get; set; }

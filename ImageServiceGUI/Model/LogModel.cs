@@ -13,6 +13,9 @@ using SharedFiles;
 
 namespace ImageServiceGUI.Model
 	{
+    /// <summary>
+    /// log model class
+    /// </summary>
 	class LogModel : ILogModel
 		{
 		private ObservableCollection<LogTuple> _logs { get; set; }
@@ -26,7 +29,9 @@ namespace ImageServiceGUI.Model
 			set => throw new NotImplementedException();
 			}
 
-
+        /// <summary>
+        /// log model constractor
+        /// </summary>
 		public LogModel()
 			{
 			_logs = new ObservableCollection<LogTuple>();
@@ -41,7 +46,9 @@ namespace ImageServiceGUI.Model
 				Console.WriteLine("Log Client isn't connected");
 				}
 			}
-
+        /// <summary>
+        /// get previous logs
+        /// </summary>
 		private void GetPreviousLogs()
 			{
 			this._logs = new ObservableCollection<LogTuple>();
@@ -50,7 +57,10 @@ namespace ImageServiceGUI.Model
 			CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.LogCommand, null, "");
 			this._logClient.WriteCommandToServer(commandRecievedEventArgs);
 			}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
 		private void Updater(CommandRecievedEventArgs args)
 			{
 			if (args != null)
@@ -68,7 +78,10 @@ namespace ImageServiceGUI.Model
 					}
 				}
 			}
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
 		private void SetupPreviousLogs(CommandRecievedEventArgs args)
 			{
 			try
@@ -86,7 +99,10 @@ namespace ImageServiceGUI.Model
 				Console.WriteLine(e.ToString());
 				}
 			}
-
+        /// <summary>
+        /// insert a new log
+        /// </summary>
+        /// <param name="args"></param>
 		private void InsertLog(CommandRecievedEventArgs args)
 			{
 			try

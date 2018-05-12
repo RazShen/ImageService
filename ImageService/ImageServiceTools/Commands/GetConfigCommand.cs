@@ -12,13 +12,21 @@ using System.Threading.Tasks;
 
 namespace ImageServiceTools.Commands
 {
+    /// <summary>
+    /// get configuration command class
+    /// </summary>
     class GetConfigCommand : ICommand
     {
         static class Constants
         {
             public const int size = 5;
         }
-
+        /// <summary>
+        /// This function executes get configuration command  
+        /// </summary>
+        /// <param name="args">given args array</param>
+        /// <param name="result"> indicate if the execute succeed</param>
+        /// <returns></returns>
         public string Execute(string[] args, out bool result)
         {
             try

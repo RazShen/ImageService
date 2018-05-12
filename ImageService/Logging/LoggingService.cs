@@ -41,7 +41,10 @@ namespace ImageServiceTools.Logging
 			get { return this._logs; }
 			set => throw new NotImplementedException();
 			}
-
+        /// <summary>
+        /// this function gets the previous logs by given event log
+        /// </summary>
+        /// <param name="baseEventLog">  given event log </param>
 		private void GetPreviousLogs(EventLog baseEventLog)
 			{
 			int numOfLogs = baseEventLog.Entries.Count;
@@ -60,7 +63,11 @@ namespace ImageServiceTools.Logging
 					Data = baseEventLog.Entries[i].Message}));
 				}
 			}
-
+        /// <summary>
+        /// gets a type from long entry type 
+        /// </summary>
+        /// <param name="eventLogEntryType">given event log entry type</param>
+        /// <returns></returns>
 		public static MessageTypeEnum GetTypeFromLogEntry(EventLogEntryType eventLogEntryType)
 			{
 			switch (eventLogEntryType)

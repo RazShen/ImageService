@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Model
 	{
+    /// <summary>
+    /// main window model class
+    /// </summary>
 	class MainWindowModel : INotifyPropertyChanged
 		{
 		public IClientGUI _logClient { get; set; }
 		public event PropertyChangedEventHandler PropertyChanged;
         private String isConnected;
-
+        /// <summary>
+        /// constractor for main window model
+        /// </summary>
         public MainWindowModel()
 			{
 			this._logClient = ClientGUI.Instance;
@@ -36,6 +41,10 @@ namespace ImageServiceGUI.Model
 
             }
         }
+        /// <summary>
+        /// on property change 
+        /// </summary>
+        /// <param name="name"></param>
         protected void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

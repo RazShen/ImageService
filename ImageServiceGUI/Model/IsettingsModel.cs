@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Model
 {
+    /// <summary>
+    /// settings model interface
+    /// </summary>
     interface IsettingsModel : INotifyPropertyChanged
     {
         string OutputDirectory { get; set; }
@@ -15,7 +18,10 @@ namespace ImageServiceGUI.Model
         string LogName { get; set; }
         string TumbnailSize { get; set; }
         ObservableCollection<string> Handlers { get; set; }
-
+        /// <summary>
+        /// remove handler fumctopm
+        /// </summary>
+        /// <param name="selectedHandler"> a given path of handler</param>  
         void RemoveHandler(string selectedHandler);
     }
 	}

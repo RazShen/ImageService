@@ -12,12 +12,17 @@ using System.Windows.Data;
 
 namespace ImageServiceGUI.Model
 	{
+    /// <summary>
+    /// settings model class
+    /// </summary>
 	class SettingsModel : IsettingsModel
 		{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private IClientGUI _settingsClient;
 
-
+        /// <summary>
+        /// settings model constractor
+        /// </summary>
 		public SettingsModel()
 			{
 			this._settingsClient = ClientGUI.Instance;
@@ -32,14 +37,20 @@ namespace ImageServiceGUI.Model
 				Console.WriteLine("Log Client isn't connected");
 				}
 
-			//this.Initialize();
 			}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
 		protected void NotifyPropertyChanged(string name)
 			{
 			if (PropertyChanged != null)
 				PropertyChanged(this, new PropertyChangedEventArgs(name));
 			}
-
+        /// <summary>
+        /// this function removes a handler
+        /// </summary>
+        /// <param name="Handler"> a given path of handler</param>
 		public void RemoveHandler(String Handler)
 			{
 			string[] arrToSend = { Handler };
@@ -92,23 +103,10 @@ namespace ImageServiceGUI.Model
 		/// </summary>
 		public ObservableCollection<string> Handlers { get; set; }
 
-		private void Initialize()
-			{
-			//CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
-			this.OutputDirectory = "OutputDir";
-			this.SourceName = "SourceName";
-			this.LogName = "log";
-			this.TumbnailSize = "sss";
-			Handlers = new ObservableCollection<string>();
-			//string[] handlers = string.Split(';');
-			string[] handlers = { "a", "b", "c", "d" };
-			foreach (string handler in handlers)
-				{
-				this.Handlers.Add(handler);
-				}
-
-			}
-
+        /// <summary>
+        /// this function do the command by command event args id
+        /// </summary>
+        /// <param name="args"></param>
 		private void Updater(CommandRecievedEventArgs args)
 			{
 			if (args != null)
@@ -124,7 +122,10 @@ namespace ImageServiceGUI.Model
 					}
 				}
 			}
-
+        /// <summary>
+        /// this function close a handler
+        /// </summary>
+        /// <param name="args">given command recieve evewnt args</param>
 		private void CloseHandler(CommandRecievedEventArgs args)
 			{
 			if (Handlers != null && Handlers.Count > 0 && args != null && args.Args != null
@@ -134,7 +135,9 @@ namespace ImageServiceGUI.Model
 				}
 			}
 
-
+        /// <summary>
+        /// this function sent init request to the server to get the configuration
+        /// </summary>
 		private void sendInitRequest()
 			{
 			try
@@ -154,6 +157,10 @@ namespace ImageServiceGUI.Model
 				Console.WriteLine(e.ToString());
 				}
 			}
+        /// <summary>
+        /// this function gets the settings components by command reveice event args clas
+        /// </summary>
+        /// <param name="responseObj">a given components </param>
 			private void GetComponents(CommandRecievedEventArgs responseObj)
 			{
 			try

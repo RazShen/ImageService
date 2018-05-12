@@ -14,6 +14,9 @@ using System.Threading.Tasks;
 
 namespace ImageServiceTools.ServiceCommunication
 	{
+    /// <summary>
+    /// server for image service class
+    /// </summary>
 	class ServerIS : IServerIS
 		{
         private int port { get; set; }
@@ -23,7 +26,12 @@ namespace ImageServiceTools.ServiceCommunication
         private List<TcpClient> _currClients;
 		private static Mutex _mutex;
 
-
+        /// <summary>
+        /// Constractor for Server for Image service
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="ch"></param>
+        /// <param name="loggingService"></param>
         public ServerIS(int port, IClientHandler ch, ILoggingService loggingService)
         {
             this.port = port;
@@ -33,7 +41,10 @@ namespace ImageServiceTools.ServiceCommunication
 			_mutex = new Mutex();
 			ClientHandler.GlobMutex = _mutex;
         }
-
+        /// <summary>
+        /// this fucntion notify all clients about an update 
+        /// </summary>
+        /// <param name="commandRecievedEventArgs"></param>
         public void NotifyClients(CommandRecievedEventArgs commandRecievedEventArgs)
         {
             try
@@ -58,7 +69,9 @@ namespace ImageServiceTools.ServiceCommunication
                 Logging.Log(e.ToString(), SharedFiles.MessageTypeEnum.ERROR);
             }
         }
-
+        /// <summary>
+        /// this function starts the server
+        /// </summary>
         public void Start()
         {
             try
@@ -93,6 +106,9 @@ namespace ImageServiceTools.ServiceCommunication
                 Logging.Log(e.ToString(), MessageTypeEnum.ERROR);
             }
         }
+        /// <summary>
+        /// This function stops the server
+        /// </summary>
         public void Stop()
         {
             listener.Stop();

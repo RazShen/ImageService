@@ -10,14 +10,26 @@ using System.Threading.Tasks;
 
 namespace ImageServiceTools.Commands
 	{
+    /// <summary>
+    /// close handler command
+    /// </summary>
 	class CloseHandlerCommand : ICommand
 		{
         private ImageServer imageServer;
+        /// <summary>
+        /// Constractor for a close handlewr command
+        /// </summary>
+        /// <param name="server">given image server </param>
         public CloseHandlerCommand(ImageServer server)
         {
             this.imageServer = server;
         }
-
+        /// <summary>
+        /// This function execute close handler command 
+        /// </summary>
+        /// <param name="args">given args array</param>
+        /// <param name="result"> indicate if the execute succeed</param>
+        /// <returns></returns>
         public string Execute(string[] args, out bool result)
         {
             try
