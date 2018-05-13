@@ -79,9 +79,9 @@ namespace ImageServiceGUI.Model
 				}
 			}
         /// <summary>
-        /// 
+        /// set up previous logs 
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">arguments</param>
 		private void SetupPreviousLogs(CommandRecievedEventArgs args)
 			{
 			try
