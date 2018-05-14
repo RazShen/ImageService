@@ -25,7 +25,9 @@ namespace ImageServiceGUI.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public DelegateCommand<Object> RemoveCommand { get; set; }
-
+		/// <summary>
+		/// Constructor for the settings view model (creates a settings model)
+		/// </summary>
         public SettingsViewModel()
         {
             this.model = new SettingsModel();

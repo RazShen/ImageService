@@ -24,6 +24,9 @@ namespace ImageServiceGUI.Model
 			this._logClient = ClientGUI.Instance;
             HasConnection = _logClient.RunningToString();
         }
+		/// <summary>
+		/// there's a binding between the view and this field
+		/// </summary>
 		public String HasConnection
 			{
 			get
@@ -42,7 +45,7 @@ namespace ImageServiceGUI.Model
             }
         }
         /// <summary>
-        /// on property change 
+        /// on property change, used to notify the main view that the client is not running.
         /// </summary>
         /// <param name="name"></param>
         protected void OnPropertyChanged(string name)

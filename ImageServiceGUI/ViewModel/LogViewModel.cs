@@ -9,10 +9,16 @@ using System.Threading.Tasks;
 using SharedFiles;
 namespace ImageServiceGUI.ViewModel
 	{
+	/// <summary>
+	/// View Model for the log (enables the view to ask for data/actions from the model)
+	/// </summary>
 	class LogViewModel: INotifyPropertyChanged
 		{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private ILogModel logModel = new LogModel();
+		/// <summary>
+		/// The viewed list of logs
+		/// </summary>
 		public ObservableCollection<LogTuple> Logs
 			{
 			get { return this.logModel.Logs; }

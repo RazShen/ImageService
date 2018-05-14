@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharedFiles
 	{
+	/// <summary>
+	/// Log tuple class (a log and its enum)
+	/// </summary>
 	public class LogTuple
 		{
 		

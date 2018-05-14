@@ -43,10 +43,10 @@ namespace ImageServiceTools.Server
             for (int i = 0; i < numOfPaths; i++)
             {
                 // create newHandler for each path
-         //       directoryHandlers[i] = new DirectoryHandler(m_controller, m_logging, paths[i]);
-           //     directoryHandlers[i].StartHandleDirectory(paths[i]);
-           //     this.CommandRecieved += directoryHandlers[i].OnCommandRecieved;
-            //    directoryHandlers[i].DirectoryClose += this.RemoveDirectoryHandler;
+				 //  directoryHandlers[i] = new DirectoryHandler(m_controller, m_logging, paths[i]);
+           // directoryHandlers[i].StartHandleDirectory(paths[i]);
+           //this.CommandRecieved += directoryHandlers[i].OnCommandRecieved;
+            //  directoryHandlers[i].DirectoryClose += this.RemoveDirectoryHandler;
 
                 IDirectoryHandler newHandler = new DirectoryHandler(m_controller, m_logging, paths[i]);
                 newHandler.StartHandleDirectory(paths[i]);
@@ -90,6 +90,11 @@ namespace ImageServiceTools.Server
             }
         }
 
+		/// <summary>
+		/// Close directory handler (invoked from closehandler command)
+		/// </summary>
+		/// <param name="path"> handler path</param>
+		/// <returns> succeed/didn't succeed </returns>
         public bool CloseDirectoryHandler(String path)
         {
 			if (Handlers.ContainsKey(path))

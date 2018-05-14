@@ -15,7 +15,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock HorizontalAlignment="Center" Height="51" Margin="318,10,334,0" TextWrapping="Wrap" Text="SETTINGS" VerticalAlignment="Top" Width="148" FontSize="30"/>
+        <TextBlock HorizontalAlignment="Center" Height="51" Margin="343,10,309,0" TextWrapping="Wrap" Text="Settings" VerticalAlignment="Top" Width="148" FontSize="30" FontFamily="Candara"/>
 
         <TextBlock Height="40" Margin="12,0,658,140.222" TextWrapping="Wrap" Text="Output Directpry:" VerticalAlignment="Bottom" FontSize="15" Grid.Row="2"/>
         <TextBlock HorizontalAlignment="Left" Height="40" Margin="12,0,0,99.222" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="128" FontSize="15" Grid.Row="2"><Run Text="Source Name:"/><LineBreak/><Run Text=""/></TextBlock>
@@ -24,13 +24,13 @@
 
 
 
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="142,0,0,140" TextWrapping="Wrap" Text="{Binding VM_OutputDirectory}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="2"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="140,0,0,100" TextWrapping="Wrap" Text="{Binding VM_SourceName}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="2"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="140,89,0,0" TextWrapping="Wrap" Text="{Binding VM_LogName}" VerticalAlignment="Top" Width="459" FontSize="15" Grid.Row="2"/>
-        <TextBlock HorizontalAlignment="Left" Height="40" Margin="140,134,0,0" TextWrapping="Wrap" Text="{Binding VM_TumbnailSize}" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="135,0,0,138" TextWrapping="Wrap" Text="{Binding VM_OutputDirectory}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="133,0,0,98" TextWrapping="Wrap" Text="{Binding VM_SourceName}" VerticalAlignment="Bottom" Width="459" FontSize="15" Grid.Row="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="133,91,0,0" TextWrapping="Wrap" Text="{Binding VM_LogName}" VerticalAlignment="Top" Width="459" FontSize="15" Grid.Row="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="133,136,0,0" TextWrapping="Wrap" Text="{Binding VM_TumbnailSize}" VerticalAlignment="Top" Width="464" FontSize="15" Grid.Row="2"/>
 
-        <Button x:Name="btnRemove"  HorizontalContentAlignment="Center" Command="{Binding RemoveCommand}"  AutomationProperties.AutomationId="btnRemove" Margin="26,0,92,148" Grid.Row="3">Remove</Button>
-        <ListBox ItemsSource="{Binding VM_Handlers}" SelectedItem="{Binding SelectedHandler}" Margin="27,0,92,23" RenderTransformOrigin="0.5,0.5" Grid.Row="3" Height="120" VerticalAlignment="Bottom" >
+        <Button x:Name="btnRemove"  HorizontalContentAlignment="Center" Command="{Binding RemoveCommand}"  AutomationProperties.AutomationId="btnRemove" Margin="55,0,63,148" Grid.Row="3">Remove</Button>
+        <ListBox ItemsSource="{Binding VM_Handlers}" SelectedItem="{Binding SelectedHandler}" Margin="56,0,63,39" RenderTransformOrigin="0.5,0.5" Grid.Row="3" Height="104" VerticalAlignment="Bottom" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

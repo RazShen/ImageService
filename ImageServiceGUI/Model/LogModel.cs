@@ -58,7 +58,8 @@ namespace ImageServiceGUI.Model
 			this._logClient.WriteCommandToServer(commandRecievedEventArgs);
 			}
         /// <summary>
-        /// 
+        /// This method is a delegate signed to the ClientGUI updatorEvent. every time the client gets a command
+		/// from the server it invokes his event and therefore this delegate.
         /// </summary>
         /// <param name="args"></param>
 		private void Updater(CommandRecievedEventArgs args)
@@ -78,8 +79,8 @@ namespace ImageServiceGUI.Model
 					}
 				}
 			}
-        /// <summary>
-        /// set up previous logs 
+        /// <summary> 
+        /// Set up previous logs (invoked from updater)
         /// </summary>
         /// <param name="args">arguments</param>
 		private void SetupPreviousLogs(CommandRecievedEventArgs args)
@@ -90,9 +91,7 @@ namespace ImageServiceGUI.Model
 				for (int i = 1; i < previousLogs.Count(); i++)
 					{
 					this._logs.Add(previousLogs[i]);
-					}
-
-			
+					}			
 				}
 			catch (Exception e)
 				{

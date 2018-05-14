@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SharedFiles
 	{
+	/// <summary>
+	/// Unused.
+	/// </summary>
 	class Program
 		{
 		static void Main(string[] args)

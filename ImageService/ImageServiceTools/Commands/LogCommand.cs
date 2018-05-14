@@ -10,15 +10,28 @@ using System.Threading.Tasks;
 
 namespace ImageServiceTools.Commands
 	{
+	/// <summary>
+	/// New file command
+	/// </summary>
 	class LogCommand : ICommand
 		{
 
 		private ILoggingService _loggingService;
+		/// <summary>
+		/// Constructor for command from logging service.
+		/// </summary>
+		/// <param name="loggingService"></param>
 		public LogCommand(ILoggingService loggingService)
 			{
 			this._loggingService = loggingService;
 			}
 
+		/// <summary>
+		/// Generate new LogCommand using the logging service
+		/// </summary>
+		/// <param name="args"> input args</param>
+		/// <param name="result"> out result </param>
+		/// <returns></returns>
 		public string Execute(string[] args, out bool result)
 			{
 			try

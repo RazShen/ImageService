@@ -10,11 +10,16 @@ using System.Windows.Input;
 
 namespace ImageServiceGUI.ViewModel
 {
+	/// <summary>
+	/// MainWindow view model, basically made for the main window to know if there is a tcp connection with the server.
+	/// </summary>
     class MainWindowViewModel : INotifyPropertyChanged
     {
         MainWindowModel mainWindow = new MainWindowModel();
         public event PropertyChangedEventHandler PropertyChanged;
-
+		/// <summary>
+		/// Property if the singleton client has connection.
+		/// </summary>
         public String VM_HasConnection
         {
             get
@@ -45,7 +50,9 @@ namespace ImageServiceGUI.ViewModel
 				}
 			}
 
-		
+		/// <summary>
+		/// Constructor for the main window VM (constructs a main window model)
+		/// </summary>
         public MainWindowViewModel()
         {
             this.mainWindow = new MainWindowModel();

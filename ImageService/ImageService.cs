@@ -37,8 +37,7 @@ namespace ImageService
     };
 
 	/// <summary>
-	/// 
-	/// 
+	/// Class of image service.
 	/// </summary>
     public partial class ImageService : ServiceBase
     {

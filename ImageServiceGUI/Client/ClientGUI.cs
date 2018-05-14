@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace ImageServiceGUI.Client
 	{
+	/// <summary>
+	/// Client of the GUI class (which handlers all the gui request and receive to/from the server)
+	/// </summary>
 	class ClientGUI : IClientGUI
 		{
 		private bool _running;
@@ -20,19 +23,27 @@ namespace ImageServiceGUI.Client
 		public delegate void Updator(CommandRecievedEventArgs responseObj);
 		public event ImageServiceGUI.Client.Updator UpdateEvent;
 		private static Mutex _mutex = new Mutex();
-
+		/// <summary>
+		/// Client GUI (singleton)
+		/// </summary>
 		private ClientGUI()
 			{
 			bool running = this.Start();
 			this._running = running;
 			}
 
+		/// <summary>
+		/// Boolean indicating if the client is connected.
+		/// </summary>
+		/// <returns></returns>
 		public bool Running()
 			{
 			return this._running;
 			}
 
-
+		/// <summary>
+		/// Get an instance of the client (singelton)
+		/// </summary>
 		public static IClientGUI Instance
 			{
 			get
@@ -46,6 +57,9 @@ namespace ImageServiceGUI.Client
 				}
 			}
 
+		/// <summary>
+		/// Close the connection with the server (sends close command)
+		/// </summary>
 		public void Close()
 			{
             CommandRecievedEventArgs commandRecievedEventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseClient, null, "");
@@ -54,6 +68,10 @@ namespace ImageServiceGUI.Client
 			this._running = false;
 			}
 
+		/// <summary>
+		/// Start connection with the server.
+		/// </summary>
+		/// <returns> connected/not connected</returns>
 		public bool Start()
 			{
 			try
@@ -74,6 +92,11 @@ namespace ImageServiceGUI.Client
 				}
 			}
 
+		/// <summary>
+		/// This method constantly receiving data from the server, once the client is connected to the server (running)
+		/// the client receives command args and invoke its event (updateEvent) where delegates from settings model
+		/// and log model are signed to.
+		/// </summary>
 		public void UpdateConstantly()
 			{
 			new Task(() =>
@@ -106,6 +129,10 @@ namespace ImageServiceGUI.Client
 					};
 			}).Start();
 			}
+		/// <summary>
+		/// this method is used for the view model (to set background to gray)
+		/// </summary>
+		/// <returns></returns>
         public String RunningToString()
         {
             if (this.Running()) 
@@ -115,7 +142,10 @@ namespace ImageServiceGUI.Client
             return "False";
         }
 
-
+		/// <summary>
+		/// Write command to server method (writes a serialized command to the server)
+		/// </summary>
+		/// <param name="args"></param>
         public void WriteCommandToServer(CommandRecievedEventArgs args)
 			{
 			new Task(() =>
@@ -131,6 +161,7 @@ namespace ImageServiceGUI.Client
 					}
 				catch (Exception e)
 					{
+					// If failed writing, add a fail log to this client.
 						Console.WriteLine(e.ToString());
 						String[] failArgs = new string[2];
 						failArgs[1] = MessageTypeEnum.ERROR.ToString();

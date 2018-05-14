@@ -45,7 +45,9 @@ namespace ImageServiceGUI
 					}
 				}
 			}
-
+		/// <summary>
+		/// Creates a main window view model.
+		/// </summary>
 		public MainWindow()
 			{
 			this.DataContext = new MainWindowViewModel();
