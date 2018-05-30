@@ -21,7 +21,9 @@ namespace ImageServiceWebApplication.MainController
         // GET: First
         public ActionResult ImageWeb()
         {
-			List<StudentsData.Student> studentsList = StudentsData.LoadText();
+			List<ImageWebModel.Student> studentsList = ImageWebModel.LoadText();
+			ViewBag.status = ImageWebModel.GetServiceStatus();
+			ViewBag.numOfPhotos = ImageWebModel.GetNumOfPics();
 			return View(studentsList);
         }
 

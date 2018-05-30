@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ImageServiceWebApplication.Models.StudentsData.Student>
+﻿@model IEnumerable<ImageServiceWebApplication.Models.ImageWebModel.Student>
 
 @{
     ViewBag.Title = "Image Web";
@@ -6,17 +6,14 @@
 <br /><br />
 
 @* Getting the service status *@
-@{
-    var status = "On";
 
-}
 
-<h3>Service status is: @status</h3>
+<h3>Service status is: @ViewBag.status</h3>
 @* is active or not *@
 <br /><br /><br />
 
 
-<h3>Total number of pictures in output dir:</h3>
+<h3>Total number of pictures in output dir: @ViewBag.numOfPhotos</h3>
 <br /><br /><br />
 
 
