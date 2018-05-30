@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication2.Models;
+using ImageServiceWebApplication.Models;
 
-namespace WebApplication2.Controllers
-{
+namespace ImageServiceWebApplication.FirstController
+	{
     public class FirstController : Controller
     {
         static List<Employee> employees = new List<Employee>()

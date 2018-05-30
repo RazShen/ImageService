@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace ImageServiceWebApplication
+namespace ImageServiceWebApplication.AppStart
 {
     public class RouteConfig
     {
@@ -16,7 +16,7 @@ namespace ImageServiceWebApplication
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "First", action = "AjaxView", id = UrlParameter.Optional }
+                defaults: new { controller = "First", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
