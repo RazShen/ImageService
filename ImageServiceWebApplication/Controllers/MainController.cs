@@ -6,9 +6,9 @@ using System.Web;
 using System.Web.Mvc;
 using ImageServiceWebApplication.Models;
 
-namespace ImageServiceWebApplication.FirstController
+namespace ImageServiceWebApplication.MainController
 	{
-    public class FirstController : Controller
+    public class MainController : Controller
     {
         static List<Employee> employees = new List<Employee>()
         {
@@ -19,9 +19,10 @@ namespace ImageServiceWebApplication.FirstController
           new Employee   { FirstName = "Dor", LastName = "Nisim", Email = "Stam@stam", Salary = 700, Phone = "08-8888888" }
         };
         // GET: First
-        public ActionResult Index()
+        public ActionResult ImageWeb()
         {
-            return View();
+			List<StudentsData.Student> studentsList = StudentsData.LoadText();
+			return View(studentsList);
         }
 
         [HttpGet]
@@ -29,8 +30,15 @@ namespace ImageServiceWebApplication.FirstController
         {
             return View();
         }
+		//[HttpGet]
+		//public JObject GetStudents()
+		//	{
+		//	List<StudentsData.Student> studentsList = StudentsData.LoadText();
 
-        [HttpGet]
+		//	}
+
+
+		[HttpGet]
         public JObject GetEmployee()
         {
             JObject data = new JObject();
@@ -106,11 +114,11 @@ namespace ImageServiceWebApplication.FirstController
                     if (emp.ID.Equals(id))
                     {
                         emp.copy(empT);
-                        return RedirectToAction("Index");
+                        return RedirectToAction("ImageWeb");
                     }
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("ImageWeb");
             }
             catch
             {

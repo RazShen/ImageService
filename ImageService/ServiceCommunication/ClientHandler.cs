@@ -25,7 +25,9 @@ namespace ImageServiceTools.ServiceCommunication
 		public static Mutex GlobMutex { get; set; }
 
 		/// <summary>
-		/// Constructr for the client handler, from the controller so it can invoke its commands
+		/// Constructr for the client handler, from the controller so it can 
+		/// 
+		/// its commands
 		/// </summary>
 		/// <param name="imageController"></param>
 		public ClientHandler(IImageController imageController)
