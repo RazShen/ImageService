@@ -39,7 +39,7 @@ namespace ImageServiceGUI.Model
 
 			}
         /// <summary>
-        /// 
+        /// Used for the observable collection
         /// </summary>
         /// <param name="name"></param>
 		protected void NotifyPropertyChanged(string name)
@@ -57,7 +57,6 @@ namespace ImageServiceGUI.Model
 			CommandRecievedEventArgs eventArgs = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arrToSend, "");
 			this._settingsClient.WriteCommandToServer(eventArgs);
 			}
-
 		private string m_outputDirectory;
 		public string OutputDirectory
 			{
@@ -103,10 +102,11 @@ namespace ImageServiceGUI.Model
 		/// </summary>
 		public ObservableCollection<string> Handlers { get; set; }
 
-        /// <summary>
-        /// this function do the command by command event args id
-        /// </summary>
-        /// <param name="args"></param>
+		/// <summary>
+		/// This method is a delegate signed to the ClientGUI updatorEvent. every time the client gets a command
+		/// from the server it invokes his event and therefore this delegate.
+		/// </summary>
+		/// <param name="args"></param>
 		private void Updater(CommandRecievedEventArgs args)
 			{
 			if (args != null)

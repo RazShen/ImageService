@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageServiceGUI", "ImageSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedFiles", "SharedFiles\SharedFiles.csproj", "{CC45D99B-5F7D-40EB-91D4-9702201189FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageServiceWebApplication", "ImageServiceWebApplication\ImageServiceWebApplication.csproj", "{5DCB2D1A-409E-43EE-8269-5FB31876F658}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{CC45D99B-5F7D-40EB-91D4-9702201189FC}.Release|x64.Build.0 = Release|Any CPU
 		{CC45D99B-5F7D-40EB-91D4-9702201189FC}.Release|x86.ActiveCfg = Release|Any CPU
 		{CC45D99B-5F7D-40EB-91D4-9702201189FC}.Release|x86.Build.0 = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|x64.Build.0 = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Debug|x86.Build.0 = Debug|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|x64.ActiveCfg = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|x64.Build.0 = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|x86.ActiveCfg = Release|Any CPU
+		{5DCB2D1A-409E-43EE-8269-5FB31876F658}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
