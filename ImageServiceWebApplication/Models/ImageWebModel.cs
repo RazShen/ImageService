@@ -54,7 +54,7 @@ namespace ImageServiceWebApplication.Models
 			{
 			//Get output dir path!!
 			int sleepCounter = 0;
-			while(this.outputDir == null && (sleepCounter < 3)) { System.Threading.Thread.Sleep(1000); sleepCounter++; }
+			while(this.outputDir == null && (sleepCounter < 2)) { System.Threading.Thread.Sleep(1000); sleepCounter++; }
 			if (!(this.outputDir == null))
 				{
 				DirectoryInfo di = new DirectoryInfo(this.outputDir);

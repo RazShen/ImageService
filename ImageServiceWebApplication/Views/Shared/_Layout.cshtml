@@ -22,14 +22,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Image Web", "Index", "Main", new { area = "" }, new { @class = "navbar-brand" }) @* was application name *@
+                @Html.ActionLink("Image Web", "ImageWeb", "Main", new { area = "" }, new { @class = "navbar-brand" }) @* was application name *@
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Config", "ImageWeb", "Main") </li>   @* was Home *@
-                    <li>@Html.ActionLink("Logs", "Create", "Main")</li> @* was Create *@
-                    <li>@Html.ActionLink("Photos", "Details", "Main")</li>@* was Details *@
+                    <li>@Html.ActionLink("Config", "Config", "Config") </li>   @* was Home *@
+                    <li>@Html.ActionLink("Logs", "Logs", "Logs")</li> @* was Create *@
+                    <li>@Html.ActionLink("Photos", "Details", "Photos")</li>@* was Details *@
                     @*  <li>@Html.ActionLink("AjaxView", "AjaxView", "First")</li>  was AjaxView *@
                 </ul>
             </div>

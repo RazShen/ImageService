@@ -123,8 +123,8 @@
     <Content Include="scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Main\AjaxView.cshtml" />
-    <Content Include="Views\Main\Create.cshtml" />
+    <Content Include="Views\Config\Config.cshtml" />
+    <Content Include="Views\Logs\Logs.cshtml" />
     <Content Include="Views\Main\Details.cshtml" />
     <Content Include="Views\Main\Edit.cshtml" />
     <Content Include="Views\Main\Error.cshtml" />
@@ -136,12 +136,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Client\Client.cs" />
     <Compile Include="Client\IClient.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\PhotosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
+    <Compile Include="Models\LogModel.cs" />
+    <Compile Include="Models\PhotosModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +167,9 @@
       <Project>{cc45d99b-5f7d-40eb-91d4-9702201189fc}</Project>
       <Name>SharedFiles</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Photos\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
