@@ -22,8 +22,17 @@ namespace ImageServiceWebApplication.MainController
         public ActionResult ImageWeb()
         {
 			List<ImageWebModel.Student> studentsList = ImageWebModel.LoadText();
-			ViewBag.status = ImageWebModel.GetServiceStatus();
-			ViewBag.numOfPhotos = ImageWebModel.GetNumOfPics();
+			ImageWebModel iWM = new ImageWebModel();
+			ViewBag.status = iWM.GetServiceStatus();
+
+			int numOfPics = iWM.GetNumOfPics();
+			if (numOfPics == -1)
+				{
+				ViewBag.numOfPhotos = "Error occurred, Couldn't get the output directory from the service" ;
+				} else
+				{
+				ViewBag.numOfPhotos = iWM.GetNumOfPics();
+				}
 			return View(studentsList);
         }
 

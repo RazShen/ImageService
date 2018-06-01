@@ -13,7 +13,7 @@ namespace ImageServiceWebApplication.Client
 	/// <param name="args"></param>
 	public delegate void Updator(CommandRecievedEventArgs args);
 
-	interface IClientGUI
+	interface IClient
 		{
 		/// <summary>
 		/// if client is running

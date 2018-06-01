@@ -15,18 +15,18 @@ namespace ImageServiceWebApplication.Client
 	/// <summary>
 	/// Client of the GUI class (which handlers all the gui request and receive to/from the server)
 	/// </summary>
-	class ClientGUI : IClientGUI
+	class Client : IClient
 		{
 		private bool _running;
 		private TcpClient _client;
-		private static ClientGUI _instance;
+		private static Client _instance;
 		public delegate void Updator(CommandRecievedEventArgs responseObj);
 		public event ImageServiceWebApplication.Client.Updator UpdateEvent;
 		private static Mutex _mutex = new Mutex();
 		/// <summary>
 		/// Client GUI (singleton)
 		/// </summary>
-		private ClientGUI()
+		private Client()
 			{
 			bool running = this.Start();
 			this._running = running;
@@ -44,7 +44,7 @@ namespace ImageServiceWebApplication.Client
 		/// <summary>
 		/// Get an instance of the client (singelton)
 		/// </summary>
-		public static IClientGUI Instance
+		public static IClient Instance
 			{
 			get
 				{
@@ -52,7 +52,7 @@ namespace ImageServiceWebApplication.Client
 					{
 					return _instance;
 					}
-				_instance = new ClientGUI();
+				_instance = new Client();
 				return _instance;
 				}
 			}

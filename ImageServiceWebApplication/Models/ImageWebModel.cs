@@ -7,14 +7,16 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
-
+using ImageServiceWebApplication.Client;
+using SharedFiles;
 
 namespace ImageServiceWebApplication.Models
 	{
 	public class ImageWebModel
 		{
-		
-		public static List<Student>  LoadText()
+		private IClient ImageWebModelClient { get; set; }
+		private String outputDir;
+		public static List<Student> LoadText()
 			{
 			string line;
 			List<Student> listOfStudents = new List<Student>();
@@ -30,24 +32,86 @@ namespace ImageServiceWebApplication.Models
 			return listOfStudents;
 			}
 
-		public static Boolean GetServiceStatus()
+		public ImageWebModel()
+			{
+			this.ImageWebModelClient = Client.Client.Instance;
+
+			}
+		public String GetServiceStatus()
 			{
 			//find service status
+			if (ImageWebModelClient.Running())
+				{
+				this.ImageWebModelClient.UpdateConstantly();
+				this.ImageWebModelClient.UpdateEvent += ConstUpdate;
+				this.SendInitRequest();
+				return "True";
+				}
+			return "False";
+			}
+
+		public int GetNumOfPics()
+			{
+			//Get output dir path!!
+			int sleepCounter = 0;
+			while(this.outputDir == null && (sleepCounter < 3)) { System.Threading.Thread.Sleep(1000); sleepCounter++; }
+			if (!(this.outputDir == null))
+				{
+				DirectoryInfo di = new DirectoryInfo(this.outputDir);
+				int jpg = di.GetFiles("*.JPG", SearchOption.AllDirectories).Length;
+				int png = di.GetFiles("*.PNG", SearchOption.AllDirectories).Length;
+				int bmp = di.GetFiles("*.BMP", SearchOption.AllDirectories).Length;
+				int gif = di.GetFiles("*.GIF", SearchOption.AllDirectories).Length;
+				return jpg + png + bmp + gif;
+				}
+			else
+				{
+				return -1;
+				}
+			}
+
+		private void ConstUpdate(CommandRecievedEventArgs args)
+			{
+			if (args != null)
+				{
+				switch (args.CommandID)
+					{
+					case (int)CommandEnum.GetConfigCommand:
+						GetComponents(args);
+						break;
+					}
+				}
+			}
+
+		private bool SendInitRequest()
+			{
+			try
+				{
+				if (!ImageWebModelClient.Running()) { return false; }
+				CommandRecievedEventArgs commandReq = new CommandRecievedEventArgs((int)CommandEnum.GetConfigCommand, null, "");
+				this.ImageWebModelClient.WriteCommandToServer(commandReq);
+				}
+			catch (Exception e)
+				{
+				Console.WriteLine(e.ToString());
+				return false;
+				}
 			return true;
 			}
 
-		public static int GetNumOfPics()
+		private void GetComponents(CommandRecievedEventArgs responseObj)
 			{
-			//Get output dir path!!
-			DirectoryInfo di = new DirectoryInfo(@"C:\Users\Raz Shenkman\Desktop\output");
-
-			int jpg= di.GetFiles("*.JPG", SearchOption.AllDirectories).Length;
-			int png = di.GetFiles("*.PNG", SearchOption.AllDirectories).Length;
-			int bmp = di.GetFiles("*.BMP", SearchOption.AllDirectories).Length;
-			int gif = di.GetFiles("*.GIF", SearchOption.AllDirectories).Length;
-
-			return jpg+png+bmp+gif;
+			try
+				{
+				this.outputDir = responseObj.Args[0];
+				}
+			catch (Exception e)
+				{
+				Console.WriteLine(e.ToString());
+				}
 			}
+
+
 		public class Student
 			{
 			public Student(string inID, string first, string last)
