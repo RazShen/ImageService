@@ -2,83 +2,56 @@
 
 @{
     ViewBag.Title = "Logs";
+    ViewBag.SearchKey = "";
     int i = 0;
 }
 
-<h2>Create</h2>
-<table class="table">
-    <tr>
-        <th  >
-        #
-        </th>
-        <th  >
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
+<div>
+    <h3>Search logs by type</h3>
+    @using (Html.BeginForm("Logs", "Logs", FormMethod.Post))
         {
-    <tr>
-        <td>
-            @{i  = (i+1);
-            }
-            @i
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        @*
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-        *@
-    </tr>
-        }
 
-</table>
+        <div>
+            <input type="text" id="typeToFind" name="typeToFind">
 
-@*
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+            <input type="submit" id="submitId" value="submit" />
 
-    <div class="form-horizontal">
-        <h4>Employee</h4>
-        <hr />
-
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.Salary, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Salary, new { @class = "form-control" })
-            </div>
-            @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-            </div>
         </div>
 
-        @*
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create1" class="btn btn-default" />
-                </div>
-            </div>
-*@
+        }
 
+</div>
+    <h2>Logs list</h2>
+    <table class="table">
+        <tr class="not_mapped_style">
+
+
+            <th width="10" class="not_mapped_style">
+                #
+            </th>
+            <th width="30"class="not_mapped_style">
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th class="not_mapped_style">
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+            {
+            <tr class="not_mapped_style">
+                <td class="not_mapped_style">
+                    @{i = (i + 1);
+                    }
+                    @i
+                </td>
+                <td class="not_mapped_style">
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td class="not_mapped_style">
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+ 
+            </trclass="not_mapped_style">}
+
+    </table>

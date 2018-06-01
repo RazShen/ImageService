@@ -1,4 +1,5 @@
 ﻿using ImageServiceWebApplication.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,29 @@ namespace ImageServiceWebApplication.Controllers
 			return View(logModel.logs);
 			}
 
+		[HttpPost]
+		public ActionResult Logs(FormCollection form)
+			{
+			ViewBag.SearchKey = form["typeToFind"];
+			logModel = new LogModel();
+		
+			if (ViewBag.SearchKey == "")
+				{
+				return View(logModel.logs);
+				} else {
+				List<LogModel.Log> logsByType = new List<LogModel.Log>();
+				foreach (LogModel.Log log in logModel.logs)
+					{
+					if (log.Type.Equals(ViewBag.SearchKey, StringComparison.InvariantCultureIgnoreCase))
+						{
+						logsByType.Add(log);
+						}
+					}
+				logsByType.Reverse<LogModel.Log>();
+
+				return View(logsByType);
+				}
+			}
 		//// POST: First/Create
 		//[HttpPost]
 		//public ActionResult Logs(LogModel.Log log)

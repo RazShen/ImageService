@@ -12,37 +12,27 @@ namespace ImageServiceWebApplication.Models
 		public LogModel()
 			{
 			logs = new List<Log>();
-			logs.Insert(0,(new Log { FirstName = "WARNING", LastName = "Aron" }));
-
-			logs.Insert(0, (new Log  { FirstName = "WARNING", LastName = "Aron" }));
-			logs.Insert(0,( new Log { FirstName = "ERROR", LastName = "Sinai" }));
-			logs.Insert(0, (new Log { FirstName = "INFO", LastName = "Nisim" }));
-
+			logs.Insert(0,(new Log { Type = "WARNING", Message = "AronOld" }));
+			logs.Insert(0, (new Log  { Type = "WARNING", Message = "AronNew" }));
+			logs.Insert(0,( new Log { Type = "ERROR", Message = "Sinai" }));
+			logs.Insert(0, (new Log { Type = "INFO", Message = "Nisim" }));
 			}
 
 
 		public class Log
 			{
-
-			public Log()
-				{
-
-				}
-
-
 			[Required]
 			[DataType(DataType.Text)]
 			[Display(Name = "Type")]
-			public string FirstName { get; set; }
+			public string Type { get; set; }
 
 			[Required]
 			[DataType(DataType.Text)]
 			[Display(Name = "Message")]
-			public string LastName { get; set; }
-
+			public string Message { get; set; }
 			}
 
-
+	
 		}
 	}
 	

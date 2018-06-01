@@ -16,3 +16,8 @@ textarea {
     max-width: 280px;
 }
 
+
+.not_mapped_style {
+    font-style: oblique;
+    text-align: center;
+}
