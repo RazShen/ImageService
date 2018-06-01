@@ -10,12 +10,11 @@ namespace ImageServiceWebApplication.Controllers
 	{
     public class MainController : Controller
     {
-        
         // GET: First
         public ActionResult ImageWeb()
         {
 			List<ImageWebModel.Student> studentsList = ImageWebModel.LoadText();
-			ImageWebModel iWM = new ImageWebModel();
+			ImageWebModel iWM = ImageWebModel.Instance;
 			ViewBag.status = iWM.GetServiceStatus();
 
 			int numOfPics = iWM.GetNumOfPics();

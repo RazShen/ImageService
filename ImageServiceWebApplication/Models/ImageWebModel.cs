@@ -16,6 +16,7 @@ namespace ImageServiceWebApplication.Models
 		{
 		private IClient ImageWebModelClient { get; set; }
 		private String outputDir;
+		private static ImageWebModel _instance;
 		public static List<Student> LoadText()
 			{
 			string line;
@@ -32,19 +33,34 @@ namespace ImageServiceWebApplication.Models
 			return listOfStudents;
 			}
 
-		public ImageWebModel()
+		private ImageWebModel()
 			{
 			this.ImageWebModelClient = Client.Client.Instance;
+			if (ImageWebModelClient.Running())
+				{
+				this.ImageWebModelClient.UpdateConstantly();
+				this.ImageWebModelClient.UpdateEvent += ConstUpdate;
+				this.SendInitRequest();
+				}
+			}
 
+		public static ImageWebModel Instance
+			{
+			get
+				{
+				if (_instance != null)
+					{
+					return _instance;
+					}
+				_instance = new ImageWebModel();
+				return _instance;
+				}
 			}
 		public String GetServiceStatus()
 			{
 			//find service status
 			if (ImageWebModelClient.Running())
 				{
-				this.ImageWebModelClient.UpdateConstantly();
-				this.ImageWebModelClient.UpdateEvent += ConstUpdate;
-				this.SendInitRequest();
 				return "True";
 				}
 			return "False";

@@ -23,35 +23,33 @@
 </div>
     <h2>Logs list</h2>
     <table class="table">
-        <tr class="not_mapped_style">
-
-
-            <th width="10" class="not_mapped_style">
+        <tr>
+            <th width="10">
                 #
             </th>
-            <th width="30"class="not_mapped_style">
+            <th width="50">
                 @Html.DisplayNameFor(model => model.Type)
             </th>
-            <th class="not_mapped_style">
+            <th>
                 @Html.DisplayNameFor(model => model.Message)
             </th>
         </tr>
 
         @foreach (var item in Model)
             {
-            <tr class="not_mapped_style">
-                <td class="not_mapped_style">
+            <tr>
+                <td>
                     @{i = (i + 1);
                     }
                     @i
                 </td>
-                <td class="not_mapped_style">
+                <td>
                     @Html.DisplayFor(modelItem => item.Type)
                 </td>
-                <td class="not_mapped_style">
+                <td>
                     @Html.DisplayFor(modelItem => item.Message)
                 </td>
  
-            </trclass="not_mapped_style">}
+            </tr>}
 
     </table>

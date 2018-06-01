@@ -15,22 +15,23 @@ namespace ImageServiceWebApplication.Controllers
 		// GET: First/Create
 		public ActionResult Logs()
 			{
-			logModel = new LogModel();
+			logModel = LogModel.Instance;
+			List<LogModel.Log> listOflogs = logModel.GetLogs();
 			return View(logModel.logs);
 			}
 
 		[HttpPost]
 		public ActionResult Logs(FormCollection form)
 			{
-			ViewBag.SearchKey = form["typeToFind"];
-			logModel = new LogModel();
-		
+			logModel = LogModel.Instance;
+
+			ViewBag.SearchKey = form["typeToFind"];		
 			if (ViewBag.SearchKey == "")
 				{
 				return View(logModel.logs);
 				} else {
 				List<LogModel.Log> logsByType = new List<LogModel.Log>();
-				foreach (LogModel.Log log in logModel.logs)
+				foreach (LogModel.Log log in this.logModel.logs)
 					{
 					if (log.Type.Equals(ViewBag.SearchKey, StringComparison.InvariantCultureIgnoreCase))
 						{
