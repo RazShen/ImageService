@@ -27,44 +27,5 @@ namespace ImageServiceWebApplication.Controllers
 				}
 			return View(studentsList);
         }
-
-        //[HttpGet]
-        //public ActionResult AjaxView()
-        //{
-        //    return View();
-        //}
-
-
-		//[HttpGet]
-  //      public JObject GetEmployee()
-  //      {
-  //          JObject data = new JObject();
-  //          data["FirstName"] = "Kuky";
-  //          data["LastName"] = "Mopy";
-  //          return data;
-  //      }
-
-  //      [HttpPost]
-  //      public JObject GetEmployee(string name, int salary)
-  //      {
-  //          foreach (var empl in employees)
-  //          {
-  //              if (empl.Salary > salary || name.Equals(name))
-  //              {
-  //                  JObject data = new JObject();
-  //                  data["FirstName"] = empl.FirstName;
-  //                  data["LastName"] = empl.LastName;
-  //                  data["Salary"] = empl.Salary;
-  //                  return data;
-  //              }
-  //          }
-  //          return null;
-  //      }
-
-
-
-        
-
-        
     }
 }

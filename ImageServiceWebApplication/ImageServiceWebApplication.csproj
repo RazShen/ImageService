@@ -125,7 +125,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Config\Config.cshtml" />
     <Content Include="Views\Logs\Logs.cshtml" />
-    <Content Include="Views\Main\Details.cshtml" />
+    <Content Include="Views\Photos\Photos.cshtml" />
     <Content Include="Views\Main\Edit.cshtml" />
     <Content Include="Views\Main\Error.cshtml" />
     <Content Include="Views\Main\ImageWeb.cshtml" />
@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ConfigModel.cs" />
+    <Compile Include="Client\Configurations.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\PhotosModel.cs" />
@@ -168,9 +169,7 @@
       <Name>SharedFiles</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Photos\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
