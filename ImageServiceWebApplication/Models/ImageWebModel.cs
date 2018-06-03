@@ -131,6 +131,7 @@ namespace ImageServiceWebApplication.Models
 				{
 				this.configurations.OutputDirectory = responseObj.Args[0];
 				this.configurations.SourceName = responseObj.Args[1];
+                this.configurations.LogName = responseObj.Args[2];
 				this.configurations.TumbnailSize = responseObj.Args[3];
 				string[] handlers = responseObj.Args[4].Split(';');
 				foreach (string handler in handlers)

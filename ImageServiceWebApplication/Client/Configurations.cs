@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -12,12 +13,13 @@ namespace ImageServiceWebApplication.Client
 		public string OutputDirectory { get; set; }
 		public string SourceName { get; set; }
 		public string TumbnailSize { get; set; }
-		public List<string> Handlers { get; set; }
+        public string LogName { get; set; }
+        public ObservableCollection<string> Handlers { get; set; }
 
 		private Configurations()
 			{
 			this.Exists = true;
-			Handlers = new List<string>();
+			Handlers = new ObservableCollection<string>();
 			}
 		public static Configurations Instance
 			{
