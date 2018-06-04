@@ -9,48 +9,91 @@ namespace ImageServiceWebApplication.Models
 	{
 	public class PhotosModel
 		{
+		private PhotosContainer photosContainer;
+		private static PhotosModel _instance;
+		public List<Photo> photosList;
+		public Boolean exists;
+		private PhotosModel()
+			{
+			this.photosContainer = new PhotosContainer();
+			photosList = this.photosContainer.PhotosList;
+			exists = true;
+			}
+
+		public static PhotosModel Instance
+			{
+			get
+				{
+				if (_instance != null)
+					{
+					return _instance;
+					}
+				_instance = new PhotosModel();
+				return _instance;
+				}
+			}
 
 
 
 
 
 
-
+		public class Photo
+			{
+			public Image Image { get; set; }
+			public int CreationYear { get; set; }
+			public int CreationMonth { get; set; }
+			public String name { get; set; }
+			}
 		public class PhotosContainer
 			{
 			private string m_outputDir;
-			public List<Image> PhotosList = new List<Image>();
+			public List<Photo> PhotosList = new List<Photo>();
 
 			public PhotosContainer()
 				{
 				// set up Initialize from output folder
-
+				this.m_outputDir = Client.Configurations.Instance.OutputDirectory;
+				this.Initialize();
 				}
 
 			private void Initialize()
 				{
-				string thumbnailDir = m_outputDir + "\\Thumbnails";
-				if (!Directory.Exists(thumbnailDir))
+				try
 					{
-					return;
-					}
-				DirectoryInfo di = new DirectoryInfo(thumbnailDir);
-				//The only file types are relevant.
-				string[] validExtensions = { ".jpg", ".png", ".gif", ".bmp" };
-				foreach (DirectoryInfo yearDirInfo in di.GetDirectories())
-					{
-
-					foreach (DirectoryInfo monthDirInfo in yearDirInfo.GetDirectories())
+					string thumbnailDir = m_outputDir + "\\Thumbnails";
+					if (!Directory.Exists(thumbnailDir))
+						{
+						return;
+						}
+					DirectoryInfo di = new DirectoryInfo(thumbnailDir);
+					//The only file types are relevant.
+					string[] validExtensions = { ".jpg", ".png", ".gif", ".bmp" };
+					foreach (DirectoryInfo yearDirInfo in di.GetDirectories())
 						{
 
-						foreach (FileInfo fileInfo in monthDirInfo.GetFiles())
+						foreach (DirectoryInfo monthDirInfo in yearDirInfo.GetDirectories())
 							{
-							if (validExtensions.Contains(fileInfo.Extension.ToLower()))
+
+							foreach (FileInfo fileInfo in monthDirInfo.GetFiles())
 								{
-								PhotosList.Add(Image.FromFile(fileInfo.FullName));
+								if (validExtensions.Contains(fileInfo.Extension.ToLower()))
+									{
+									try
+										{
+										PhotosList.Add(new Photo { Image = Image.FromFile(fileInfo.FullName), name = fileInfo.Name, CreationMonth = Int32.Parse(monthDirInfo.Name), CreationYear = Int32.Parse(yearDirInfo.Name) });
+										}
+									catch (Exception e)
+										{ // couldn't read data for photo 
+
+										}
+									}
 								}
 							}
 						}
+					} catch (Exception e)
+					{
+					// something went wrong initializing the photos
 					}
 				}
 			}
