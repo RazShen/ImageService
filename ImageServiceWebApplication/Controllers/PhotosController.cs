@@ -13,13 +13,22 @@ namespace ImageServiceWebApplication.Controllers
     {
 		private PhotosModel photosModel;
 
+		/// <summary>
+		/// Returns all the photos in the thumbnail view.
+		/// </summary>
+		/// <returns></returns>
 		public ActionResult Photos()
 			{
 			this.photosModel = PhotosModel.Instance;
 			this.photosModel.Initialize();
 			return View(this.photosModel.photosList);
 			}
-
+		
+		/// <summary>
+		/// Returns a view of spcific photo
+		/// </summary>
+		/// <param name="photoView"></param>
+		/// <returns> view of specific photo</returns>
 		public ActionResult PhotoView(string photoView)
 			{
 
@@ -34,6 +43,11 @@ namespace ImageServiceWebApplication.Controllers
 			return View();
 			}
 
+		/// <summary>
+		/// Returns the new photos view
+		/// </summary>
+		/// <param name="photoView"></param>
+		/// <returns></returns>
 		public ActionResult ReturnFromDelete(string photoView)
 			{
 
@@ -59,6 +73,11 @@ namespace ImageServiceWebApplication.Controllers
 			return RedirectToAction("Photos");
 			}		
 
+		/// <summary>
+		/// Delete a specific image (open new view to make sure the user wants to delete)
+		/// </summary>
+		/// <param name="photoView"></param>
+		/// <returns></returns>
 		public ActionResult DeleteImage(string photoView)
 			{
 			this.photosModel = PhotosModel.Instance;

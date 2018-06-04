@@ -4,8 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
+
 namespace ImageServiceWebApplication.Client
 	{
+	/// <summary>
+	/// Configuration class holds all the basic information.
+	/// </summary>
 	public class Configurations
 		{
 		private static Configurations _instance;
@@ -16,11 +20,17 @@ namespace ImageServiceWebApplication.Client
         public string LogName { get; set; }
         public ObservableCollection<string> Handlers { get; set; }
 
+		/// <summary>
+		/// Private constructor (singleton)
+		/// </summary>
 		private Configurations()
 			{
 			this.Exists = true;
 			Handlers = new ObservableCollection<string>();
 			}
+		/// <summary>
+		/// Singelton (returns the instance of the element if exists one).
+		/// </summary>
 		public static Configurations Instance
 			{
 			get

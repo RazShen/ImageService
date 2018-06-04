@@ -15,6 +15,9 @@ namespace ImageServiceWebApplication.Models
 		private IClient logModelClient { get; set; }
 		private static LogModel _instance;
 		public List<Log> logs;
+		/// <summary>
+		/// private constructor for the singelton
+		/// </summary>
 		private LogModel()
 			{
 
@@ -25,12 +28,10 @@ namespace ImageServiceWebApplication.Models
 				this.logModelClient.UpdateEvent += ConstUpdate;
 				this.SendInitRequest();
 				}
-			//logs.Insert(0,(new Log { Type = "WARNING", Message = "AronOld" }));
-			//logs.Insert(0, (new Log  { Type = "WARNING", Message = "AronNew" }));
-			//logs.Insert(0,( new Log { Type = "ERROR", Message = "Sinai" }));
-			//logs.Insert(0, (new Log { Type = "INFO", Message = "Nisim" }));
-
 			}
+		/// <summary>
+		/// Get instance of the singelton.
+		/// </summary>
 		public static LogModel Instance
 			{
 			get
@@ -43,7 +44,10 @@ namespace ImageServiceWebApplication.Models
 				return _instance;
 				}
 			}
-
+		/// <summary>
+		/// Get update from the server about the logs.
+		/// </summary>
+		/// <param name="args"></param>
 		private void ConstUpdate(CommandRecievedEventArgs args)
 			{
 			if (args != null)
@@ -61,6 +65,10 @@ namespace ImageServiceWebApplication.Models
 				}
 			}
 
+		/// <summary>
+		/// ask the currect logs from the server
+		/// </summary>
+		/// <returns></returns>
 		private bool SendInitRequest()
 			{
 			try
@@ -77,6 +85,10 @@ namespace ImageServiceWebApplication.Models
 			return true;
 			}
 
+		/// <summary>
+		/// add the logs from the server
+		/// </summary>
+		/// <param name="args"></param>
 		private void SetupPreviousLogs(CommandRecievedEventArgs args)
 			{
 			try
@@ -93,6 +105,10 @@ namespace ImageServiceWebApplication.Models
 				}
 			}
 
+		/// <summary>
+		/// return the logs
+		/// </summary>
+		/// <returns></returns>
 		public List<Log> GetLogs()
 			{
 			//int sleepCounter = 0;
@@ -100,6 +116,10 @@ namespace ImageServiceWebApplication.Models
 			return this.logs;
 			}
 
+		/// <summary>
+		/// Insert a new logs from the server
+		/// </summary>
+		/// <param name="args"></param>
 		private void InsertLog(CommandRecievedEventArgs args)
 			{
 			try
@@ -112,6 +132,9 @@ namespace ImageServiceWebApplication.Models
 				Console.WriteLine(e.ToString());
 				}
 			}
+		/// <summary>
+		/// log class
+		/// </summary>
 		public class Log
 			{
 			[Required]

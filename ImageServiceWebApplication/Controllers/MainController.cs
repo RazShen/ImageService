@@ -10,6 +10,10 @@ namespace ImageServiceWebApplication.Controllers
 	{
     public class MainController : Controller
     {
+		/// <summary>
+		/// Returns the view of the image web
+		/// </summary>
+		/// <returns> view of the image web</returns>
         // GET: First
         public ActionResult ImageWeb()
         {

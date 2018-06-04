@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ImageServiceWebApplication.Client
 	{
 	/// <summary>
-	/// Client of the GUI class (which handlers all the gui request and receive to/from the server)
+	/// Client of the class (which handlers all the gui request and receive to/from the server)
 	/// </summary>
 	class Client : IClient
 		{

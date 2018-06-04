@@ -126,8 +126,6 @@
     <Content Include="Views\Config\Config.cshtml" />
     <Content Include="Views\Logs\Logs.cshtml" />
     <Content Include="Views\Photos\Photos.cshtml" />
-    <Content Include="Views\Main\Edit.cshtml" />
-    <Content Include="Views\Main\Error.cshtml" />
     <Content Include="Views\Main\ImageWeb.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -145,7 +143,6 @@
     </Compile>
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Client\Configurations.cs" />
-    <Compile Include="Models\ImageHelper.cs" />
     <Compile Include="Models\ImageWebModel.cs" />
     <Compile Include="Models\LogModel.cs" />
     <Compile Include="Models\PhotosModel.cs" />

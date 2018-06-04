@@ -19,6 +19,10 @@ namespace ImageServiceWebApplication.Models
 		private Client.Configurations configurations;
 		private static ImageWebModel _instance;
 		private bool askedForConf;
+		/// <summary>
+		/// loads text from app_data/students_Data
+		/// </summary>
+		/// <returns></returns>
 		public static List<Student> LoadText()
 			{
 			string line;
@@ -35,6 +39,9 @@ namespace ImageServiceWebApplication.Models
 			return listOfStudents;
 			}
 
+		/// <summary>
+		/// Constructor for the singleton.
+		/// </summary>
 		private ImageWebModel()
 			{
 			this.ImageWebModelClient = Client.Client.Instance;
@@ -49,6 +56,9 @@ namespace ImageServiceWebApplication.Models
 				}
 			}
 
+		/// <summary>
+		/// Get instance of the singelton.
+		/// </summary>
 		public static ImageWebModel Instance
 			{
 			get
@@ -61,6 +71,10 @@ namespace ImageServiceWebApplication.Models
 				return _instance;
 				}
 			}
+		/// <summary>
+		/// Returns the status of the service
+		/// </summary>
+		/// <returns></returns>
 		public String GetServiceStatus()
 			{
 			//find service status
@@ -70,7 +84,11 @@ namespace ImageServiceWebApplication.Models
 				}
 			return "False";
 			}
-
+		
+		/// <summary>
+		/// Calculates number of pictures in output folder
+		/// </summary>
+		/// <returns></returns>
 		public int GetNumOfPics()
 			{
 			try
@@ -93,7 +111,10 @@ namespace ImageServiceWebApplication.Models
 					}
 				} catch (Exception e) { return -1; }
 			}
-
+		/// <summary>
+		/// Gets updates from the server on the service status
+		/// </summary>
+		/// <param name="args"></param>
 		private void ConstUpdate(CommandRecievedEventArgs args)
 			{
 			if (args != null)
@@ -107,6 +128,10 @@ namespace ImageServiceWebApplication.Models
 				}
 			}
 
+		/// <summary>
+		/// Asks the service to return basic parameters (output dir, log name, etc).
+		/// </summary>
+		/// <returns></returns>
 		private bool SendInitRequest()
 			{
 			try
@@ -125,6 +150,10 @@ namespace ImageServiceWebApplication.Models
 			return true;
 			}
 
+		/// <summary>
+		/// Initialize the basic parameters we get from the server
+		/// </summary>
+		/// <param name="responseObj"></param>
 		private void GetComponents(CommandRecievedEventArgs responseObj)
 			{
 			try
@@ -145,7 +174,9 @@ namespace ImageServiceWebApplication.Models
 				}
 			}
 
-
+		/// <summary>
+		///  student class.
+		/// </summary>
 		public class Student
 			{
 			public Student(string inID, string first, string last)
@@ -165,17 +196,5 @@ namespace ImageServiceWebApplication.Models
 			public string lastName { get; set; }
 			}
 
-		public class ImageWebObj
-			{
-			public int NumOfPic { get; set; }
-			public List<Student> Students { get; set; }
-			public Boolean ServiceStatus { get; set; }
-			public ImageWebObj(int numberOfPics, List<Student> list, Boolean stat)
-				{
-				NumOfPic = numberOfPics;
-				Students = list;
-				ServiceStatus = stat;
-				}
-			}
 		}
 	}

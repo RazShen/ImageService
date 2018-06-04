@@ -13,7 +13,7 @@ namespace ImageServiceWebApplication.AppStart
         {
 			// 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+			// first open image web
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

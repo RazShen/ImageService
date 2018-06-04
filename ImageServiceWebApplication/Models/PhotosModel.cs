@@ -13,13 +13,18 @@ namespace ImageServiceWebApplication.Models
 		private static PhotosModel _instance;
 		public List<Photo> photosList;
 		public Boolean exists;
+		/// <summary>
+		/// Constructor of the photo model
+		/// </summary>
 		private PhotosModel()
 			{
 			this.photosContainer = new PhotosContainer();
 			photosList = this.photosContainer.PhotosList;
 			exists = true;
 			}
-
+		/// <summary>
+		/// Get instance of the photo model (singelton)
+		/// </summary>
 		public static PhotosModel Instance
 			{
 			get
@@ -34,7 +39,9 @@ namespace ImageServiceWebApplication.Models
 			}
 
 
-
+		/// <summary>
+		/// Initialize the photo model
+		/// </summary>
 		public void Initialize()
 			{
 			this.photosContainer = new PhotosContainer();
@@ -55,7 +62,9 @@ namespace ImageServiceWebApplication.Models
 			{
 			private string m_outputDir;
 			public List<Photo> PhotosList = new List<Photo>();
-
+			/// <summary>
+			/// Photo container constructor.
+			/// </summary>
 			public PhotosContainer()
 				{
 				// set up Initialize from output folder
@@ -63,6 +72,9 @@ namespace ImageServiceWebApplication.Models
 				this.Initialize();
 				}
 
+			/// <summary>
+			/// Initialize the photos container with information about the photos
+			/// </summary>
 			private void Initialize()
 				{
 				try

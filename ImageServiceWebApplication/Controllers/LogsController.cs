@@ -8,10 +8,16 @@ using System.Web.Mvc;
 
 namespace ImageServiceWebApplication.Controllers
 {
+	/// <summary>
+	/// Logs Controller.
+	/// </summary>
     public class LogsController : Controller
     {
 		public LogModel logModel; 
-		
+		/// <summary>
+		/// Returns the view of all the logs.
+		/// </summary>
+		/// <returns></returns>
 		// GET: First/Create
 		public ActionResult Logs()
 			{
@@ -20,6 +26,11 @@ namespace ImageServiceWebApplication.Controllers
 			return View(logModel.logs);
 			}
 
+		/// <summary>
+		/// Returns view of the logs after search has accured.
+		/// </summary>
+		/// <param name="form"> of the search</param>
+		/// <returns> view </returns>
 		[HttpPost]
 		public ActionResult Logs(FormCollection form)
 			{
@@ -43,20 +54,5 @@ namespace ImageServiceWebApplication.Controllers
 				return View(logsByType);
 				}
 			}
-		//// POST: First/Create
-		//[HttpPost]
-		//public ActionResult Logs(LogModel.Log log)
-		//	{
-		//	try
-		//		{
-		//		logModel.logs.Add(log);
-
-		//		return RedirectToAction("Logs");
-		//		}
-		//	catch
-		//		{
-		//		return View();
-		//		}
-		//	}
 		}
 	}
