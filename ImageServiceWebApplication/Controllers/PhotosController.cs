@@ -16,6 +16,7 @@ namespace ImageServiceWebApplication.Controllers
 		public ActionResult Photos()
 			{
 			this.photosModel = PhotosModel.Instance;
+			this.photosModel.Initialize();
 			return View(this.photosModel.photosList);
 			}
 

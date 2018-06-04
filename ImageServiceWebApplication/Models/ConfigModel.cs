@@ -46,7 +46,7 @@ namespace ImageServiceWebApplication.Models
                 if (!ImageWebModelClient.Running()) { return false; }
                 CommandRecievedEventArgs commandReq = new CommandRecievedEventArgs((int)CommandEnum.CloseHandlerCommand, arr, "");
                 this.ImageWebModelClient.WriteCommandToServer(commandReq);
-                this.ImageWebModelClient.
+                //this.ImageWebModelClient.
 
             }
             catch (Exception e)

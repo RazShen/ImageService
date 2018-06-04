@@ -35,12 +35,14 @@ namespace ImageServiceWebApplication.Models
 
 
 
-
-
+		public void Initialize()
+			{
+			this.photosContainer = new PhotosContainer();
+			this.photosList = this.photosContainer.PhotosList;
+			}
 
 		public class Photo
 			{
-			public Image Image { get; set; }
 			public int CreationYear { get; set; }
 			public int CreationMonth { get; set; }
 			public String Name { get; set; }
@@ -85,7 +87,7 @@ namespace ImageServiceWebApplication.Models
 									{
 									try
 										{
-										PhotosList.Add(new Photo { Image = Image.FromFile(fileInfo.FullName), Name = fileInfo.Name, CreationMonth = Int32.Parse(monthDirInfo.Name), CreationYear = Int32.Parse(yearDirInfo.Name),
+										PhotosList.Add(new Photo { Name = fileInfo.Name, CreationMonth = Int32.Parse(monthDirInfo.Name), CreationYear = Int32.Parse(yearDirInfo.Name),
 											RelPath = "~/Uploads/" + yearDirInfo.Parent.Parent.Name + "/" + yearDirInfo.Parent.Name + "/" + yearDirInfo.Name + "/" + monthDirInfo.Name + "/" + fileInfo.Name,
 											RealRelPath = "~/Uploads/" + yearDirInfo.Parent.Parent.Name + "/" + yearDirInfo.Name + "/" + monthDirInfo.Name + "/" + fileInfo.Name,
 											Path = fileInfo.FullName.Replace(@"Thumbnails\", String.Empty),

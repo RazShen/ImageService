@@ -5,6 +5,9 @@
 }
 
 <h1> Photo's name: @Model.Name</h1><b1></b1>
+<h1> Year: @Model.CreationYear</h1><b1></b1>
+<h1> Month: @Model.CreationMonth</h1><b1></b1>
+
 <a href="@Url.Action("DeleteImage", new { photoView = Model.RealRelPath })" id="delete" class="btn btn-danger btn-xs" role="button">Delete</a></p>
 <b1></b1>
 <img src="@Url.Content(Model.RealRelPath)">
