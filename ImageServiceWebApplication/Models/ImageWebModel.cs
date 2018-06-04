@@ -85,7 +85,7 @@ namespace ImageServiceWebApplication.Models
 					int png = di.GetFiles("*.PNG", SearchOption.AllDirectories).Length;
 					int bmp = di.GetFiles("*.BMP", SearchOption.AllDirectories).Length;
 					int gif = di.GetFiles("*.GIF", SearchOption.AllDirectories).Length;
-					return jpg + png + bmp + gif;
+					return (int)((jpg + png + bmp + gif)/2);
 					}
 				else
 					{

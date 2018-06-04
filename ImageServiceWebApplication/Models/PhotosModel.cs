@@ -43,7 +43,11 @@ namespace ImageServiceWebApplication.Models
 			public Image Image { get; set; }
 			public int CreationYear { get; set; }
 			public int CreationMonth { get; set; }
-			public String name { get; set; }
+			public String Name { get; set; }
+			public String RelPath { get; set; }
+			public String RealRelPath { get; set; }
+			public String Path { get; set; }
+			public String ThumbnailPath { get; set; }
 			}
 		public class PhotosContainer
 			{
@@ -81,7 +85,12 @@ namespace ImageServiceWebApplication.Models
 									{
 									try
 										{
-										PhotosList.Add(new Photo { Image = Image.FromFile(fileInfo.FullName), name = fileInfo.Name, CreationMonth = Int32.Parse(monthDirInfo.Name), CreationYear = Int32.Parse(yearDirInfo.Name) });
+										PhotosList.Add(new Photo { Image = Image.FromFile(fileInfo.FullName), Name = fileInfo.Name, CreationMonth = Int32.Parse(monthDirInfo.Name), CreationYear = Int32.Parse(yearDirInfo.Name),
+											RelPath = "~/Uploads/" + yearDirInfo.Parent.Parent.Name + "/" + yearDirInfo.Parent.Name + "/" + yearDirInfo.Name + "/" + monthDirInfo.Name + "/" + fileInfo.Name,
+											RealRelPath = "~/Uploads/" + yearDirInfo.Parent.Parent.Name + "/" + yearDirInfo.Name + "/" + monthDirInfo.Name + "/" + fileInfo.Name,
+											Path = fileInfo.FullName.Replace(@"Thumbnails\", String.Empty),
+											ThumbnailPath = fileInfo.FullName
+											});
 										}
 									catch (Exception e)
 										{ // couldn't read data for photo 
