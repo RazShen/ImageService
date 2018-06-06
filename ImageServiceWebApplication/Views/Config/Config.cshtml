@@ -6,128 +6,47 @@
 }
 
 <h2>Configuration</h2>
-<br /><br />
 
 @using (Html.BeginForm())
-{
+    {
     @Html.AntiForgeryToken()
 
-            <div class="table table-striped-group">
-                <hr />
-                <p>
-                    @Html.LabelFor(m => m.OutputDirectory, new { @class = "col-md-2 control-label" })
+    <div class="table table-striped-group">
+        <hr />
+        <p>
+            @Html.LabelFor(m => m.OutputDirectory, new { @class = "col-md-2 control-label" })
 
-                    @Html.DisplayFor(m => m.OutputDirectory, new { @class = "col-md-2 control-label" })
-                </p>
-                <p>
-                    @Html.LabelFor(m => m.SourceName, new { @class = "col-md-2 control-label" })
+            @Html.DisplayFor(m => m.OutputDirectory, new { @class = "col-md-2 control-label" })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.SourceName, new { @class = "col-md-2 control-label" })
 
-                    @Html.DisplayFor(m => m.SourceName, new { @class = "col-md-2 control-label" })
-                </p>
-                <p>
-                    @Html.LabelFor(m => m.LogName, new { @class = "col-md-2 control-label" })
+            @Html.DisplayFor(m => m.SourceName, new { @class = "col-md-2 control-label" })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.LogName, new { @class = "col-md-2 control-label" })
 
-                    @Html.DisplayFor(m => m.LogName, new { @class = "col-md-2 control-label" })
-                </p>
-                <p>
-                    @Html.LabelFor(m => m.ThumbnailSize, new { @class = "col-md-2 control-label" })
+            @Html.DisplayFor(m => m.LogName, new { @class = "col-md-2 control-label" })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.ThumbnailSize, new { @class = "col-md-2 control-label" })
 
-                    @Html.DisplayFor(m => m.ThumbnailSize, new { @class = "col-md-2 control-label" })
-                </p>
-                <br />
-                <p><label>The Handlers:</label></p>
-                
+            @Html.DisplayFor(m => m.ThumbnailSize, new { @class = "col-md-2 control-label" })
+        </p>
+        <br />
+        <p><label>The Handlers:</label></p>
+
         <ul class="nav nav-pills nav-stacked">
 
             @foreach (var item in Model.Handlers)
-            {
-                <li>
-                    <a href="#">
-                        @Html.DisplayFor(modelItem => item)
-
-                    </a>
-                </li>
-            }
-        </ul>
-            </div>
-
-}
-
-
-@*
-
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OutputDirectory) @Html.DisplayFor(model => model.OutputDirectory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SourceName) @Html.DisplayFor(model => model.SourceName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LogName) @Html.DisplayFor(model => model.LogName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ThumbnailSize) @Html.DisplayFor(model => model.ThumbnailSize)
-            </th>
-        </tr>
-    *@
-        @*@foreach (var item in Model.Handlers)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item)
-                        </td>
-                    </tr>
+                <li>
+                    @Html.ActionLink(@item, "DeleteHandler", new { handler = item })
+                </li>
                 }
-            </table>
-        *@
+        </ul>
+    </div>
 
-        
-        @*
-            <div>
-                <h2>Employee json Get</h2>
-                <table>
-                    <tr>
-                        <td>Id:  </td>
-                        <td><p type="text" id="prodId" size="5"></p></td>
-                    </tr>
-                    <tr>
-                        <td>Name:  </td>
-                        <td><p type="text" id="prodName" size="5"></p></td>
-                    </tr>
-                </table>
-                <button type="button" id="btnStart" style="margin:10px">Get Data</button>
+    }
 
-                <div>
-                    <h2>Search  by  Salary and Name</h2>
-                    <p> Salary: </p>
-                    <input type="text" id="txtSalaryId" size="5" />
-                    <p> Name: </p>
-                    <input type="text" id="NameID" size="5" />
-                    <input type="button" id="btnSearch" value="Search" />
-                    <ul id="lstProducts"></ul>
-                </div>
 
-            </div>
-
-                <script>
-                    $("#btnStart").click(function () {
-                        $.getJSON("@Url.Action("GetEmployee")", function (empl) {
-                            $("#prodId").text(empl.FirstName);
-                            $("#prodName").text(empl.LastName);
-                        });
-                    });
-
-                    $("#btnSearch").click(function () {
-                        var input = {
-                            name:$("#NameID").val(),
-                            salary: $("#txtSalaryId").val()
-                        };
-                        $.post("@Url.Action("GetEmployee")", input, function (data) {
-                            $("#lstProducts").append("<li>" + data.FirstName + " " + data.LastName + " : $" + data.Salary + "</li>");
-                        }, "json");
-                    });
-
-                </script>
-        *@
