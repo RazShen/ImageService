@@ -2,6 +2,7 @@
 using SharedFiles;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -18,24 +19,24 @@ namespace ImageServiceWebApplication.Models
 
 		public ConfigModel()
 			{
-			//  configurations = Client.Configurations.Instance;
-			//    SourceName = configurations.SourceName;
-			//      LogName = configurations.LogName;
-			//        OutputDirectory = configurations.OutputDirectory;
-			//          Handlers = configurations.Handlers;
-			//            ThumbnailSize = configurations.TumbnailSize;
+			configurations = Client.Configurations.Instance;
+			SourceName = configurations.SourceName;
+			LogName = configurations.LogName;
+		    OutputDirectory = configurations.OutputDirectory;
+			Handlers = configurations.Handlers;
+			ThumbnailSize = configurations.TumbnailSize;
 			this.ImageWebModelClient = Client.Client.Instance;
 			this.ImageWebModelClient.UpdateEvent += ConstUpdate;
-			SourceName = "ss";
-			LogName = "ee";
-			OutputDirectory = "we";
-			ThumbnailSize = "size";
+			//SourceName = "ss";
+			//LogName = "ee";
+			//OutputDirectory = "we";
+			//ThumbnailSize = "size";
 
-			List<string> Handlers2 = new List<string>
-			{
-				"11", "22"
-			};
-			Handlers = Handlers2;
+			//List<string> Handlers2 = new List<string>
+			//{
+			//	"11", "22"
+			//};
+			//Handlers = Handlers2;
 			}
 
 		public bool DeleteHandler(string HandlerToDelete)
@@ -98,6 +99,6 @@ namespace ImageServiceWebApplication.Models
 		[Required]
 		[DataType(DataType.Text)]
 		[Display(Name = "Handlers: ")]
-		public List<string> Handlers { get; set; }
+		public ObservableCollection<string> Handlers { get; set; }
 		}
 	}

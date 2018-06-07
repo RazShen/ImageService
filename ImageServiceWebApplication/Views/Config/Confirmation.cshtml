@@ -21,6 +21,8 @@
 
     $("#CancelBotton").click(function () {
         $.post("@Url.Action("DeleteCancel")", function () {
+          //  document.getElementById("OKBotton").disable = true;
+          //  document.getElementById("CancelBotton").disable = true;
             window.location.href = "Config";
         });
     });
