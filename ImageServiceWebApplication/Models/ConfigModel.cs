@@ -16,30 +16,27 @@ namespace ImageServiceWebApplication.Models
 		private Client.Configurations configurations;
 		private IClient ImageWebModelClient { get; set; }
 
-
-		public ConfigModel()
+        /// <summary>
+        /// constructor.
+        /// initialize the configuration params.
+        /// </summary>
+        public ConfigModel()
 			{
 			configurations = Client.Configurations.Instance;
 			SourceName = configurations.SourceName;
 			LogName = configurations.LogName;
 		    OutputDirectory = configurations.OutputDirectory;
-			Handlers = configurations.Handlers;
+            Handlers = new ObservableCollection<string>();
+            Handlers = configurations.Handlers;
 			ThumbnailSize = configurations.TumbnailSize;
 			this.ImageWebModelClient = Client.Client.Instance;
 			this.ImageWebModelClient.UpdateEvent += ConstUpdate;
-			//SourceName = "ss";
-			//LogName = "ee";
-			//OutputDirectory = "we";
-			//ThumbnailSize = "size";
-
-			//List<string> Handlers2 = new List<string>
-			//{
-			//	"11", "22"
-			//};
-			//Handlers = Handlers2;
 			}
-
-		public bool DeleteHandler(string HandlerToDelete)
+        /// <summary>
+        /// DeleteHandler function that deletes a handler.
+        /// </summary>
+        /// <param name="HandlerToDelete"></param>
+        public bool DeleteHandler(string HandlerToDelete)
 			{
 			try
 				{
@@ -55,8 +52,11 @@ namespace ImageServiceWebApplication.Models
 				}
 			return true;
 			}
-
-		private void CloseHandler(CommandRecievedEventArgs responseObj)
+        /// <summary>
+        /// CloseHandler function.
+        /// </summary>
+        /// <param name="responseObj">the info came from srv</param>
+        private void CloseHandler(CommandRecievedEventArgs responseObj)
 			{
 			if (Handlers.Contains(responseObj.Args[0]) && responseObj.Args != null
 				&& responseObj != null && Handlers != null)
@@ -64,7 +64,13 @@ namespace ImageServiceWebApplication.Models
 				this.Handlers.Remove(responseObj.Args[0]);
 				}
 			}
-		private void ConstUpdate(CommandRecievedEventArgs args)
+
+        /// <summary>
+        /// Update function.
+        /// updates the model when a message recieved from srv.
+        /// </summary>
+        /// <param name="args">the info arguments from the server</param>
+        private void ConstUpdate(CommandRecievedEventArgs args)
 			{
 			if (args != null)
 				{

@@ -16,25 +16,24 @@ namespace ImageServiceWebApplication.Controllers
 		// GET: Config
 		public ActionResult Config()
 			{
-
 			return View(cm);
 			}
-
-		public ActionResult DeleteHandler(string handler)
+        // GET: Config/delete handler
+        public ActionResult DeleteHandler(string handler)
 			{
 			handlerToDelete = handler;
 			return View("Confirmation");
 
 			}
-
-		public ActionResult DeleteOK()
+        // GET: Config/delete handler/ok
+        public ActionResult DeleteOK()
 			{
 			cm.DeleteHandler(handlerToDelete);
 			System.Threading.Thread.Sleep(1000);
 			return RedirectToAction("Config");
 			}
-
-		public ActionResult DeleteCancel()
+        // GET: Config/delete handler/cancel - go back
+        public ActionResult DeleteCancel()
 			{
 			return RedirectToAction("Config");
 			}

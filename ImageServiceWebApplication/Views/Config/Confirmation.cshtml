@@ -8,27 +8,30 @@
 <br />
 <h2>Are you sure you want to delete the  handler?</h2>
 
-<button type=button id="CancelBotton" onclick='NavigateToPage("config.cshtml")}'>CANCEL</button>
+<button type=button id="CancelBotton" '>CANCEL</button>
 <button type="button" id="OkBotton">OK</button>
-
 
 <script>
     $("#OkBotton").click(function () {
         $.post("@Url.Action("DeleteOK")", function () {
             window.location.href = "Config";
+            document.getElementById("OKBotton").disable = true;
+            document.getElementById("CancelBotton").disable = true;
         });
     });
 
     $("#CancelBotton").click(function () {
         $.post("@Url.Action("DeleteCancel")", function () {
-          //  document.getElementById("OKBotton").disable = true;
-          //  document.getElementById("CancelBotton").disable = true;
             window.location.href = "Config";
+            document.getElementById("OKBotton").disable = true;
+            document.getElementById("CancelBotton").disable = true;
+
         });
     });
 
 </script>
 
+///onclick='NavigateToPage("config.cshtml")}
 
 
 
