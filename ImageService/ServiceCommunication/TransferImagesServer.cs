@@ -29,7 +29,9 @@ namespace ImageService.ServiceCommunication
 			this.Logging = logging;
 			this.Ch = ch;
 			}
-
+		/// <summary>
+		/// This function starts listening to tcp connections
+		/// </summary>
 		public void Start()
 			{
 			try

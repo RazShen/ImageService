@@ -73,6 +73,10 @@ namespace ImageServiceTools.Modal
 
 					// override same name files
 
+					/*
+					 * The following lines of code are nessecary since an exception happens each time I try to overwrite a picture with same name
+					 * so I delete the image in the handler itself.
+					 */
 					fileName = Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path);
 					try
 						{
@@ -99,10 +103,12 @@ namespace ImageServiceTools.Modal
 						result = false;
 						return "path is not exist";
 				}
+				
 			} catch (Exception ex) {
 				result = false;
 				try
 					{
+					// Sometimes exception happens here since System Out of memory (ususally for 32bit compilations).
 					File.Delete(path);
 					} catch (Exception e) { };
 				return ex.ToString() + path;
