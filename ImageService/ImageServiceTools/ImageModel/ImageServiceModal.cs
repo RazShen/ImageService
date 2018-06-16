@@ -46,26 +46,51 @@ namespace ImageServiceTools.Modal
 					Directory.CreateDirectory(OutputFolder + "\\" + "Thumbnails" + "\\" + year + "\\" + month);
 					string finalOutputPath = OutputFolder + "\\" + year + "\\" + month + "\\";
 					string finalOutputTPath = OutputFolder + "\\" + "Thumbnails" + "\\" + year + "\\" + month + "\\";
-					int counter = 0;
-					String fileName = Path.GetFileName(path);                         
-					while (File.Exists(finalOutputTPath + fileName)) {
-						counter++;
-						fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
-					}
+					//int counter = 0;
+					String fileName = Path.GetFileName(path);
+					// change the name of the file
+					//while (File.Exists(finalOutputTPath + fileName)) {
+					//	counter++;
+					//	fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
+					//}
+					fileName = Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path);
 					Image thumbnail;
 					using (thumbnail = Image.FromFile(path))
 					{
 						thumbnail = (Image)(new Bitmap(thumbnail, new Size(this.ThumbnailSize, this.ThumbnailSize)));
 						thumbnail.Save(finalOutputTPath + fileName);
 					}
-					counter = 0;
-					fileName = Path.GetFileName(path); 
-					while (File.Exists(finalOutputPath + fileName))
-					{
-						counter++;
-						fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
-					}
-					File.Move(path, finalOutputPath + fileName);    
+					//counter = 0;
+					fileName = Path.GetFileName(path);
+					// change the name of the file
+
+					//while (File.Exists(finalOutputPath + fileName))
+					//{
+					//	counter++;
+					//	fileName = Path.GetFileNameWithoutExtension(path) + "(" + counter.ToString() + ")" + Path.GetExtension(path);
+					//}
+
+
+					// override same name files
+
+					fileName = Path.GetFileNameWithoutExtension(path) + Path.GetExtension(path);
+					try
+						{
+						File.Move(path, finalOutputPath + fileName);
+						} catch (IOException io)
+						{
+						try
+							{
+							File.Delete(path);
+							} catch (Exception e) {
+							result = true;
+							return "The file: " + Path.GetFileName(path) + " already exists in:" + finalOutputPath +
+								" so I didn't move it, couldn't delete new file.";
+							}
+						result = true;
+						return "The file: " + Path.GetFileName(path) + " already exists in:" + finalOutputPath +
+							" so I didn't move it.";
+						}
 
 					result = true;
 					return "The file: " + Path.GetFileName(path) + " is now added to " + finalOutputPath +
@@ -76,7 +101,12 @@ namespace ImageServiceTools.Modal
 				}
 			} catch (Exception ex) {
 				result = false;
+				try
+					{
+					File.Delete(path);
+					} catch (Exception e) { };
 				return ex.ToString() + path;
+				
 			}
         }
     }

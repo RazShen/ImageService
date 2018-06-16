@@ -10,6 +10,7 @@ using ImageServiceTools.Controller;
 using ImageServiceTools.Logging;
 using SharedFiles;
 using ImageServiceTools.ServiceCommunication;
+using ImageService.ServiceCommunication;
 
 namespace ImageService
 {
@@ -86,6 +87,9 @@ namespace ImageService
 			this.serverIS.Start();
 			this.logging.LogNotificator += this.updateAllClients;
             this.imageServer.CloseHandlerAlertAll += updateAllClients;
+			IClientHandler tcpClientHandler = new ClientImageSenderHandler(controller, logging);
+			 IServerIS imageServer = new TransferImagesServer(2500, logging, tcpClientHandler);
+			imageServer.Start();
 			}
 
 		public void updateAllClients(CommandRecievedEventArgs args)

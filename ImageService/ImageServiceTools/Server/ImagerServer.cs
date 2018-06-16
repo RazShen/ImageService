@@ -25,6 +25,7 @@ namespace ImageServiceTools.Server
 		//private IDirectoryHandler[] directoryHandlers;
 		public Dictionary<string, IDirectoryHandler> Handlers { get { return _handlers; } set { throw new NotImplementedException(); } }
         private Dictionary<string, IDirectoryHandler> _handlers;
+		public String pathOfDefaultHandlerForTCP;
         #endregion
 
         /// <summary>
@@ -47,7 +48,10 @@ namespace ImageServiceTools.Server
            // directoryHandlers[i].StartHandleDirectory(paths[i]);
            //this.CommandRecieved += directoryHandlers[i].OnCommandRecieved;
             //  directoryHandlers[i].DirectoryClose += this.RemoveDirectoryHandler;
-
+				if (i==0)
+					{
+					this.pathOfDefaultHandlerForTCP = paths[0];
+					}
                 IDirectoryHandler newHandler = new DirectoryHandler(m_controller, m_logging, paths[i]);
                 newHandler.StartHandleDirectory(paths[i]);
                 this.CommandRecieved += newHandler.OnCommandRecieved;
